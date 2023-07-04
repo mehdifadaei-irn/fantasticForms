@@ -12,69 +12,43 @@ import { increment, decrement } from "../../../redux/forms";
 import { useNavigate, useParams } from "react-router-dom";
 
 const data = [
-  "propertyType",
-  "builtForm",
-  "flatTopStory",
-  "heatLossCorridor",
-  "unHeatedCorridorLength",
-  "extentionCount",
-  "totalFloorArea",
-  "floorLevel",
-  "floorHeight",
-  "numberHabitableRooms",
-  "numberHeatedRooms",
-  "numberOpenFireLaces",
-  "Type",
-  "GlazingType",
-  "WindowsEnergyEFF",
-  "WindowsEnvEFF",
+  "type",
+  "lightningType",
+  "lightingEnergyEFF",
+  "lightinEnvEFF",
+  "lightingCostCourent",
+  "fixedLightingOutletsCount",
+  "HotwaterType",
+  "HotWaterEnergyEFF",
+  "HotWaterEnvEFF",
 ];
 
 const validationSchema = yup.object({
-  propertyType: yup.string().required("propertyType is required"),
-  builtForm: yup
-    .string()
-    // .min(8, "Password should be of minimum 8 characters length")
-    .required("builtForm is required"),
-  flatTopStory: yup.string().required("flatTopStory is required"),
-  heatLossCorridor: yup.string(),
-  unHeatedCorridorLength: yup.string(),
-  extentionCount: yup.string(),
-  totalFloorArea: yup.string(),
-  floorLevel: yup.string().required("floorLevel is required"),
-  floorHeight: yup.string(),
-  numberHabitableRooms: yup
-    .string()
-    .required("numberHabitableRooms is required"),
-  numberHeatedRooms: yup.string(),
-  numberOpenFireLaces: yup.string(),
   type: yup.string(),
-  GlazingType: yup.string(),
-  WindowsEnergyEFF: yup.string().required("WindowsEnergyEFF is required"),
-  WindowsEnvEFF: yup.string(),
+  lightningType: yup.string(),
+  lightingEnergyEFF: yup.string(),
+  lightinEnvEFF: yup.string(),
+  lightingCostCourent: yup.string(),
+  fixedLightingOutletsCount: yup.string(),
+  HotwaterType: yup.string(),
+  HotWaterEnergyEFF: yup.string(),
+  HotWaterEnvEFF: yup.string(),
 });
 
-function Form1() {
+function Form3() {
   const navigate = useNavigate();
   const params = useParams();
   const formik = useFormik({
     initialValues: {
-      propertyType: "",
-      builtForm: "",
-      flatTopStory: "",
-      heatLossCorridor: "",
-      unHeatedCorridorLength: "",
-      extentionCount: "",
-      totalFloorArea: "",
-      floorLevel: "",
-      floorHeight: "",
-      numberHabitableRooms: "",
-      numberHeatedRooms: "",
-      numberOpenFireLaces: "",
       type: "",
-      GlazingType: "",
-      WindowsEnergyEFF: "",
-      WindowsEnvEFF: "",
+      lightningType: "",
+      lightingEnergyEFF: "",
+      lightinEnvEFF: "",
+      lightingCostCourent: "",
+      fixedLightingOutletsCount: "",
+      HotwaterType: "",
+      HotWaterEnergyEFF: "",
+      HotWaterEnvEFF: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -89,6 +63,11 @@ function Form1() {
     dispatch(increment());
     console.log(params);
     // formik.handleSubmit()
+    navigate(`/${params.address}/form4`, { replace: true });
+  }
+
+  function handleBackWard() {
+    dispatch(decrement());
     navigate(`/${params.address}/form2`, { replace: true });
   }
 
@@ -97,7 +76,6 @@ function Form1() {
     await formik.handleSubmit();
     console.log("va", formik.isValid);
   }
-
   return (
     <>
       <form
@@ -113,11 +91,17 @@ function Form1() {
                   formik={formik}
                   item={item}
                   subItems={[
-                    "house",
-                    "flat",
-                    "maisonette",
-                    "bungalow",
-                    "park home",
+                    "mainHeatingControlTTZC",
+                    "mainHeatingControlTrv",
+                    "mainHeatingControlApplianceThermostate",
+                    "mainHeatingContorlAcc",
+                    "mainHeatingControlCelect",
+                    "mainHeatingControlFlatRate",
+                    "mainHeatingControlProgrammer",
+                    "mainHeatingControlCommunityScheme",
+                    "mainHeatingControlRoomThermostrate",
+                    "mainHeatingControlBoilerEnergyManager",
+                    "mainHeating",
                   ]}
                 />
               </div>
@@ -131,32 +115,40 @@ function Form1() {
                   formik={formik}
                   item={item}
                   subItems={[
-                    "Detached",
-                    "Semi-Detached",
-                    "MidTerrace",
-                    "End-Terrace",
-                    "Enclosed Mid-Terrace",
-                    "Enclosed End-Terrace",
+                    "lightingLowEnergy",
+                    "LightingNoLowEnergy",
+                    "LightingOtherUnknown",
+                    "LowEnergyLightingProportion",
                   ]}
                 />
               </div>
             );
           }
-          if (i === 2) {
+          if (i === 5) {
             return (
               <div key={i} className="w-full h-full">
                 <SelectInput
                   key={i}
                   formik={formik}
                   item={item}
-                  subItems={["Yes", "No"]}
+                  subItems={[
+                    "HotWaterCommunity",
+                    "HotWaterHeatPump",
+                    "HotWaterImmersion",
+                    "HotWaterInstantaneous",
+                    "HotWaterFromMainSystem",
+                    "HotWaterSecondarySystem",
+                    "HotWaterGasBoiler",
+                    "HotWaterOtherSystem",
+                    "HotWaterUnknownSystem",
+                  ]}
                 />
               </div>
             );
           } else {
             return (
               <div key={i} className="w-full h-full">
-                <NormalInput formik={formik} item={item} />
+                <NormalInput formik={formik} item={item} key={i} />
               </div>
             );
           }
@@ -167,15 +159,12 @@ function Form1() {
         <Button
           variant="contained"
           startIcon={<KeyboardReturnIcon />}
-          disabled={true}
+          onClick={handleBackWard}
+          // disabled={true}
         >
           back
         </Button>
-        <Button
-          variant="contained"
-          endIcon={<CheckIcon />}
-          onClick={handleCheck}
-        >
+        <Button variant="contained" onClick={handleCheck} endIcon={<CheckIcon />}>
           Check
         </Button>
         <Button
@@ -190,4 +179,4 @@ function Form1() {
   );
 }
 
-export default Form1;
+export default Form3;

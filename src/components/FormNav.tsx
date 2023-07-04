@@ -76,12 +76,11 @@ function QontoStepIcon(props: StepIconProps) {
 }
 
 const steps = [
-  "Propretry Setting",
-  "Windows Settign",
-  "History System Setting",
-  "History System Setting",
-  "History System Setting",
-  "History System Setting",
+  "Propretry & window-setting",
+  "Heating & Transactio",
+  "Lightenig & HotWater-settin",
+  "EnergyInfo & SecondaryHeater",
+  "Wall & Roof-setting",
 ];
 
 export default function FormNav() {
@@ -89,7 +88,7 @@ export default function FormNav() {
   const dispatch = useDispatch();
 
   return (
-    <Stack sx={{ width: "100%", mt: 3 }} spacing={4}>
+    <Stack sx={{ width: "100%", mt: 1 }} spacing={4}>
       <Stepper
         alternativeLabel
         activeStep={formVals?.step}
