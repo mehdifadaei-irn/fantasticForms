@@ -51,19 +51,8 @@ function Home() {
           earum placeat! dolor sit amet
         </p>
 
-        <div className="rounded-xl bg-blue-800 mt-14 text-white  py-2 px-3">
-          <p className="font-light text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit . Cupiditate
-            repellat vitae totam ea suscipit
-          </p>
-          <div className="flex flex-row items-center mt-6 mb-1 ">
-            {/* <PersonIcon fontSize="large" /> */}
-            <img src="/mage.jpg" alt="" width={"17%"}/>
-            <div className="xl:ml-3 flex flex-col">
-              <p className="font-medium text-[17px] pb-0 mb-0">Timson</p>
-              <p className="font-light text-[16px]">MachineLearning</p>
-            </div>
-          </div>
+        <div className="rounded-xl text-white py-2 px-0 mt-10  flex">
+          <img src="/mage.jpg" alt="" width={"80%"} className="r rounded-lg" height={"40%"} />
         </div>
       </div>
       <div className="flex-1 rounded-xl py-12 px-8">
