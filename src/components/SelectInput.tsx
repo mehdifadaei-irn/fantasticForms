@@ -1,4 +1,3 @@
-import React from "react";
 import { TextField, MenuItem } from "@mui/material";
 
 function SelectInput({ item, formik, subItems }: any) {
@@ -7,7 +6,7 @@ function SelectInput({ item, formik, subItems }: any) {
       <TextField
         select
         sx={{
-          width: "70%",
+          width: "75%",
         }}
         id={item}
         name={item}

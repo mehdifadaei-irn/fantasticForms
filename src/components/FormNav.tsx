@@ -8,9 +8,9 @@ import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
 import CircleIcon from "@mui/icons-material/Circle";
-import { StepIconProps } from "@mui/material/StepIcon";
 import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "../redux/forms";
+import { setStep } from "../redux/forms";
+import { useParams, useNavigate } from "react-router-dom";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -59,16 +59,33 @@ const QontoStepIconRoot = styled("div")<{ ownerState: { active?: boolean } }>(
   })
 );
 
-function QontoStepIcon(props: StepIconProps) {
+function QontoStepIcon(props: any) {
   const { active, completed, className } = props;
 
   return (
     <QontoStepIconRoot ownerState={{ active }} className={className}>
       {completed ? (
-        <Check className="QontoStepIcon-completedIcon" fontSize="inherit" />
+        <Check
+          className="QontoStepIcon-completedIcon"
+          fontSize="inherit"
+          // onClick={() =>
+          //   navigate(`/${params.address}/form${formVals.step}`, {
+          //     replace: true,
+          //   })
+          // }
+          sx={{
+            cursor: "pointer",
+          }}
+        />
       ) : (
         <div className="QontoStepIcon-circl">
-          <CircleIcon fontSize="inherit" color="primary" />
+          <CircleIcon
+            fontSize="inherit"
+            color="primary"
+            sx={{
+              cursor: "pointer",
+            }}
+          />
         </div>
       )}
     </QontoStepIconRoot>
@@ -84,8 +101,10 @@ const steps = [
 ];
 
 export default function FormNav() {
+  const params = useParams();
   const formVals = useSelector((state: any): any => state.counter);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <Stack sx={{ width: "100%", mt: 1 }} spacing={4}>
@@ -94,9 +113,19 @@ export default function FormNav() {
         activeStep={formVals?.step}
         connector={<QontoConnector />}
       >
-        {steps.map((label) => (
+        {steps.map((label, i) => (
           <Step key={label}>
-            <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
+            <StepLabel
+              StepIconComponent={QontoStepIcon}
+              onClick={() => {
+                dispatch(setStep(i ));
+                navigate(`/${params.address}/form${i + 1}`, {
+                  replace: true,
+                });
+              }}
+            >
+              {label}
+            </StepLabel>
           </Step>
         ))}
       </Stepper>

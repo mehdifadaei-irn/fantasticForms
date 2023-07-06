@@ -101,7 +101,7 @@ function Form2() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values));
+      alert(JSON.stringify(values));
     },
   });
 
@@ -141,22 +141,15 @@ function Form2() {
             ) {
               return (
                 <div key={item}>
-                  <CheckBoxInput item={item}/>
+                  <CheckBoxInput item={item} formik={formik}/>
                 </div>
               );
             }
           })}
         </div>
 
-        <div className="flex-1 grid gri grid-cols-2 grid-rows-4 gap-y-9">
+        <div className="flex-1 grid gri grid-cols-2 grid-rows-4 gap-y-9 justify-items-end">
           {data.map((item, i) => {
-            // if (
-            //   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].includes(
-            //     i
-            //   )
-            // ) {
-            //   return <CheckBoxInput key={item} />;
-            // }
             if ([17, 18, 19, 20, 21, 22].includes(i)) {
               return <NormalInput formik={formik} item={item} key={item} />;
             }

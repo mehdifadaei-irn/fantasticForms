@@ -1,12 +1,19 @@
-import React from "react";
-import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
-function CheckBoxInput({ item }: any) {
+function CheckBoxInput({ item, formik }: any) {
   return (
     <>
-      <FormControlLabel control={<Checkbox />} label={item} />
+      <FormControlLabel
+        control={<Checkbox />}
+        name={item}
+        id={item}
+        label={item}
+        value={formik.values[item]}
+        onChange={formik.handleChange}
+        // error={formik.touched[item] && Boolean(formik.errors[item])}
+        // helperText={formik.touched[item] && formik.errors[item]}
+      />
     </>
   );
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button } from "@mui/material";
@@ -8,7 +7,7 @@ import ShortcutIcon from "@mui/icons-material/Shortcut";
 import NormalInput from "../../../components/NormalInput";
 import SelectInput from "../../../components/SelectInput";
 import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "../../../redux/forms";
+import { increment } from "../../../redux/forms";
 import { useNavigate, useParams } from "react-router-dom";
 
 const data = [
@@ -82,7 +81,7 @@ function Form1() {
     },
   });
 
-  const { step } = useSelector((state: any): any => state.counter);
+  // const { step } = useSelector((state: any): any => state.counter);
   const dispatch = useDispatch();
 
   function handleForward() {
