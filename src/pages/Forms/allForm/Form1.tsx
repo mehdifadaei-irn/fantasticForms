@@ -9,6 +9,7 @@ import SelectInput from "../../../components/SelectInput";
 import { useSelector, useDispatch } from "react-redux";
 import { increment } from "../../../redux/forms";
 import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const data = [
   "propertyType",
@@ -94,11 +95,16 @@ function Form1() {
   async function handleCheck() {
     // await formik.validateForm();
     await formik.handleSubmit();
-    console.log("va", formik.isValid);
+    // console.log(params.address);
   }
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{params.address}</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <form
         onSubmit={formik.handleSubmit}
         className="w-full h-[76%] justify-center xl:gap-5 gap-0 py-3 grid grid-rows-4 xl:grid-rows-3 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center"
