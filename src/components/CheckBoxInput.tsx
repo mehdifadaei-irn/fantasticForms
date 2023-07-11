@@ -5,12 +5,18 @@ function CheckBoxInput({ item, formik }: any) {
   return (
     <>
       <FormControlLabel
-        control={<Checkbox />}
+        control={
+          <Checkbox
+            defaultChecked={formik.values[item]}
+            onChange={formik.handleChange}
+          />
+        }
         name={item}
         id={item}
         label={item}
-        value={formik.values[item]}
-        onChange={formik.handleChange}
+        value={true}
+        // value={formik.values[item]}
+
         // error={formik.touched[item] && Boolean(formik.errors[item])}
         // helperText={formik.touched[item] && formik.errors[item]}
       />

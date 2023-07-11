@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useSelector, useDispatch } from "react-redux";
 
 interface CounterState {
-  value: number;
+  value: Array<number>;
   step: number;
 }
 
 const initialState: CounterState = {
-  value: 0,
+  value: [],
   step: 0,
 };
 
@@ -22,6 +23,9 @@ const counterSlice = createSlice({
     },
     setStep(state, actions) {
       state.step = actions.payload;
+    },
+    pushError(state, actions) {
+      state.value.push(actions.payload);
     },
     // Add more actions here if needed
   },

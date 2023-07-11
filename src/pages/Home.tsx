@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { TextField, Button, Skeleton } from "@mui/material";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { getAddressByPostCode } from "../api/getAddresByPC";
-
+import { setInputs } from "../redux/allInput";
 import PersonIcon from "@mui/icons-material/Person";
 import { useQuery } from "@tanstack/react-query";
+import { getInfo } from "../api/getInfo";
+import { useDispatch } from "react-redux";
 
 // const addreses = [
 //   { address: "FLAT1 ,RAYMEAD, TENTERDENGROVE " },
@@ -42,12 +44,37 @@ function Home() {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [showList, setShowList] = useState<boolean>(false);
 
-  const { data, isLoading, refetch, isError } = useQuery(["address"], () =>
+  const { data, isLoading, refetch } = useQuery(["address"], () =>
     getAddressByPostCode(formik?.values?.postCode)
   );
+
+  const {
+    data: initialData,
+    isLoading: initLoading,
+    isError: initErr,
+  } = useQuery({
+    queryKey: ["initialVals"],
+    queryFn: () => getInfo("j", "add"),
+  });
+
+  function handleNavItem(address: string) {
+    if (initErr) {
+      console.log("naverro Init");
+      return;
+    }
+    if (!initLoading) {
+      dispatch(setInputs(initialData));
+      navigate(`${address}/form1`);
+    }
+  }
+
+  // useEffect(() => {
+  //   handleNavItem();
+  // }, [initialData, initLoading, initErr]);
 
   return (
     // <div>
@@ -119,11 +146,13 @@ function Home() {
                 ))}
               </div>
             ) : (
-              data?.map((address:any, i:any) => (
+              // <p>he</p>
+              data?.map((address: any, i: any) => (
                 <li
                   key={i}
                   className="mt-5 h-8 flex items-center px-3 bo border-2 rounded-md border-blue-200 cursor-pointer hover:border-blue-400 transition-all duration-250"
-                  onClick={() => navigate(`${address.address}/form1`)}
+                  // onClick={() => navigate(`${address.address}/form1`)}
+                  onClick={() => handleNavItem(address.address)}
                 >
                   <p>{address.address}</p>
                 </li>

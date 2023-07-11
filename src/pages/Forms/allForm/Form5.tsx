@@ -48,22 +48,26 @@ const validationSchema = yup.object({
 function Form5() {
   const navigate = useNavigate();
   const params = useParams();
+  const { inputs } = useSelector((state: any): any => state.all);
+
   const formik = useFormik({
     initialValues: {
-      wallInsullation: "",
-      wallType: "",
-      WallsEnergyEFF: "",
-      WallsEnvEFF: "",
-      RoofInsulation: "",
-      RoofType: "",
-      RoofEnergyEFF: "",
-      RoofEnvEFF: "",
-      RoofLoftInsulationThickness: "",
-      RoofThermalTransmittance: "",
-      FloorInsulation: "",
-      FloorType: "",
-      FloorEnergyEFf: "",
-      FloorEnvEFF: "",
+      wallInsullation: inputs?.wall_settings?.wall_insulation,
+      wallType: inputs?.wall_settings?.wall_type,
+      WallsEnergyEFF: inputs?.wall_settings?.walls_energy_eff,
+      WallsEnvEFF: inputs?.wall_settings?.walls_env_eff,
+      RoofInsulation: inputs?.roof_settings?.roof_insulation,
+      RoofType: inputs?.roof_settings?.roof_type,
+      RoofEnergyEFF: inputs?.roof_settings?.roof_energy_eff,
+      RoofEnvEFF: inputs?.roof_settings?.roof_env_eff,
+      RoofLoftInsulationThickness:
+        inputs?.roof_settings?.roof_loft_insulation_thickness,
+      RoofThermalTransmittance:
+        inputs?.roof_settings?.roof_thermal_transmittance,
+      FloorInsulation: inputs?.floor_settings?.floor_insulation,
+      FloorType: inputs?.floor_settings?.floor_type,
+      FloorEnergyEFf: inputs?.floor_settings?.floor_energy_eff,
+      FloorEnvEFF: inputs?.floor_settings?.floor_env_eff,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -107,9 +111,9 @@ function Form5() {
                   formik={formik}
                   item={item}
                   subItems={[
-                    "WallsNoInsulation",
-                    "WallsLimitedInsulation",
-                    "WallsFullyInsulated",
+                    "wallsNoInsulation",
+                    "wallsLimitedInsulation",
+                    "wallsFullyInsulated",
                   ]}
                 />
               </div>
@@ -123,15 +127,15 @@ function Form5() {
                   formik={formik}
                   item={item}
                   subItems={[
-                    "WallsBrick",
-                    "WallsCavity",
-                    "WallsCob",
-                    "WallsParkHome",
-                    "WallsSedimentary",
-                    "WallsSystemBuildt",
-                    "WallsTimber",
-                    "WallsOterUnknown",
-                    "WallsTermalTransmitance",
+                    "wallsBrick",
+                    "wallsCavity",
+                    "wallsCob",
+                    "wallsParkHome",
+                    "wallsSedimentary",
+                    "wallsSystemBuildt",
+                    "wallsTimber",
+                    "wallsOterUnknown",
+                    "wallsTermalTransmitance",
                   ]}
                 />
               </div>
@@ -145,9 +149,9 @@ function Form5() {
                   formik={formik}
                   item={item}
                   subItems={[
-                    "RoofFullyInsulated",
-                    "RoofLimitedInsulated",
-                    "RoofNoInsulation",
+                    "roofFullyInsulated",
+                    "roofLimitedInsulated",
+                    "roofNoInsulation",
                   ]}
                 />
               </div>
@@ -161,10 +165,10 @@ function Form5() {
                   formik={formik}
                   item={item}
                   subItems={[
-                    "RoofFlatNearHorizonal",
-                    "RoofPitched",
-                    "RoofRoom",
-                    "RoofOtherUnknown",
+                    "roofFlatNearHorizontalRoof",
+                    "roofPitched",
+                    "roofRoom",
+                    "roofOtherUnknown",
                   ]}
                 />
               </div>
@@ -178,10 +182,10 @@ function Form5() {
                   formik={formik}
                   item={item}
                   subItems={[
-                    "FloorNoInsulatin",
-                    "FloorLimitedInsulation",
-                    "FloorFullyInsulated",
-                    "FloorDwelingBelow",
+                    "floorNoInsulation",
+                    "floorLimitedInsulation",
+                    "floorFullyInsulated",
+                    "floorDwelingBelow",
                   ]}
                 />
               </div>
@@ -194,7 +198,7 @@ function Form5() {
                   key={i}
                   formik={formik}
                   item={item}
-                  subItems={["FloorSolid", "FloorSuspended", "FloorOtherType"]}
+                  subItems={["floorSolid", "floorSuspended", "floorOtherType"]}
                 />
               </div>
             );

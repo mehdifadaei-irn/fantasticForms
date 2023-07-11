@@ -8,6 +8,7 @@ import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
 import CircleIcon from "@mui/icons-material/Circle";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { useSelector, useDispatch } from "react-redux";
 import { setStep } from "../redux/forms";
 import { useParams, useNavigate } from "react-router-dom";
@@ -60,23 +61,87 @@ const QontoStepIconRoot = styled("div")<{ ownerState: { active?: boolean } }>(
 );
 
 function QontoStepIcon(props: any) {
-  const { active, completed, className } = props;
+  const { active, completed, className, id } = props;
+  const { value, step } = useSelector((state: any): any => state.counter);
+  console.log(id, "accc");
+  const contentDone = (
+    <div>
+      <Check
+        className="QontoStepIcon-completedIcon"
+        fontSize="medium"
+        // onClick={() =>
+        //   navigate(`/${params.address}/form${formVals.step}`, {
+        //     replace: true,
+        //   })
+        // }
+        
+        sx={{
+          cursor: "pointer",
+          mb: 1,
+          color: "#2563eb"
+        }}
+      />
+      {/* <p className="text-black">{active}</p> */}
+    </div>
+  );
+  const contentManual = (
+    <div className="QontoStepIcon-circl">
+      <CircleIcon
+        fontSize="inherit"
+        color="primary"
+        sx={{
+          cursor: "pointer",
+          mb: 1,
+          // color: "#2563eb"
+        }}
+      />
+      {/* <p className="text-black">{id}asda{step}</p>  */}
+    </div>
+  );
+  const contentError = (
+    <div>
+      <ErrorOutlineIcon
+        className="QontoStepIcon-completedIcon"
+        fontSize="medium"
+        // onClick={() =>
+        //   navigate(`/${params.address}/form${formVals.step}`, {
+        //     replace: true,
+        //   })
+        // }
 
+        sx={{
+          cursor: "pointer",
+          color: "red",
+          mb: 1,
+        }}
+      />
+    </div>
+  );
+  if(value.includes(id)){
+    return contentError
+  }
+  if(id < step) {
+    return contentDone
+  }
+  return contentManual;
   return (
     <QontoStepIconRoot ownerState={{ active }} className={className}>
-      {completed ? (
-        <Check
-          className="QontoStepIcon-completedIcon"
-          fontSize="inherit"
-          // onClick={() =>
-          //   navigate(`/${params.address}/form${formVals.step}`, {
-          //     replace: true,
-          //   })
-          // }
-          sx={{
-            cursor: "pointer",
-          }}
-        />
+      {step === id ? (
+        <div>
+          <Check
+            className="QontoStepIcon-completedIcon"
+            fontSize="inherit"
+            // onClick={() =>
+            //   navigate(`/${params.address}/form${formVals.step}`, {
+            //     replace: true,
+            //   })
+            // }
+            sx={{
+              cursor: "pointer",
+            }}
+          />
+          {/* <p className="text-black">{active}</p> */}
+        </div>
       ) : (
         <div className="QontoStepIcon-circl">
           <CircleIcon
@@ -86,6 +151,7 @@ function QontoStepIcon(props: any) {
               cursor: "pointer",
             }}
           />
+          {/* <p className="text-black">{id}asda{step}</p>  */}
         </div>
       )}
     </QontoStepIconRoot>
@@ -116,9 +182,9 @@ export default function FormNav() {
         {steps.map((label, i) => (
           <Step key={label}>
             <StepLabel
-              StepIconComponent={QontoStepIcon}
+              StepIconComponent={() => <QontoStepIcon id={i} />}
               onClick={() => {
-                dispatch(setStep(i ));
+                dispatch(setStep(i));
                 navigate(`/${params.address}/form${i + 1}`, {
                   replace: true,
                 });

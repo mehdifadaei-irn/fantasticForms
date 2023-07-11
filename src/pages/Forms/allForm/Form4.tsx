@@ -20,7 +20,7 @@ const data = [
   "CurentEnergyRating",
   "SecondyHeaterType",
   "MainFuelType",
-  "HotWaterEnvEFF",
+  // "HotWaterEnvEFF",
 ];
 
 const validationSchema = yup.object({
@@ -32,23 +32,25 @@ const validationSchema = yup.object({
   CurentEnergyRating: yup.string(),
   SecondyHeaterType: yup.string(),
   MainFuelType: yup.string(),
-  HotWaterEnvEFF: yup.string(),
+  // HotWaterEnvEFF: yup.string(),
 });
 
 function Form4() {
   const navigate = useNavigate();
   const params = useParams();
+  const { inputs } = useSelector((state: any): any => state.all);
+
   const formik = useFormik({
     initialValues: {
-      CO2EmissionsCourrent: "",
-      CO2EmissCurrPerFloorArea: "",
-      EnvironmentImpactCurrent: "",
-      EnergyConsumptionCurrent: "",
-      CurentEnergyEfficiency: "",
-      CurentEnergyRating: "",
-      SecondyHeaterType: "",
-      MainFuelType: "",
-      HotWaterEnvEFF: "",
+      CO2EmissionsCourrent: inputs?.energy_info?.co2_emission_current,
+      CO2EmissCurrPerFloorArea: inputs?.energy_info?.co2_emiss_curr_per_floor_area,
+      EnvironmentImpactCurrent: inputs?.energy_info?.environment_impact_current,
+      EnergyConsumptionCurrent: inputs?.energy_info?.energy_consumption_current,
+      CurentEnergyEfficiency: inputs?.energy_info?.current_energy_efficiency,
+      CurentEnergyRating: inputs?.energy_info?.current_energy_ratting,
+      SecondyHeaterType: inputs?.secondary_heater_settings?.type,
+      MainFuelType: inputs?.main_fuel_settings?.type,
+      // HotWaterEnvEFF: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -83,7 +85,7 @@ function Form4() {
         className="w-full h-[76%] justify-center xl:gap-5 gap-0 py-3 grid grid-rows-4 xl:grid-rows-3 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center"
       >
         {data.map((item, i) => {
-          if (i === 7) {
+          if (i === 6) {
             return (
               <div key={i} className="w-full h-full">
                 <SelectInput
@@ -91,34 +93,18 @@ function Form4() {
                   formik={formik}
                   item={item}
                   subItems={[
-                    "secondHeatElectric",
+                    "secondHeatingElectric",
                     "secondHeatingUnderFloor",
                     "secondHeatingRoomHeater",
                     "secondHeatingSecondrySystem",
                     "secondHeatingPortableElectric",
-                    "secondHeatingUnknown",
+                    "secondHeatingUnknown2",
                   ]}
                 />
               </div>
             );
           }
-          if (i === 8) {
-            return (
-              <div key={i} className="w-full h-full">
-                <SelectInput
-                  key={i}
-                  formik={formik}
-                  item={item}
-                  subItems={[
-                    "mainFuelElectricity",
-                    "mainFuelGas",
-                    "mainFuelcommunityScheme",
-                    "mainFuelOtherUnknown",
-                  ]}
-                />
-              </div>
-            );
-          } else {
+           else {
             return (
               <div key={i} className="w-full h-full">
                 <NormalInput formik={formik} item={item} key={i} />
@@ -137,7 +123,11 @@ function Form4() {
         >
           back
         </Button>
-        <Button variant="contained" onClick={handleCheck} endIcon={<CheckIcon />}>
+        <Button
+          variant="contained"
+          onClick={handleCheck}
+          endIcon={<CheckIcon />}
+        >
           Check
         </Button>
         <Button
