@@ -23,8 +23,8 @@ function Layout() {
         {/* <nav className="bg-slate-500">NAvi</nav> */}
 
         <FormNav />
-        {/* <Outlet /> */}
-        <Form1/>
+        <Outlet />
+        {/* <Form1/> */}
       </main>
     </div>
   );
