@@ -63,10 +63,10 @@ function Form1() {
 
   const { inputs, isLoading } = useSelector((state: any): any => state.all);
   // inputs["property_setting"]["property_type"] ||
-  // inputs["property_setting"]["heat_loss_corridor"] ||
+  // inputs?.property_setting?.property_type ||
   const formik = useFormik({
     initialValues: {
-      propertyType: inputs?.property_setting?.property_type,
+      propertyType: "",
       builtForm: inputs?.property_setting?.built_form,
       flatTopStory: inputs?.property_setting?.flat_top_storey,
       heatLossCorridor: inputs?.property_setting?.heat_loss_corridor,

@@ -47,29 +47,36 @@ function Home() {
   const dispatch = useDispatch();
 
   const [showList, setShowList] = useState<boolean>(false);
+  const [isLoadingInfo, setIsLoadingInfo] = useState<boolean>(true);
 
   const { data, isLoading, refetch } = useQuery(["address"], () =>
     getAddressByPostCode(formik?.values?.postCode)
   );
 
-  const {
-    data: initialData,
-    isLoading: initLoading,
-    isError: initErr,
-  } = useQuery({
-    queryKey: ["initialVals"],
-    queryFn: () => getInfo("j", "add"),
-  });
+  // const {
+  //   data: initialData,
+  //   isLoading: initLoading,
+  //   isError: initErr,
+  // } = useQuery({
+  //   queryKey: ["initialVals"],
+  //   queryFn: () => getInfo(formik.values.postCode, selectAdd),
+  // });
 
-  function handleNavItem(address: string) {
-    if (initErr) {
-      console.log("naverro Init");
-      return;
-    }
-    if (!initLoading) {
-      dispatch(setInputs(initialData));
-      navigate(`${address}/form1`);
-    }
+  async function handleNavItem(address: string) {
+    setIsLoadingInfo(true);
+    const data =await getInfo(formik.values.postCode, address);
+    console.log(data, "innne")
+    setIsLoadingInfo(false);
+    dispatch(setInputs(data));
+    navigate(`${address}/form1`);
+    // if (initErr) {
+    //   console.log("naverro Init");
+    //   return;
+    // }
+    // if (!initLoading) {
+    //   dispatch(setInputs(initialData));
+    //   navigate(`${address}/form1`);
+    // }
   }
 
   // useEffect(() => {

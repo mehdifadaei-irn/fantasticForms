@@ -7,11 +7,13 @@ const endpoint = "info";
 
 
 export async function getInfo(postCode: string, address: string) {
+  console.log(postCode, address)
   const { data } = await axios.get(`${apiUrl}/${endpoint}`, {
     params: {
       postcode: postCode,
       address: address,
     },
   });
+  console.log(data, "daaaaa")
   return data;
 }

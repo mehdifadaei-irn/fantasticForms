@@ -5,6 +5,7 @@ import { getInfo } from "../../api/getInfo";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setErr, setLoading, setVar, setInputs } from "../../redux/allInput";
+import Form1 from "./allForm/Form1";
 
 // FORM LAYOUYT
 function Layout() {
@@ -22,7 +23,8 @@ function Layout() {
         {/* <nav className="bg-slate-500">NAvi</nav> */}
 
         <FormNav />
-        <Outlet />
+        {/* <Outlet /> */}
+        <Form1/>
       </main>
     </div>
   );
