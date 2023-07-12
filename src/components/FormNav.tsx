@@ -74,11 +74,11 @@ function QontoStepIcon(props: any) {
         //     replace: true,
         //   })
         // }
-        
+
         sx={{
           cursor: "pointer",
           mb: 1,
-          color: "#2563eb"
+          color: "#2563eb",
         }}
       />
       {/* <p className="text-black">{active}</p> */}
@@ -117,11 +117,11 @@ function QontoStepIcon(props: any) {
       />
     </div>
   );
-  if(value.includes(id)){
-    return contentError
+  if (value.includes(id)) {
+    return contentError;
   }
-  if(id < step) {
-    return contentDone
+  if (id < step) {
+    return contentDone;
   }
   return contentManual;
   return (
@@ -166,7 +166,7 @@ const steps = [
   "Wall & Roof-setting",
 ];
 
-export default function FormNav() {
+export default function FormNav({ setStep }: any) {
   const params = useParams();
   const formVals = useSelector((state: any): any => state.counter);
   const dispatch = useDispatch();

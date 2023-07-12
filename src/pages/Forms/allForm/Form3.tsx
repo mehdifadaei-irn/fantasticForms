@@ -36,29 +36,12 @@ const validationSchema = yup.object({
   HotWaterEnvEFF: yup.string(),
 });
 
-function Form3() {
+function Form3({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
   const params = useParams();
   const { inputs } = useSelector((state: any): any => state.all);
 
-  const formik = useFormik({
-    initialValues: {
-      contorollertype: inputs?.controller_settings?.type,
-      lightningType: inputs?.lightening_settings?.type,
-      lightingEnergyEFF: inputs?.lightening_settings?.lighting_energy_eff,
-      lightinEnvEFF: inputs?.lightening_settings?.lighting_env_eff,
-      lightingCostCourent: inputs?.lightening_settings?.lighting_cost_current,
-      fixedLightingOutletsCount:
-        inputs?.lightening_settings?.fixed_lighting_outlets_count,
-      HotwaterType: inputs?.hot_water_settings?.type,
-      HotWaterEnergyEFF: inputs?.hot_water_settings?.hot_water_energy_eff,
-      HotWaterEnvEFF: inputs?.hot_water_settings?.hot_water_env_eff,
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values));
-    },
-  });
+  
 
   const { values } = useSelector((state: any): any => state.all);
   const dispatch = useDispatch();
@@ -68,23 +51,26 @@ function Form3() {
     console.log(params);
     // formik.handleSubmit()
     navigate(`/${params.address}/form4`, { replace: true });
+    setStep((prev: number) => prev + 1);
+
   }
 
   function handleBackWard() {
     dispatch(decrement());
     navigate(`/${params.address}/form2`, { replace: true });
+    setStep((prev:number)=> prev -1)
   }
 
   async function handleCheck() {
     // await formik.validateForm();
-    await formik.handleSubmit();
+    await mainFormik.handleSubmit();
     dispatch(setVar({ key: "type", value: "thisHAAAAA" }));
     console.log("va", values);
   }
   return (
     <>
       <form
-        onSubmit={formik.handleSubmit}
+        onSubmit={mainFormik.handleSubmit}
         className="w-full h-[76%] justify-center xl:gap-5 gap-0 py-3 grid grid-rows-4 xl:grid-rows-3 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center"
       >
         {data.map((item, i) => {
@@ -93,7 +79,7 @@ function Form3() {
               <div key={i} className="w-full h-full">
                 <SelectInput
                   key={i}
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   subItems={[
                     "mainHeatingControlTTZC",
@@ -118,7 +104,7 @@ function Form3() {
               <div key={i} className="w-full h-full">
                 <SelectInput
                   key={i}
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   subItems={[
                     "lightingLowEnergy",
@@ -136,7 +122,7 @@ function Form3() {
               <div key={i} className="w-full h-full">
                 <SelectInput
                   key={i}
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   subItems={[
                     "hotWaterCommunity",
@@ -155,7 +141,7 @@ function Form3() {
           } else {
             return (
               <div key={i} className="w-full h-full">
-                <NormalInput formik={formik} item={item} key={i} />
+                <NormalInput formik={mainFormik} item={item} key={i} />
               </div>
             );
           }

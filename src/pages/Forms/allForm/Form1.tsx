@@ -57,7 +57,7 @@ const validationSchema = yup.object({
   WindowsEnvEFF: yup.string(),
 });
 
-function Form1() {
+function Form1({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
   const params = useParams();
 
@@ -98,10 +98,11 @@ function Form1() {
     console.log(params);
     // formik.handleSubmit()
     navigate(`/${params.address}/form2`, { replace: true });
+    setStep((prev: number) => prev + 1);
   }
 
   React.useEffect(() => {
-    formik.values.propertyType =
+    mainFormik.values.propertyType =
       inputs?.property_setting?.property_type.toString();
   }, []);
 
@@ -110,6 +111,7 @@ function Form1() {
     // await formik.handleSubmit();
     console.log(isLoading, "Load");
     console.log(inputs?.property_setting?.property_type, "si");
+    
   }
 
   return (
@@ -129,7 +131,7 @@ function Form1() {
         </div>
       ) : (
         <form
-          onSubmit={formik.handleSubmit}
+          onSubmit={mainFormik.handleSubmit}
           className="w-full h-[76%] justify-center xl:gap-5 gap-0 py-3 grid grid-rows-4 xl:grid-rows-3 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center"
         >
           {data.map((item, i) => {
@@ -138,7 +140,7 @@ function Form1() {
                 <div key={i} className="w-full h-full">
                   <SelectInput
                     key={i}
-                    formik={formik}
+                    formik={mainFormik}
                     item={item}
                     subItems={[
                       "house",
@@ -156,7 +158,7 @@ function Form1() {
                 <div key={i} className="w-full h-full">
                   <SelectInput
                     key={i}
-                    formik={formik}
+                    formik={mainFormik}
                     item={item}
                     subItems={[
                       "detached",
@@ -175,7 +177,7 @@ function Form1() {
                 <div key={i} className="w-full h-full">
                   <SelectInput
                     key={i}
-                    formik={formik}
+                    formik={mainFormik}
                     item={item}
                     subItems={["Yes", "No"]}
                   />
@@ -184,7 +186,7 @@ function Form1() {
             } else {
               return (
                 <div key={i} className="w-full h-full">
-                  <NormalInput formik={formik} item={item} />
+                  <NormalInput formik={mainFormik} item={item} />
                 </div>
               );
             }

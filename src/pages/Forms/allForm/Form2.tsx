@@ -68,44 +68,10 @@ const validationSchema = yup.object({
   TariffType: yup.string(),
 });
 
-function Form2() {
+function Form2({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
   const params = useParams();
   const { inputs } = useSelector((state: any): any => state.all);
-
-  const formik = useFormik({
-    initialValues: {
-      airSourceHeatPump: inputs?.main_Heating_system_setting?.air_source_heatpump,
-      waterSourceHeatPump: inputs?.main_Heating_system_setting?.water_source_heatpump,
-      GroundSourceHeatPump: inputs?.main_Heating_system_setting?.ground_source_heatpump,
-      Electric: inputs?.main_Heating_system_setting?.electric,
-      Gas: inputs?.main_Heating_system_setting?.gas,
-      otherUnmetricFuel: inputs?.main_Heating_system_setting?.other_unmetric_fuel,
-      fanCoil: inputs?.main_Heating_system_setting?.fan_coil,
-      underFloor: inputs?.main_Heating_system_setting?.underfloor,
-      radiator: inputs?.main_Heating_system_setting?.radiator,
-      warmAir: inputs?.main_Heating_system_setting?.warm_air,
-      boiler: inputs?.main_Heating_system_setting?.boiler,
-      electricCeiling: inputs?.main_Heating_system_setting?.electric_ceiling,
-      electricStorage: inputs?.main_Heating_system_setting?.electric_storage,
-      communityScheme: inputs?.main_Heating_system_setting?.community_scheme,
-      micro: inputs?.main_Heating_system_setting?.micro,
-      roomHeater: inputs?.main_Heating_system_setting?.room_heater,
-      otherUnknown: inputs?.main_Heating_system_setting?.other_unknown,
-      solarWaterHeatingFlag: inputs?.main_Heating_system_setting?.solar_water_heating_flag,
-      mainHeatEnergyEFF: inputs?.main_Heating_system_setting?.main_heat_energy_eff,
-      mainHeatEnvEFF: inputs?.main_Heating_system_setting?.mainheat_env_eff,
-      mainHeatCEnergyEFF: inputs?.main_Heating_system_setting?.mainheatc_energy_eff,
-      mainHeatCEnvEFF: inputs?.main_Heating_system_setting?.mainheatc_env_eff,
-      heatingCostCourent: inputs?.main_Heating_system_setting?.heating_cost_current,
-      transactionType: inputs?.transaction_settings?.transaction_type,
-      TariffType: inputs?.tariff?.type,
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values));
-    },
-  });
 
   const dispatch = useDispatch();
 
@@ -114,23 +80,25 @@ function Form2() {
     // console.log(params);
     // formik.handleSubmit()
     navigate(`/${params.address}/form3`, { replace: true });
+    setStep((prev: number) => prev + 1);
   }
 
   function handleBackWard() {
     dispatch(decrement());
     navigate(`/${params.address}/form1`, { replace: true });
+    setStep((prev: number) => prev - 1);
   }
 
   async function handleCheck() {
     // await formik.validateForm();
-    await formik.handleSubmit();
-    console.log("va", formik.isValid);
+    await mainFormik.handleSubmit();
+    console.log("va", mainFormik.isValid);
   }
 
   return (
     <>
       <form
-        onSubmit={formik.handleSubmit}
+        onSubmit={mainFormik.handleSubmit}
         className="w-full h-[76%] flex items-center justify-items-center flex-row"
       >
         <div className="gird grid-cols-2 w-[45%] grid gap-x-10 ml-8  ">
@@ -142,7 +110,7 @@ function Form2() {
             ) {
               return (
                 <div key={item}>
-                  <CheckBoxInput item={item} formik={formik} />
+                  <CheckBoxInput item={item} formik={mainFormik} />
                 </div>
               );
             }
@@ -152,12 +120,12 @@ function Form2() {
         <div className="flex-1 grid gri grid-cols-2 grid-rows-4 gap-y-9 justify-items-end">
           {data.map((item, i) => {
             if ([17, 18, 19, 20, 21, 22].includes(i)) {
-              return <NormalInput formik={formik} item={item} key={item} />;
+              return <NormalInput formik={mainFormik} item={item} key={item} />;
             }
             if (i === 23) {
               return (
                 <SelectInput
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   key={item}
                   subItems={[
@@ -175,7 +143,7 @@ function Form2() {
             if (i === 24) {
               return (
                 <SelectInput
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   key={item}
                   subItems={[

@@ -45,7 +45,7 @@ const validationSchema = yup.object({
   FloorEnvEFF: yup.string(),
 });
 
-function Form5() {
+function Form5({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
   const params = useParams();
   const { inputs } = useSelector((state: any): any => state.all);
@@ -88,18 +88,19 @@ function Form5() {
   function handleBackWard() {
     dispatch(decrement());
     navigate(`/${params.address}/form4`, { replace: true });
+    setStep((prev: number) => prev - 1);
   }
 
   async function handleCheck() {
     // await formik.validateForm();
-    await formik.handleSubmit();
+    await mainFormik.handleSubmit();
     console.log("va", formik.isValid);
   }
 
   return (
     <>
       <form
-        onSubmit={formik.handleSubmit}
+        onSubmit={mainFormik.handleSubmit}
         className="w-full h-[76%] justify-center xl:gap-5 gap-0 py-3 grid grid-rows-4 xl:grid-rows-3 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center"
       >
         {data.map((item, i) => {
@@ -108,7 +109,7 @@ function Form5() {
               <div key={i} className="w-full h-full">
                 <SelectInput
                   key={i}
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   subItems={[
                     "wallsNoInsulation",
@@ -124,7 +125,7 @@ function Form5() {
               <div key={i} className="w-full h-full">
                 <SelectInput
                   key={i}
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   subItems={[
                     "wallsBrick",
@@ -146,7 +147,7 @@ function Form5() {
               <div key={i} className="w-full h-full">
                 <SelectInput
                   key={i}
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   subItems={[
                     "roofFullyInsulated",
@@ -162,7 +163,7 @@ function Form5() {
               <div key={i} className="w-full h-full">
                 <SelectInput
                   key={i}
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   subItems={[
                     "roofFlatNearHorizontalRoof",
@@ -179,7 +180,7 @@ function Form5() {
               <div key={i} className="w-full h-full">
                 <SelectInput
                   key={i}
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   subItems={[
                     "floorNoInsulation",
@@ -196,7 +197,7 @@ function Form5() {
               <div key={i} className="w-full h-full">
                 <SelectInput
                   key={i}
-                  formik={formik}
+                  formik={mainFormik}
                   item={item}
                   subItems={["floorSolid", "floorSuspended", "floorOtherType"]}
                 />
@@ -205,7 +206,7 @@ function Form5() {
           } else {
             return (
               <div key={i} className="w-full h-full">
-                <NormalInput formik={formik} item={item} key={i} />
+                <NormalInput formik={mainFormik} item={item} key={i} />
               </div>
             );
           }
