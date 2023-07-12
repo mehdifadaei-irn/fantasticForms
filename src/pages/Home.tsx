@@ -65,7 +65,7 @@ function Home() {
   async function handleNavItem(address: string) {
     setIsLoadingInfo(true);
     const data =await getInfo(formik.values.postCode, address);
-    console.log(data, "innne")
+    console.log(address, "innne")
     setIsLoadingInfo(false);
     dispatch(setInputs(data));
     navigate(`${address}/form1`);

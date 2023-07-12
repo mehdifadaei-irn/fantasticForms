@@ -5,15 +5,16 @@ const endpoint = "info";
 
 // http://192.168.20.114:5000/info?postcode=90&address=asdasd
 
-
 export async function getInfo(postCode: string, address: string) {
-  console.log(postCode, address)
+  const convertedStr = address.replace(/ /g, "%");
+
+  // console.log(`${convertedStr} = this add`);/
   const { data } = await axios.get(`${apiUrl}/${endpoint}`, {
     params: {
       postcode: postCode,
-      address: address,
+      address: convertedStr,
     },
   });
-  console.log(data, "daaaaa")
+  console.log(data, "daaaaa");
   return data;
 }
