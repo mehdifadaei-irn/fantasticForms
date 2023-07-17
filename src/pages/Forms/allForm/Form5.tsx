@@ -87,6 +87,7 @@ function Form5({ setStep, mainFormik }: any) {
                     "wallsBrick",
                     "wallsCavity",
                     "wallsCob",
+                    "wallsGranite",
                     "wallsParkHome",
                     "wallsSedimentary",
                     "wallsSystemBuildt",
