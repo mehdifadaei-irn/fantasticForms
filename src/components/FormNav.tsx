@@ -159,9 +159,9 @@ function QontoStepIcon(props: any) {
 }
 
 const steps = [
-  "Propretry & window-setting",
-  "Heating & Transactio",
-  "Lightenig & HotWater-settin",
+  "Propretry&window&tenure",
+  "Heating & Transaction",
+  "Lightenig & HotWater",
   "EnergyInfo & SecondaryHeater",
   "Wall & Roof-setting",
 ];

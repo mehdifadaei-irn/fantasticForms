@@ -28,54 +28,10 @@ const data = [
   "FloorEnvEFF",
 ];
 
-const validationSchema = yup.object({
-  wallInsullation: yup.string(),
-  wallType: yup.string().required("wallType is required!"),
-  WallsEnergyEFF: yup.string(),
-  WallsEnvEFF: yup.string(),
-  RoofInsulation: yup.string(),
-  RoofType: yup.string().required("RoofType is required!"),
-  RoofEnergyEFF: yup.string(),
-  RoofEnvEFF: yup.string(),
-  RoofLoftInsulationThickness: yup.string(),
-  RoofThermalTransmittance: yup.string(),
-  FloorInsulation: yup.string(),
-  FloorType: yup.string(),
-  FloorEnergyEFf: yup.string(),
-  FloorEnvEFF: yup.string(),
-});
-
 function Form5({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
   const params = useParams();
-  const { inputs } = useSelector((state: any): any => state.all);
 
-  const formik = useFormik({
-    initialValues: {
-      wallInsullation: inputs?.wall_settings?.wall_insulation,
-      wallType: inputs?.wall_settings?.wall_type,
-      WallsEnergyEFF: inputs?.wall_settings?.walls_energy_eff,
-      WallsEnvEFF: inputs?.wall_settings?.walls_env_eff,
-      RoofInsulation: inputs?.roof_settings?.roof_insulation,
-      RoofType: inputs?.roof_settings?.roof_type,
-      RoofEnergyEFF: inputs?.roof_settings?.roof_energy_eff,
-      RoofEnvEFF: inputs?.roof_settings?.roof_env_eff,
-      RoofLoftInsulationThickness:
-        inputs?.roof_settings?.roof_loft_insulation_thickness,
-      RoofThermalTransmittance:
-        inputs?.roof_settings?.roof_thermal_transmittance,
-      FloorInsulation: inputs?.floor_settings?.floor_insulation,
-      FloorType: inputs?.floor_settings?.floor_type,
-      FloorEnergyEFf: inputs?.floor_settings?.floor_energy_eff,
-      FloorEnvEFF: inputs?.floor_settings?.floor_env_eff,
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // alert(JSON.stringify(values));
-    },
-  });
-
-  const { step } = useSelector((state: any): any => state.counter);
   const dispatch = useDispatch();
 
   // function handleForward() {
@@ -94,7 +50,7 @@ function Form5({ setStep, mainFormik }: any) {
   async function handleCheck() {
     // await formik.validateForm();
     await mainFormik.handleSubmit();
-    console.log("va", formik.isValid);
+    console.log("va", mainFormik.isValid);
   }
 
   return (

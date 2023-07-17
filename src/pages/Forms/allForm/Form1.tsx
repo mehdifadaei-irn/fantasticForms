@@ -27,91 +27,33 @@ const data = [
   "numberHabitableRooms",
   "numberHeatedRooms",
   "numberOpenFireLaces",
-  "Type",
+  "tenure",
   "GlazingType",
   "WindowsEnergyEFF",
   "WindowsEnvEFF",
 ];
-
-const validationSchema = yup.object({
-  propertyType: yup.string().required("propertyType is required"),
-  builtForm: yup
-    .string()
-    // .min(8, "Password should be of minimum 8 characters length")
-    .required("builtForm is required"),
-  flatTopStory: yup.string().required("flatTopStory is required"),
-  heatLossCorridor: yup.string(),
-  unHeatedCorridorLength: yup.string(),
-  extentionCount: yup.string(),
-  totalFloorArea: yup.string(),
-  floorLevel: yup.string().required("floorLevel is required"),
-  floorHeight: yup.string(),
-  numberHabitableRooms: yup
-    .string()
-    .required("numberHabitableRooms is required"),
-  numberHeatedRooms: yup.string(),
-  numberOpenFireLaces: yup.string(),
-  type: yup.string(),
-  GlazingType: yup.string(),
-  WindowsEnergyEFF: yup.string().required("WindowsEnergyEFF is required"),
-  WindowsEnvEFF: yup.string(),
-});
 
 function Form1({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
   const params = useParams();
 
   const { inputs, isLoading } = useSelector((state: any): any => state.all);
-  // inputs["property_setting"]["property_type"] ||
-  // inputs?.property_setting?.property_type ||
-  const formik = useFormik({
-    initialValues: {
-      propertyType: "",
-      builtForm: inputs?.property_setting?.built_form,
-      flatTopStory: inputs?.property_setting?.flat_top_storey,
-      heatLossCorridor: inputs?.property_setting?.heat_loss_corridor,
-      unHeatedCorridorLength:
-        inputs?.property_setting?.unheated_corridor_length,
-      extentionCount: inputs?.property_setting?.extension_count,
-      totalFloorArea: inputs?.property_setting?.total_floor_area,
-      floorLevel: inputs?.property_setting?.floor_level,
-      floorHeight: inputs?.property_setting?.floor_height,
-      numberHabitableRooms: inputs?.property_setting?.number_habitable_rooms,
-      numberHeatedRooms: inputs?.property_setting?.number_heated_rooms,
-      numberOpenFireLaces: inputs?.property_setting?.number_open_fireplaces,
-      type: inputs?.tenure?.type,
-      GlazingType: inputs?.windows_setting?.glazing_type,
-      WindowsEnergyEFF: inputs?.windows_setting?.windows_energy_eff,
-      WindowsEnvEFF: inputs?.windows_setting?.windows_env_eff,
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values));
-    },
-  });
 
-  // const { step } = useSelector((state: any): any => state.counter);
   const dispatch = useDispatch();
 
   function handleForward() {
     dispatch(increment());
-    console.log(params);
+    // console.log(params);
     // formik.handleSubmit()
     navigate(`/${params.address}/form2`, { replace: true });
     setStep((prev: number) => prev + 1);
   }
 
-  React.useEffect(() => {
-    mainFormik.values.propertyType =
-      inputs?.property_setting?.property_type.toString();
-  }, []);
-
   async function handleCheck() {
     // await formik.validateForm();
     // await formik.handleSubmit();
-    console.log(isLoading, "Load");
-    console.log(inputs?.property_setting?.property_type, "si");
-    
+    // console.log(isLoading, "Load");
+    // console.log(inputs?.property_setting?.property_type, "si");
   }
 
   return (
@@ -180,6 +122,43 @@ function Form1({ setStep, mainFormik }: any) {
                     formik={mainFormik}
                     item={item}
                     subItems={["Yes", "No"]}
+                  />
+                </div>
+              );
+            }
+            if (i === 12) {
+              return (
+                <div key={i} className="w-full h-full">
+                  <SelectInput
+                    key={i}
+                    formik={mainFormik}
+                    item={item}
+                    subItems={[
+                      "tenureOwnerOccupied",
+                      "tenurePrivateRent",
+                      "tenureSocialRent",
+                      "tenureUnknown",
+                    ]}
+                  />
+                </div>
+              );
+            }
+            if (i === 13) {
+              return (
+                <div key={i} className="w-full h-full">
+                  <SelectInput
+                    key={i}
+                    formik={mainFormik}
+                    item={item}
+                    subItems={[
+                      "windowsSingleGlazed",
+                      "windowsSecondaryGlazed",
+                      "windowsDoubleGlazed",
+                      "windowsTripleGlazed",
+                      "windowsHighPerformanceGlazed",
+                      "windowsMixedGlazed",
+                      "windowsOtherUnknownGlazed",
+                    ]}
                   />
                 </div>
               );

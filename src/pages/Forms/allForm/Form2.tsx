@@ -27,7 +27,8 @@ const data = [
   "electricCeiling",
   "electricStorage",
   "communityScheme",
-  "micro",
+  "micro",//14
+  "portable",
   "roomHeater",
   "otherUnknown",
   "solarWaterHeatingFlag",
@@ -40,38 +41,9 @@ const data = [
   "TariffType",
 ];
 
-const validationSchema = yup.object({
-  airSourceHeatPump: yup.bool(),
-  waterSourceHeatPump: yup.bool(),
-  GroundSourceHeatPump: yup.bool(),
-  Electric: yup.bool(),
-  Gas: yup.bool(),
-  otherUnmetricFuel: yup.bool(),
-  fanCoil: yup.bool(),
-  underFloor: yup.bool(),
-  radiator: yup.bool(),
-  warmAir: yup.bool(),
-  boiler: yup.bool(),
-  electricCeiling: yup.bool(),
-  electricStorage: yup.bool(),
-  communityScheme: yup.bool(),
-  micro: yup.bool(),
-  roomHeater: yup.bool(),
-  otherUnknown: yup.bool(),
-  solarWaterHeatingFlag: yup.string(),
-  mainHeatEnergyEFF: yup.string(),
-  mainHeatEnvEFF: yup.string(),
-  mainHeatCEnergyEFF: yup.string(),
-  mainHeatCEnvEFF: yup.string(),
-  heatingCostCourent: yup.string(),
-  transactionType: yup.string(),
-  TariffType: yup.string(),
-});
-
 function Form2({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
   const params = useParams();
-  const { inputs } = useSelector((state: any): any => state.all);
 
   const dispatch = useDispatch();
 
@@ -105,7 +77,7 @@ function Form2({ setStep, mainFormik }: any) {
           {data.map((item, i) => {
             if (
               [
-                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17
               ].includes(i)
             ) {
               return (
@@ -119,10 +91,10 @@ function Form2({ setStep, mainFormik }: any) {
 
         <div className="flex-1 grid gri grid-cols-2 grid-rows-4 gap-y-9 justify-items-end">
           {data.map((item, i) => {
-            if ([17, 18, 19, 20, 21, 22].includes(i)) {
+            if ([ 18, 19, 20, 21, 22,23].includes(i)) {
               return <NormalInput formik={mainFormik} item={item} key={item} />;
             }
-            if (i === 23) {
+            if (i === 24) {
               return (
                 <SelectInput
                   formik={mainFormik}
@@ -140,7 +112,7 @@ function Form2({ setStep, mainFormik }: any) {
                 />
               );
             }
-            if (i === 24) {
+            if (i === 25) {
               return (
                 <SelectInput
                   formik={mainFormik}

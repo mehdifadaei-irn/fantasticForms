@@ -38,9 +38,7 @@ const validationSchema = yup.object({
 function Form4({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
   const params = useParams();
-  const { inputs } = useSelector((state: any): any => state.all);
 
-  const { step } = useSelector((state: any): any => state.counter);
   const dispatch = useDispatch();
 
   function handleForward() {

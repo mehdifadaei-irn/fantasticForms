@@ -24,23 +24,9 @@ const data = [
   "HotWaterEnvEFF",
 ];
 
-const validationSchema = yup.object({
-  contorollertype: yup.string(),
-  lightningType: yup.string(),
-  lightingEnergyEFF: yup.string(),
-  lightinEnvEFF: yup.string(),
-  lightingCostCourent: yup.string(),
-  fixedLightingOutletsCount: yup.string(),
-  HotwaterType: yup.string(),
-  HotWaterEnergyEFF: yup.string(),
-  HotWaterEnvEFF: yup.string(),
-});
-
 function Form3({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
   const params = useParams();
-  const { inputs } = useSelector((state: any): any => state.all);
-
   
 
   const { values } = useSelector((state: any): any => state.all);
@@ -48,7 +34,7 @@ function Form3({ setStep, mainFormik }: any) {
 
   function handleForward() {
     dispatch(increment());
-    console.log(params);
+    // console.log(params);
     // formik.handleSubmit()
     navigate(`/${params.address}/form4`, { replace: true });
     setStep((prev: number) => prev + 1);
@@ -82,6 +68,9 @@ function Form3({ setStep, mainFormik }: any) {
                   formik={mainFormik}
                   item={item}
                   subItems={[
+                    "byPass",
+                    "flowSwitch",
+                    "noThermostate",
                     "mainHeatingControlTTZC",
                     "mainHeatingControlTrv",
                     "mainHeatingControlApplianceThermostate",
@@ -92,7 +81,6 @@ function Form3({ setStep, mainFormik }: any) {
                     "mainHeatingControlCommunityScheme",
                     "mainHeatingControlRoomThermostrate",
                     "mainHeatingControlBoilerEnergyManager",
-                    "mainHeating",
                     "mainHeatingControlOtherUnknown",
                   ]}
                 />
