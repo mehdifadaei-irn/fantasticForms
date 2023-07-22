@@ -17,7 +17,7 @@ const data = [
   "lightningType",
   "lightingEnergyEFF",
   "lightinEnvEFF",
-  "lightingCostCourent",
+  "lightingCostCourent", //4
   "fixedLightingOutletsCount",
   "HotwaterType",
   "HotWaterEnergyEFF",
@@ -27,7 +27,6 @@ const data = [
 function Form3({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
   const params = useParams();
-  
 
   const { values } = useSelector((state: any): any => state.all);
   const dispatch = useDispatch();
@@ -38,13 +37,12 @@ function Form3({ setStep, mainFormik }: any) {
     // formik.handleSubmit()
     navigate(`/${params.address}/form4`, { replace: true });
     setStep((prev: number) => prev + 1);
-
   }
 
   function handleBackWard() {
     dispatch(decrement());
     navigate(`/${params.address}/form2`, { replace: true });
-    setStep((prev:number)=> prev -1)
+    setStep((prev: number) => prev - 1);
   }
 
   async function handleCheck() {
@@ -124,6 +122,13 @@ function Form3({ setStep, mainFormik }: any) {
                     "hotWaterUnknownSystem",
                   ]}
                 />
+              </div>
+            );
+          }
+          if (i === 4) {
+            return (
+              <div key={i} className="w-full h-full">
+                <NormalInput formik={mainFormik} item={item} key={i} unit={"£ per year"} />
               </div>
             );
           } else {

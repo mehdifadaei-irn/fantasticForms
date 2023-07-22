@@ -12,7 +12,7 @@ import { increment, decrement } from "../../../redux/forms";
 import { useNavigate, useParams } from "react-router-dom";
 
 const data = [
-  "CO2EmissionsCourrent",
+  "CO2EmissionsCourrent", //0
   "CO2EmissCurrPerFloorArea",
   "EnvironmentImpactCurrent",
   "EnergyConsumptionCurrent",
@@ -67,6 +67,27 @@ function Form4({ setStep, mainFormik }: any) {
         className="w-full h-[76%] justify-center xl:gap-5 gap-0 py-3 grid grid-rows-4 xl:grid-rows-3 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center"
       >
         {data.map((item, i) => {
+          if (i === 0) {
+            return (
+              <div key={i} className="w-full h-full">
+                <NormalInput formik={mainFormik} item={item} key={i} unit={"TonsPerYear"} />
+              </div>
+            );
+          }
+          if (i === 1) {
+            return (
+              <div key={i} className="w-full h-full">
+                <NormalInput formik={mainFormik} item={item} key={i} unit={"Tons/year/m"} topUnit="2" />
+              </div>
+            );
+          }
+          if (i === 3) {
+            return (
+              <div key={i} className="w-full h-full">
+                <NormalInput formik={mainFormik} item={item} key={i} unit={"kwh/year/m"} topUnit="2" />
+              </div>
+            );
+          }
           if (i === 6) {
             return (
               <div key={i} className="w-full h-full">

@@ -27,7 +27,7 @@ const data = [
   "electricCeiling",
   "electricStorage",
   "communityScheme",
-  "micro",//14
+  "micro", //14
   "portable",
   "roomHeater",
   "otherUnknown",
@@ -36,7 +36,7 @@ const data = [
   "mainHeatEnvEFF",
   "mainHeatCEnergyEFF",
   "mainHeatCEnvEFF",
-  "heatingCostCourent",
+  "heatingCostCourent", //23
   "transactionType",
   "TariffType",
 ];
@@ -71,13 +71,13 @@ function Form2({ setStep, mainFormik }: any) {
     <>
       <form
         onSubmit={mainFormik.handleSubmit}
-        className="w-full h-[76%] flex items-center justify-items-center flex-row"
+        className="w-full h-[76%] flex items-center justify-items-center flex-row pr-8"
       >
         <div className="gird grid-cols-2 w-[45%] grid gap-x-10 ml-8  ">
           {data.map((item, i) => {
             if (
               [
-                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
               ].includes(i)
             ) {
               return (
@@ -89,10 +89,17 @@ function Form2({ setStep, mainFormik }: any) {
           })}
         </div>
 
-        <div className="flex-1 grid gri grid-cols-2 grid-rows-4 gap-y-9 justify-items-end">
+        <div className="flex-1 grid gri grid-cols-2 gap-10  grid-rows-4 gap-y-9">
           {data.map((item, i) => {
-            if ([ 18, 19, 20, 21, 22,23].includes(i)) {
-              return <NormalInput formik={mainFormik} item={item} key={item} />;
+            if ([18, 19, 20, 21, 22].includes(i)) {
+              return (
+                <NormalInput
+                  formik={mainFormik}
+                  item={item}
+                  key={item}
+                  w={"100%"}
+                />
+              );
             }
             if (i === 24) {
               return (
@@ -100,6 +107,7 @@ function Form2({ setStep, mainFormik }: any) {
                   formik={mainFormik}
                   item={item}
                   key={item}
+                  w={"100%"}
                   subItems={[
                     "transEco",
                     "transGreenDeal",
@@ -118,6 +126,7 @@ function Form2({ setStep, mainFormik }: any) {
                   formik={mainFormik}
                   item={item}
                   key={item}
+                  w={"100%"}
                   subItems={[
                     "tariff24HrsOrDualOrBoth",
                     "tariffOffPeak",
@@ -125,6 +134,17 @@ function Form2({ setStep, mainFormik }: any) {
                     "tariffStandard",
                     "tariffUnknown",
                   ]}
+                />
+              );
+            }
+            if (i === 23) {
+              return (
+                <NormalInput
+                  formik={mainFormik}
+                  item={item}
+                  key={item}
+                  unit={"£peryear"}
+                  w={"100%"}
                 />
               );
             }

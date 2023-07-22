@@ -19,11 +19,11 @@ const data = [
   "builtForm",
   "flatTopStory",
   "heatLossCorridor",
-  "unHeatedCorridorLength",
+  "unHeatedCorridorLength", //4
   "extentionCount",
-  "totalFloorArea",
+  "totalFloorArea", //6
   "floorLevel",
-  "floorHeight",
+  "floorHeight", //8
   "numberHabitableRooms",
   "numberHeatedRooms",
   "numberOpenFireLaces",
@@ -160,6 +160,27 @@ function Form1({ setStep, mainFormik }: any) {
                       "windowsOtherUnknownGlazed",
                     ]}
                   />
+                </div>
+              );
+            }
+            if (i === 4) {
+              return (
+                <div key={i} className="w-full h-full">
+                  <NormalInput formik={mainFormik} item={item} unit={"m"} />
+                </div>
+              );
+            }
+            if (i === 6) {
+              return (
+                <div key={i} className="w-full h-full">
+                  <NormalInput formik={mainFormik} item={item} unit={"m"} topUnit={"2"} />
+                </div>
+              );
+            }
+            if (i === 8) {
+              return (
+                <div key={i} className="w-full h-full">
+                  <NormalInput formik={mainFormik} item={item} unit="m" />
                 </div>
               );
             } else {

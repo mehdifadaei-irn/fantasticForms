@@ -6,8 +6,25 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+.normal-inputs {
+  width: 75%;
+}
+.MuiFormLabel-root {
+  padding-right: 0 !important;
+  font-size: 18px !important;
+}
+
+
+@media screen and (max-width: 1550px) {
+  .MuiFormLabel-root {
+    font-size: 15px !important;
+  }
+}
+@media screen {
 }

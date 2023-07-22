@@ -20,8 +20,8 @@ const data = [
   "RoofType",
   "RoofEnergyEFF",
   "RoofEnvEFF",
-  "RoofLoftInsulationThickness",
-  "RoofThermalTransmittance",
+  "RoofLoftInsulationThickness",//8
+  "RoofThermalTransmittance", //9
   "FloorInsulation",
   "FloorType",
   "FloorEnergyEFf",
@@ -73,6 +73,20 @@ function Form5({ setStep, mainFormik }: any) {
                     "wallsFullyInsulated",
                   ]}
                 />
+              </div>
+            );
+          }
+          if (i === 8) {
+            return (
+              <div key={i} className="w-full h-full">
+                <NormalInput formik={mainFormik} item={item} key={i} unit="mm" />
+              </div>
+            );
+          }
+          if (i === 9) {
+            return (
+              <div key={i} className="w-full h-full">
+                <NormalInput formik={mainFormik} item={item} key={i} unit="W/m2k" />
               </div>
             );
           }
