@@ -9,8 +9,8 @@ import { useDispatch } from "react-redux";
 import { setErr, setLoading, setVar, setInputs } from "../../redux/allInput";
 import Form1 from "./allForm/Form1";
 import Form3 from "./allForm/Form3";
-import Form4 from "./allForm/Form4";
-import Form5 from "./allForm/Form5";
+import Form4 from "./allForm/Form5";
+import Form5 from "./allForm/Form4";
 import Form2 from "./allForm/Form2";
 import { setStep } from "../../redux/forms";
 import { useSelector } from "react-redux";
@@ -34,10 +34,13 @@ const validationSchema = yup.object({
     .required("numberHabitableRooms is required"),
   numberHeatedRooms: yup.string(),
   numberOpenFireLaces: yup.string(),
+  flatStoreyCount: yup.string(), //add
+  constructionAgeBandCategory: yup.string(), //add
   tenure: yup.string(),
   GlazingType: yup.string(),
   WindowsEnergyEFF: yup.string().required("WindowsEnergyEFF is required"),
   WindowsEnvEFF: yup.string(),
+  multiGlazeProportion: yup.string(), //add
 
   airSourceHeatPump: yup.bool(),
   waterSourceHeatPump: yup.bool(),
@@ -65,25 +68,29 @@ const validationSchema = yup.object({
   heatingCostCourent: yup.string(),
   transactionType: yup.string(),
   TariffType: yup.string(),
+  SecondyHeaterType: yup.string(),
+  MainFuelType: yup.string(),
 
   contorollertype: yup.string(),
   lightningType: yup.string(),
   lightingEnergyEFF: yup.string(),
   lightinEnvEFF: yup.string(),
   lightingCostCourent: yup.string(),
+  lowEnergyFixedLightCount: yup.string(),
   fixedLightingOutletsCount: yup.string(),
   HotwaterType: yup.string(),
   HotWaterEnergyEFF: yup.string(),
   HotWaterEnvEFF: yup.string(),
+  ventilationTypeF: yup.string(),
 
   CO2EmissionsCourrent: yup.string(),
   CO2EmissCurrPerFloorArea: yup.string(),
   EnvironmentImpactCurrent: yup.string(),
+  lodgementDate: yup.date(),
   EnergyConsumptionCurrent: yup.string(),
   CurentEnergyEfficiency: yup.string(),
   CurentEnergyRating: yup.string(),
-  SecondyHeaterType: yup.string(),
-  MainFuelType: yup.string(),
+
 
   wallInsullation: yup.string(),
   wallType: yup.string().required("wallType is required!"),
@@ -95,6 +102,7 @@ const validationSchema = yup.object({
   RoofEnvEFF: yup.string(),
   RoofLoftInsulationThickness: yup.string(),
   RoofThermalTransmittance: yup.string(),
+  photoSupply: yup.number(),
   FloorInsulation: yup.string(),
   FloorType: yup.string(),
   FloorEnergyEFf: yup.string(),
@@ -105,7 +113,18 @@ function Layout() {
   const dispatch = useDispatch();
 
   const [step, setstep] = React.useState<number>(1);
+
   const { inputs, isLoading } = useSelector((state: any): any => state.all);
+
+  function setNavigat(nav: number) {
+    console.log(nav);
+    setStep(nav);
+    console.log(step);
+  }
+
+  function logg() {
+    console.log(step);
+  }
 
   const mainFormik = useFormik({
     initialValues: {
@@ -122,10 +141,14 @@ function Layout() {
       numberHabitableRooms: inputs?.property_setting?.number_habitable_rooms,
       numberHeatedRooms: inputs?.property_setting?.number_heated_rooms,
       numberOpenFireLaces: inputs?.property_setting?.number_open_fireplaces,
+      flatStoreyCount: inputs?.property_setting?.flat_storey_count, //add
+      constructionAgeBandCategory:
+        inputs?.property_setting?.construction_age_band_category, //add
       tenure: inputs?.tenure?.type,
       GlazingType: inputs?.windows_setting?.glazing_type,
       WindowsEnergyEFF: inputs?.windows_setting?.windows_energy_eff,
       WindowsEnvEFF: inputs?.windows_setting?.windows_env_eff,
+      multiGlazeProportion: inputs?.windows_setting?.multi_glaze_proportion, //add
 
       airSourceHeatPump:
         inputs?.main_Heating_system_setting?.air_source_heatpump,
@@ -160,27 +183,32 @@ function Layout() {
         inputs?.main_Heating_system_setting?.heating_cost_current,
       transactionType: inputs?.transaction_settings?.transaction_type,
       TariffType: inputs?.tariff?.type,
+      SecondyHeaterType: inputs?.secondary_heater_settings?.type,
+      MainFuelType: inputs?.main_fuel_settings?.type,
 
       contorollertype: inputs?.controller_settings?.type,
       lightningType: inputs?.lightening_settings?.type,
       lightingEnergyEFF: inputs?.lightening_settings?.lighting_energy_eff,
       lightinEnvEFF: inputs?.lightening_settings?.lighting_env_eff,
       lightingCostCourent: inputs?.lightening_settings?.lighting_cost_current,
+      lowEnergyFixedLightCount:
+        inputs?.lightening_settings?.low_energy_fixed_light_count, //add
       fixedLightingOutletsCount:
         inputs?.lightening_settings?.fixed_lighting_outlets_count,
       HotwaterType: inputs?.hot_water_settings?.type,
       HotWaterEnergyEFF: inputs?.hot_water_settings?.hot_water_energy_eff,
       HotWaterEnvEFF: inputs?.hot_water_settings?.hot_water_env_eff,
+      ventilationType: inputs?.hot_water_settings?.ventilationType, //add
 
       CO2EmissionsCourrent: inputs?.energy_info?.co2_emission_current,
       CO2EmissCurrPerFloorArea:
         inputs?.energy_info?.co2_emiss_curr_per_floor_area,
       EnvironmentImpactCurrent: inputs?.energy_info?.environment_impact_current,
       EnergyConsumptionCurrent: inputs?.energy_info?.energy_consumption_current,
+      lodgementDate: inputs?.energy_info?.lodgement_date, //add
       CurentEnergyEfficiency: inputs?.energy_info?.current_energy_efficiency,
       CurentEnergyRating: inputs?.energy_info?.current_energy_ratting,
-      SecondyHeaterType: inputs?.secondary_heater_settings?.type,
-      MainFuelType: inputs?.main_fuel_settings?.type,
+
 
       wallInsullation: inputs?.wall_settings?.wall_insulation,
       wallType: inputs?.wall_settings?.wall_type,
@@ -194,6 +222,7 @@ function Layout() {
         inputs?.roof_settings?.roof_loft_insulation_thickness,
       RoofThermalTransmittance:
         inputs?.roof_settings?.roof_thermal_transmittance,
+      photoSupply: inputs?.roof_settings?.photo_supply, //add
       FloorInsulation: inputs?.floor_settings?.floor_insulation,
       FloorType: inputs?.floor_settings?.floor_type,
       FloorEnergyEFf: inputs?.floor_settings?.floor_energy_eff,
@@ -213,9 +242,9 @@ function Layout() {
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-slate-300">
       <main className="border-2 w-[88%] h-[93%] rounded-xl flex flex-col py-2 px-0 bg-slate-200">
-        {/* <nav className="bg-slate-500">NAvi</nav> */}
+        {/* <button onClick={logg}>cli</button> */}
 
-        <FormNav setStep={setstep} />
+        <FormNav setNavigator={setstep} />
         {/* <Outlet /> */}
         {/* <Form1/> */}
         {step === 1 ? (
@@ -223,11 +252,11 @@ function Layout() {
         ) : step === 2 ? (
           <Form2 setStep={setstep} mainFormik={mainFormik} />
         ) : step === 3 ? (
-          <Form3 setStep={setstep} mainFormik={mainFormik}/>
+          <Form3 setStep={setstep} mainFormik={mainFormik} />
         ) : step === 4 ? (
-          <Form4 setStep={setstep} mainFormik={mainFormik}/>
+          <Form5 setStep={setstep} mainFormik={mainFormik} />
         ) : (
-          <Form5 setStep={setstep} mainFormik={mainFormik}/>
+          <Form4 setStep={setstep} mainFormik={mainFormik} />
         )}
       </main>
     </div>

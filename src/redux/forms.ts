@@ -21,8 +21,9 @@ const counterSlice = createSlice({
     decrement(state) {
       state.step--;
     },
-    setStep(state, actions) {
-      state.step = actions.payload;
+    setStep(state, action) {
+      // console.log("set", action.payload);
+      state.step = action.payload;
     },
     pushError(state, actions) {
       state.value.push(actions.payload);

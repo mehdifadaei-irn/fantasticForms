@@ -18,10 +18,12 @@ const data = [
   "lightingEnergyEFF",
   "lightinEnvEFF",
   "lightingCostCourent", //4
+  "lowEnergyFixedLightCount", //add
   "fixedLightingOutletsCount",
   "HotwaterType",
   "HotWaterEnergyEFF",
   "HotWaterEnvEFF",
+  "ventilationType", //add
 ];
 
 function Form3({ setStep, mainFormik }: any) {
@@ -60,7 +62,7 @@ function Form3({ setStep, mainFormik }: any) {
         {data.map((item, i) => {
           if (i === 0) {
             return (
-              <div key={i} className="w-full h-full">
+              <div key={i} className="w-full h-full flex justify-center">
                 <SelectInput
                   key={i}
                   formik={mainFormik}
@@ -87,7 +89,7 @@ function Form3({ setStep, mainFormik }: any) {
           }
           if (i === 1) {
             return (
-              <div key={i} className="w-full h-full">
+              <div key={i} className="w-full h-full flex justify-center">
                 <SelectInput
                   key={i}
                   formik={mainFormik}
@@ -103,9 +105,9 @@ function Form3({ setStep, mainFormik }: any) {
             );
           }
 
-          if (i === 6) {
+          if (i === 7) {
             return (
-              <div key={i} className="w-full h-full">
+              <div key={i} className="w-full h-full flex justify-center">
                 <SelectInput
                   key={i}
                   formik={mainFormik}
@@ -125,10 +127,32 @@ function Form3({ setStep, mainFormik }: any) {
               </div>
             );
           }
+          if (i === 10) {
+            return (
+              <div key={i} className="w-full h-full flex justify-center">
+                <SelectInput
+                  key={i}
+                  formik={mainFormik}
+                  item={item}
+                  subItems={[
+                    "mechanicalVentilationNatural",
+                    "mechanicalVentilationMechanicalExtract",
+                    "mechanicalVentilationMechanicalSupplyExtract",
+                    "mechanicalVentilationMechanicalUnknown",
+                  ]}
+                />
+              </div>
+            );
+          }
           if (i === 4) {
             return (
               <div key={i} className="w-full h-full">
-                <NormalInput formik={mainFormik} item={item} key={i} unit={"£ per year"} />
+                <NormalInput
+                  formik={mainFormik}
+                  item={item}
+                  key={i}
+                  unit={"£ per year"}
+                />
               </div>
             );
           } else {

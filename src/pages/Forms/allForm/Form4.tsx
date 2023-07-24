@@ -12,28 +12,22 @@ import { increment, decrement } from "../../../redux/forms";
 import { useNavigate, useParams } from "react-router-dom";
 
 const data = [
-  "CO2EmissionsCourrent", //0
-  "CO2EmissCurrPerFloorArea",
-  "EnvironmentImpactCurrent",
-  "EnergyConsumptionCurrent",
-  "CurentEnergyEfficiency",
-  "CurentEnergyRating",
-  "SecondyHeaterType",
-  "MainFuelType",
-  // "HotWaterEnvEFF",
+  "wallInsullation",
+  "wallType",
+  "WallsEnergyEFF",
+  "WallsEnvEFF",
+  "RoofInsulation",
+  "RoofType",
+  "RoofEnergyEFF",
+  "RoofEnvEFF",
+  "RoofLoftInsulationThickness",//8
+  "RoofThermalTransmittance", //9
+  "photoSupply",//add
+  "FloorInsulation",
+  "FloorType",
+  "FloorEnergyEFf",
+  "FloorEnvEFF",
 ];
-
-const validationSchema = yup.object({
-  CO2EmissionsCourrent: yup.string(),
-  CO2EmissCurrPerFloorArea: yup.string(),
-  EnvironmentImpactCurrent: yup.string(),
-  EnergyConsumptionCurrent: yup.string(),
-  CurentEnergyEfficiency: yup.string(),
-  CurentEnergyRating: yup.string(),
-  SecondyHeaterType: yup.string(),
-  MainFuelType: yup.string(),
-  // HotWaterEnvEFF: yup.string(),
-});
 
 function Form4({ setStep, mainFormik }: any) {
   const navigate = useNavigate();
@@ -41,6 +35,12 @@ function Form4({ setStep, mainFormik }: any) {
 
   const dispatch = useDispatch();
 
+  // function handleForward() {
+  //   dispatch(increment());
+  //   console.log(params);
+  //   // formik.handleSubmit()
+  //   navigate(`/${params.address}/form5`, { replace: true });
+  // }
   function handleForward() {
     dispatch(increment());
     console.log(params);
@@ -51,13 +51,14 @@ function Form4({ setStep, mainFormik }: any) {
 
   function handleBackWard() {
     dispatch(decrement());
-    navigate(`/${params.address}/form3`, { replace: true });
+    navigate(`/${params.address}/form4`, { replace: true });
     setStep((prev: number) => prev - 1);
   }
+
   async function handleCheck() {
     // await formik.validateForm();
     await mainFormik.handleSubmit();
-    // console.log("va", formik.isValid);
+    console.log("va", mainFormik.isValid);
   }
 
   return (
@@ -69,40 +70,115 @@ function Form4({ setStep, mainFormik }: any) {
         {data.map((item, i) => {
           if (i === 0) {
             return (
-              <div key={i} className="w-full h-full">
-                <NormalInput formik={mainFormik} item={item} key={i} unit={"TonsPerYear"} />
-              </div>
-            );
-          }
-          if (i === 1) {
-            return (
-              <div key={i} className="w-full h-full">
-                <NormalInput formik={mainFormik} item={item} key={i} unit={"Tons/year/m"} topUnit="2" />
-              </div>
-            );
-          }
-          if (i === 3) {
-            return (
-              <div key={i} className="w-full h-full">
-                <NormalInput formik={mainFormik} item={item} key={i} unit={"kwh/year/m"} topUnit="2" />
-              </div>
-            );
-          }
-          if (i === 6) {
-            return (
-              <div key={i} className="w-full h-full">
+              <div key={i} className="w-full h-full flex justify-center">
                 <SelectInput
                   key={i}
                   formik={mainFormik}
                   item={item}
                   subItems={[
-                    "secondHeatingElectric",
-                    "secondHeatingUnderFloor",
-                    "secondHeatingRoomHeater",
-                    "secondHeatingSecondrySystem",
-                    "secondHeatingPortableElectric",
-                    "secondHeatingUnknown2",
+                    "wallsNoInsulation",
+                    "wallsLimitedInsulation",
+                    "wallsFullyInsulated",
                   ]}
+                />
+              </div>
+            );
+          }
+          if (i === 8) {
+            return (
+              <div key={i} className="w-full h-full ">
+                <NormalInput formik={mainFormik} item={item} key={i} unit="mm" />
+              </div>
+            );
+          }
+          if (i === 9) {
+            return (
+              <div key={i} className="w-full h-full">
+                <NormalInput formik={mainFormik} item={item} key={i} unit="W/m2k" />
+              </div>
+            );
+          }
+          if (i === 1) {
+            return (
+              <div key={i} className="w-full h-full flex justify-center">
+                <SelectInput
+                  key={i}
+                  formik={mainFormik}
+                  item={item}
+                  subItems={[
+                    "wallsBrick",
+                    "wallsCavity",
+                    "wallsCob",
+                    "wallsGranite",
+                    "wallsParkHome",
+                    "wallsSedimentary",
+                    "wallsSystemBuildt",
+                    "wallsTimber",
+                    "wallsOterUnknown",
+                    "wallsTermalTransmitance",
+                  ]}
+                />
+              </div>
+            );
+          }
+          if (i === 4) {
+            return (
+              <div key={i} className="w-full h-full flex justify-center">
+                <SelectInput
+                  key={i}
+                  formik={mainFormik}
+                  item={item}
+                  subItems={[
+                    "roofFullyInsulated",
+                    "roofLimitedInsulated",
+                    "roofNoInsulation",
+                  ]}
+                />
+              </div>
+            );
+          }
+          if (i === 5) {
+            return (
+              <div key={i} className="w-full h-full flex justify-center">
+                <SelectInput
+                  key={i}
+                  formik={mainFormik}
+                  item={item}
+                  subItems={[
+                    "roofFlatNearHorizontalRoof",
+                    "roofPitched",
+                    "roofRoom",
+                    "roofOtherUnknown",
+                  ]}
+                />
+              </div>
+            );
+          }
+          if (i === 11) {
+            return (
+              <div key={i} className="w-full h-full flex justify-center">
+                <SelectInput
+                  key={i}
+                  formik={mainFormik}
+                  item={item}
+                  subItems={[
+                    "floorNoInsulation",
+                    "floorLimitedInsulation",
+                    "floorFullyInsulated",
+                    "floorDwelingBelow",
+                  ]}
+                />
+              </div>
+            );
+          }
+          if (i === 12) {
+            return (
+              <div key={i} className="w-full h-full flex justify-center">
+                <SelectInput
+                  key={i}
+                  formik={mainFormik}
+                  item={item}
+                  subItems={["floorSolid", "floorSuspended", "floorOtherType"]}
                 />
               </div>
             );
@@ -135,6 +211,7 @@ function Form4({ setStep, mainFormik }: any) {
         <Button
           variant="contained"
           endIcon={<ShortcutIcon />}
+          // disabled={true}
           onClick={handleForward}
         >
           forward

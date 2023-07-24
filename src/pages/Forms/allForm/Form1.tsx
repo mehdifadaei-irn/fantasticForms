@@ -26,11 +26,14 @@ const data = [
   "floorHeight", //8
   "numberHabitableRooms",
   "numberHeatedRooms",
-  "numberOpenFireLaces",
-  "tenure",
-  "GlazingType",
+  "numberOpenFireLaces", //11
+  "flatStoreyCount", //add
+  "constructionAgeBandCategory", //add
+  "tenure", //+12
+  "GlazingType", //+13
   "WindowsEnergyEFF",
   "WindowsEnvEFF",
+  "multiGlazeProportion", //add
 ];
 
 function Form1({ setStep, mainFormik }: any) {
@@ -74,12 +77,12 @@ function Form1({ setStep, mainFormik }: any) {
       ) : (
         <form
           onSubmit={mainFormik.handleSubmit}
-          className="w-full h-[76%] justify-center xl:gap-5 gap-0 py-3 grid grid-rows-4 xl:grid-rows-3 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center"
+          className="w-full h-[76%] justify-center xl:gap-5 gap-0 pb-0 pt-8 grid  xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center"
         >
           {data.map((item, i) => {
             if (i === 0) {
               return (
-                <div key={i} className="w-full h-full">
+                <div key={i} className="w-full h-full flex justify-center">
                   <SelectInput
                     key={i}
                     formik={mainFormik}
@@ -97,7 +100,7 @@ function Form1({ setStep, mainFormik }: any) {
             }
             if (i === 1) {
               return (
-                <div key={i} className="w-full h-full">
+                <div key={i} className="w-full h-full flex justify-center">
                   <SelectInput
                     key={i}
                     formik={mainFormik}
@@ -116,7 +119,7 @@ function Form1({ setStep, mainFormik }: any) {
             }
             if (i === 2) {
               return (
-                <div key={i} className="w-full h-full">
+                <div key={i} className="w-full h-full flex justify-center">
                   <SelectInput
                     key={i}
                     formik={mainFormik}
@@ -126,9 +129,9 @@ function Form1({ setStep, mainFormik }: any) {
                 </div>
               );
             }
-            if (i === 12) {
+            if (i === 14) {
               return (
-                <div key={i} className="w-full h-full">
+                <div key={i} className="w-full h-full flex justify-center">
                   <SelectInput
                     key={i}
                     formik={mainFormik}
@@ -143,9 +146,9 @@ function Form1({ setStep, mainFormik }: any) {
                 </div>
               );
             }
-            if (i === 13) {
+            if (i === 15) {
               return (
-                <div key={i} className="w-full h-full">
+                <div key={i} className="w-full h-full flex justify-center">
                   <SelectInput
                     key={i}
                     formik={mainFormik}
@@ -165,7 +168,7 @@ function Form1({ setStep, mainFormik }: any) {
             }
             if (i === 4) {
               return (
-                <div key={i} className="w-full h-full">
+                <div key={i} className="w-full h-full ">
                   <NormalInput formik={mainFormik} item={item} unit={"m"} />
                 </div>
               );
@@ -173,7 +176,12 @@ function Form1({ setStep, mainFormik }: any) {
             if (i === 6) {
               return (
                 <div key={i} className="w-full h-full">
-                  <NormalInput formik={mainFormik} item={item} unit={"m"} topUnit={"2"} />
+                  <NormalInput
+                    formik={mainFormik}
+                    item={item}
+                    unit={"m"}
+                    topUnit={"2"}
+                  />
                 </div>
               );
             }

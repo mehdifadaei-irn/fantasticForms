@@ -3,7 +3,7 @@ import React from "react";
 
 function NormalInput({ formik, item, unit, topUnit, w }: any) {
   return (
-    <div className="r relative">
+    <div className="r relative flex justify-center">
       <TextField
         sx={{
           // width: "75%",

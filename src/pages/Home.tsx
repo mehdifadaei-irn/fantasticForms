@@ -64,8 +64,8 @@ function Home() {
 
   async function handleNavItem(address: string) {
     setIsLoadingInfo(true);
-    const data =await getInfo(formik.values.postCode, address);
-    console.log(address, "innne")
+    const data = await getInfo(formik.values.postCode, address);
+    console.log(address, "innne");
     setIsLoadingInfo(false);
     dispatch(setInputs(data));
     navigate(`${address}/form1`);
@@ -87,14 +87,16 @@ function Home() {
     // <div>
     <main className="border-2 w-[80%] h-[93%] rounded-xl flex flex-row p-2 bg-slate-200">
       <div className="w-[35%] h-full bg-blue-700 rounded-xl py-4 xl:py-[1%] px-3 xl:px-6 hidden lg:block">
-        <h3 className="text-white f font-semibold">MLForms</h3>
+        <h3 className="text-white f font-semibold">
+          IntelligentEnergySolution
+        </h3>
 
         <h4 className=" font-medium xl:font-semibold mt-14 xl:mt-[9%]  text-lg xl:text-lg text-white ">
-          Lorem ipsum dolor sit amet consectetur adipisicing
+          Peridict and Optimize Energy Efficiency
         </h4>
-        <p className="mt-3 font-extralight text-blue-200">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia odit
-          earum placeat! dolor sit amet
+        <p className="mt-3 font-light text-blue-200">
+          A Holistic Approch to suggst improvment to Energy Efficiency for
+          domestic building in the UK.
         </p>
 
         <div className="rounded-xl text-white py-2 px-0 mt-[4%]  flex">

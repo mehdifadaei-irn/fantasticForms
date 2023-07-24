@@ -39,6 +39,8 @@ const data = [
   "heatingCostCourent", //23
   "transactionType",
   "TariffType",
+  "SecondyHeaterType", //26
+  "MainFuelType",
 ];
 
 function Form2({ setStep, mainFormik }: any) {
@@ -91,7 +93,7 @@ function Form2({ setStep, mainFormik }: any) {
 
         <div className="flex-1 grid gri grid-cols-2 gap-10  grid-rows-4 gap-y-9">
           {data.map((item, i) => {
-            if ([18, 19, 20, 21, 22].includes(i)) {
+            if ([18, 19, 20, 21, 22,27].includes(i)) {
               return (
                 <NormalInput
                   formik={mainFormik}
@@ -135,6 +137,26 @@ function Form2({ setStep, mainFormik }: any) {
                     "tariffUnknown",
                   ]}
                 />
+              );
+            }
+            if (i === 26) {
+              return (
+                <div key={i} className="w-full h-full flex justify-center">
+                  <SelectInput
+                    key={i}
+                    formik={mainFormik}
+                    item={item}
+                    w={"100%"}
+                    subItems={[
+                      "secondHeatingElectric",
+                      "secondHeatingUnderFloor",
+                      "secondHeatingRoomHeater",
+                      "secondHeatingSecondrySystem",
+                      "secondHeatingPortableElectric",
+                      "secondHeatingUnknown2",
+                    ]}
+                  />
+                </div>
               );
             }
             if (i === 23) {
