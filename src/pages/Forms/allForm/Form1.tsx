@@ -46,15 +46,14 @@ function Form1({ setStep, mainFormik }: any) {
 
   function handleForward() {
     dispatch(increment());
-    // console.log(params);
-    // formik.handleSubmit()
     navigate(`/${params.address}/form2`, { replace: true });
     setStep((prev: number) => prev + 1);
   }
 
   async function handleCheck() {
-    // await formik.validateForm();
-    // await formik.handleSubmit();
+    // await mainFormik.validateForm();
+    // console.log(mainFormik.values)
+    await mainFormik.handleSubmit();
     // console.log(isLoading, "Load");
     // console.log(inputs?.property_setting?.property_type, "si");
   }
@@ -76,7 +75,7 @@ function Form1({ setStep, mainFormik }: any) {
         </div>
       ) : (
         <form
-          onSubmit={mainFormik.handleSubmit}
+          // onSubmit={mainFormik.handleSubmit}
           className="w-full h-[76%] justify-center xl:gap-5 gap-0 pb-0 pt-8 grid  xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center"
         >
           {data.map((item, i) => {

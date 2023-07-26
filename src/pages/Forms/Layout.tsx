@@ -91,7 +91,6 @@ const validationSchema = yup.object({
   CurentEnergyEfficiency: yup.string(),
   CurentEnergyRating: yup.string(),
 
-
   wallInsullation: yup.string(),
   wallType: yup.string().required("wallType is required!"),
   WallsEnergyEFF: yup.string(),
@@ -169,6 +168,7 @@ function Layout() {
       electricStorage: inputs?.main_Heating_system_setting?.electric_storage,
       communityScheme: inputs?.main_Heating_system_setting?.community_scheme,
       micro: inputs?.main_Heating_system_setting?.micro,
+      portable: inputs?.main_Heating_system_setting?.portable, //add
       roomHeater: inputs?.main_Heating_system_setting?.room_heater,
       otherUnknown: inputs?.main_Heating_system_setting?.other_unknown,
       solarWaterHeatingFlag:
@@ -209,7 +209,6 @@ function Layout() {
       CurentEnergyEfficiency: inputs?.energy_info?.current_energy_efficiency,
       CurentEnergyRating: inputs?.energy_info?.current_energy_ratting,
 
-
       wallInsullation: inputs?.wall_settings?.wall_insulation,
       wallType: inputs?.wall_settings?.wall_type,
       WallsEnergyEFF: inputs?.wall_settings?.walls_energy_eff,
@@ -230,6 +229,7 @@ function Layout() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      console.log("sedaaaaaaaaaaaaaaa");
       alert(JSON.stringify(values));
     },
   });

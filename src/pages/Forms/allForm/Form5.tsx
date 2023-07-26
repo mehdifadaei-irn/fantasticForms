@@ -9,6 +9,8 @@ import { decrement } from "../../../redux/forms";
 import { useNavigate, useParams } from "react-router-dom";
 import DateInput from "../../../components/DateInput";
 import { colorByEnergy } from "../../../utils/colorForEnergy";
+import { useCalculateDatas } from "../../../hooks/useCalculateDatas";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const data = [
   "CO2EmissionsCourrent", //0
@@ -40,6 +42,21 @@ function Form5({ setStep, mainFormik }: any) {
     // await formik.validateForm();
     await mainFormik.handleSubmit();
     // console.log("va", formik.isValid);
+  }
+  const {
+    mutate: calculateAllData,
+    data: calcData,
+    isLoading,
+    isError,
+    isSuccess
+  } = useCalculateDatas();
+
+  React.useEffect(() => {
+    setEnergy(calcData?.label);
+  }, [isLoading, data]);
+
+  function handleCalculate() {
+    calculateAllData(mainFormik.values);
   }
 
   return (
@@ -89,8 +106,11 @@ function Form5({ setStep, mainFormik }: any) {
           }
           if (i === 4) {
             return (
-              <div key={i} className="w-full h-full flex justify-center">
-                <DateInput formik={mainFormik} item={item} key={i} />
+              // <div key={i} className="w-full h-full flex justify-center">
+              //   <DateInput formik={mainFormik} item={item} key={i} />
+              // </div>
+              <div key={i} className="w-full h-full">
+                <NormalInput formik={mainFormik} item={item} key={i} />
               </div>
             );
           } else {
@@ -105,32 +125,44 @@ function Form5({ setStep, mainFormik }: any) {
 
       <div className="flex w-full flex-col gap-5 px-10 justify-center ite items-center mt-3">
         <div className="flex flex-row mb-4">
-          
-          {["A", "B", "C", "D", "E", "F", "G"].map((item) => (
-            <h2
-              key={item}
-              className={`mx-3 font-bold text-2xl`}
-              style={{
-                color : item == energy ? colorByEnergy(energy) : "#000000ab"
-              }}
-            >
-              {item}
-            </h2>
-          ))}
+          {!isSuccess ? (
+            <div></div>
+          ) : (
+            <>
+              {["A", "B", "C", "D", "E", "F", "G"].map((item) => (
+                <h2
+                  key={item}
+                  className={`mx-3 font-bold text-2xl`}
+                  style={{
+                    color: item == energy ? colorByEnergy(energy) : "#000000ab",
+                  }}
+                >
+                  {item}
+                </h2>
+              ))}
+            </>
+          )}
         </div>
-        <div>
+        <div className="flex flex-row relative">
           <TextField id="outlined-basic" label="label" variant="outlined" />
           <Button
             sx={{
               height: 60,
               ml: 8,
             }}
+            disabled={isLoading}
+            // disabled={true}
+            color="success"
             variant="contained"
+            onClick={handleCalculate}
 
             // disabled={true}
           >
-            calculate EPC rate
+            calculate EPC rate{calcData?.label}
           </Button>
+          {isLoading && (
+            <CircularProgress className=" absolute right-20 top-2" />
+          )}
         </div>
       </div>
 

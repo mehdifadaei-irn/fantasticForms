@@ -40,6 +40,7 @@ export type AllInputs = {
   micro: boolean;
   roomHeater: boolean;
   otherUnknown: boolean;
+  portable: boolean;
   solarWaterHeatingFlag: string;
   mainHeatEnergyEFF: string;
   mainHeatEnvEFF: string;
@@ -154,7 +155,7 @@ export type AllInputs = {
   RoofEnergyEFF: string;
   RoofEnvEFF: string;
   RoofLoftInsulationThickness: string;
-  RoofThermalTransmittance: string;
+  RoofThermalTransmittance: string?;
   FloorInsulation:
     | "floorNoInsulation"
     | "floorLimitedInsulation"
@@ -164,4 +165,17 @@ export type AllInputs = {
   FloorType: "floorSolid" | "floorSuspended" | "floorOtherType" | "";
   FloorEnergyEFf: string;
   FloorEnvEFF: string;
+
+  flatStoreyCount: string;
+  constructionAgeBandCategory: string;
+  lodgementDate: string;
+  multiGlazeProportion: string;
+  photoSupply: string;
+  lowEnergyFixedLightCount: string;
+  ventilationType:
+    | "mechanicalVentilationNatural"
+    | "mechanicalVentilationMechanicalExtract"
+    | "mechanicalVentilationMechanicalSupplyExtract"
+    | "mechanicalVentilationMechanicalUnknown";
+  tenure: string;
 };
