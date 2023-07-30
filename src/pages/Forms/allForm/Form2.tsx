@@ -153,7 +153,7 @@ function Form2({ setStep, mainFormik }: any) {
                       "secondHeatingRoomHeater",
                       "secondHeatingSecondrySystem",
                       "secondHeatingPortableElectric",
-                      "secondHeatingUnknown2",
+                      "secondHeatingUnknown",
                     ]}
                   />
                 </div>

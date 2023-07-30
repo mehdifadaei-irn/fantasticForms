@@ -100,6 +100,7 @@ export type AllInputs = {
     | "";
   HotWaterEnergyEFF: string;
   HotWaterEnvEFF: string;
+  hotWaterCostCurrent:string;
 
   CO2EmissionsCourrent: string;
   CO2EmissCurrPerFloorArea: string;

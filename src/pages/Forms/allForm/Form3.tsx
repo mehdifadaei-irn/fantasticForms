@@ -24,6 +24,7 @@ const data = [
   "HotWaterEnergyEFF",
   "HotWaterEnvEFF",
   "ventilationType", //add
+  "hotWaterCostCurrent"
 ];
 
 function Form3({ setStep, mainFormik }: any) {
@@ -50,7 +51,7 @@ function Form3({ setStep, mainFormik }: any) {
   async function handleCheck() {
     // await formik.validateForm();
     await mainFormik.handleSubmit();
-    dispatch(setVar({ key: "type", value: "thisHAAAAA" }));
+    // dispatch(setVar({ key: "type", value: "thisHAAAAA" }));
     console.log("va", values);
   }
   return (
@@ -79,7 +80,7 @@ function Form3({ setStep, mainFormik }: any) {
                     "mainHeatingControlFlatRate",
                     "mainHeatingControlProgrammer",
                     "mainHeatingControlCommunityScheme",
-                    "mainHeatingControlRoomThermostrate",
+                    "mainHeatingContorolRoomThermostate",
                     "mainHeatingControlBoilerEnergyManager",
                     "mainHeatingControlOtherUnknown",
                   ]}

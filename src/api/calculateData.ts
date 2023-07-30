@@ -5,7 +5,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const endpoint = `epcRate`;
 
 export async function PostDataToCalc(Datas: AllInputs) {
-  // console.log(Datas.tenure, "hhhhhhhhhhhhhhhhhhhhh");
+  console.log(Datas.ventilationType);
   const { data, config } = await axios.post(`${apiUrl}/${endpoint}`, {
     controller_settings: { type: Datas.contorollertype },
     energy_info: {
@@ -27,6 +27,7 @@ export async function PostDataToCalc(Datas: AllInputs) {
       hot_water_energy_eff: Datas.HotWaterEnergyEFF,
       hot_water_env_eff: Datas.HotWaterEnvEFF,
       type: Datas.HotwaterType,
+      hotWaterCostCurrent: Datas.hotWaterCostCurrent,
     },
     lightening_settings: {
       fixed_lighting_outlets_count: Datas.fixedLightingOutletsCount,
@@ -110,7 +111,7 @@ export async function PostDataToCalc(Datas: AllInputs) {
       type: Datas.ventilationType,
     },
   });
-  console.log(config);
+  // console.log(config);
 
   return data;
 }

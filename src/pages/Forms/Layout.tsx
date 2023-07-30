@@ -82,6 +82,7 @@ const validationSchema = yup.object({
   HotWaterEnergyEFF: yup.string(),
   HotWaterEnvEFF: yup.string(),
   ventilationTypeF: yup.string(),
+  hotWaterCostCurrent: yup.string(),
 
   CO2EmissionsCourrent: yup.string(),
   CO2EmissCurrPerFloorArea: yup.string(),
@@ -122,7 +123,7 @@ function Layout() {
   }
 
   function logg() {
-    console.log(step);
+    console.log(inputs);
   }
 
   const mainFormik = useFormik({
@@ -198,7 +199,8 @@ function Layout() {
       HotwaterType: inputs?.hot_water_settings?.type,
       HotWaterEnergyEFF: inputs?.hot_water_settings?.hot_water_energy_eff,
       HotWaterEnvEFF: inputs?.hot_water_settings?.hot_water_env_eff,
-      ventilationType: inputs?.hot_water_settings?.ventilationType, //add
+      ventilationType: inputs?.ventilation.type, //add
+      hotWaterCostCurrent: inputs?.hot_water_settings.hotWaterCostCurrent, //add
 
       CO2EmissionsCourrent: inputs?.energy_info?.co2_emission_current,
       CO2EmissCurrPerFloorArea:
