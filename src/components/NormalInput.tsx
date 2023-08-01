@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
+import InputAdornment from "@mui/material/InputAdornment";
 
-function NormalInput({ formik, item, unit, topUnit, w }: any) {
+function NormalInput({ formik, item, unit, topUnit, w, startUnit }: any) {
   return (
     <div className="r relative flex justify-center">
       <TextField
@@ -17,7 +18,11 @@ function NormalInput({ formik, item, unit, topUnit, w }: any) {
         error={formik.touched[item] && Boolean(formik.errors[item])}
         helperText={formik.touched[item] && formik.errors[item]}
         InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">{startUnit}</InputAdornment>
+          ),
           endAdornment: (
+            //@ts-ignore
             <div
               className={` relative font-bold z-10 ${
                 [

@@ -1,11 +1,11 @@
 export function colorByEnergy(energy: string): string {
-  if (energy === "A") return "#052e16";
-  if (energy === "B") return "#15803d";
-  if (energy === "C") return "#22c55e";
-  if (energy === "D") return "#facc15";
-  if (energy === "E") return "#f97316";
-  if (energy === "F") return "#dc2626";
-  if (energy === "G") return "#7f1d1d";
+  if (energy === "A") return "#027702";
+  if (energy === "B") return "#24B303";
+  if (energy === "C") return "#7ECC2B";
+  if (energy === "D") return "#FFE001";
+  if (energy === "E") return "#F29021";
+  if (energy === "F") return "#EB422D";
+  if (energy === "G") return "#D60000";
 
   return "#333";
 }

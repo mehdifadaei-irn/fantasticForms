@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { increment, decrement } from "../../../redux/forms";
 import { setVar } from "../../../redux/allInput";
 import { useNavigate, useParams } from "react-router-dom";
+import MultiSelect from "../../../components/MultiSelect";
 
 const data = [
   "contorollertype",
@@ -24,7 +25,7 @@ const data = [
   "HotWaterEnergyEFF",
   "HotWaterEnvEFF",
   "ventilationType", //add
-  "hotWaterCostCurrent"
+  "hotWaterCostCurrent",
 ];
 
 function Form3({ setStep, mainFormik }: any) {
@@ -62,6 +63,31 @@ function Form3({ setStep, mainFormik }: any) {
       >
         {data.map((item, i) => {
           if (i === 0) {
+            return (
+              <div key={i} className="w-full h-full flex justify-center">
+                <MultiSelect
+                  key={i}
+                  formik={mainFormik}
+                  item={item}
+                  subItems={[
+                    "byPass",
+                    "flowSwitch",
+                    "noThermostate",
+                    "mainHeatingControlTTZC",
+                    "mainHeatingControlTrv",
+                    "mainHeatingControlApplianceThermostate",
+                    "mainHeatingContorlAcc",
+                    "mainHeatingControlCelect",
+                    "mainHeatingControlFlatRate",
+                    "mainHeatingControlProgrammer",
+                    "mainHeatingControlCommunityScheme",
+                    "mainHeatingContorolRoomThermostate",
+                    "mainHeatingControlBoilerEnergyManager",
+                    "mainHeatingControlOtherUnknown",
+                  ]}
+                />
+              </div>
+            );
             return (
               <div key={i} className="w-full h-full flex justify-center">
                 <SelectInput
@@ -153,6 +179,20 @@ function Form3({ setStep, mainFormik }: any) {
                   item={item}
                   key={i}
                   unit={"£ per year"}
+                  startUnit={"%"}
+                />
+              </div>
+            );
+          }
+          if (i === 11) {
+            return (
+              <div key={i} className="w-full h-full">
+                <NormalInput
+                  formik={mainFormik}
+                  item={item}
+                  key={i}
+                  // unit={"£ per year"}
+                  startUnit={"%"}
                 />
               </div>
             );

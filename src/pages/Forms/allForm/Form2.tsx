@@ -166,6 +166,7 @@ function Form2({ setStep, mainFormik }: any) {
                   item={item}
                   key={item}
                   unit={"£peryear"}
+                  startUnit={"%"}
                   w={"100%"}
                 />
               );

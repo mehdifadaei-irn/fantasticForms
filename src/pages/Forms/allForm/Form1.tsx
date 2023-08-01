@@ -190,6 +190,18 @@ function Form1({ setStep, mainFormik }: any) {
                   <NormalInput formik={mainFormik} item={item} unit="m" />
                 </div>
               );
+            }
+            if (i === 18) {
+              return (
+                <div key={i} className="w-full h-full">
+                  <NormalInput
+                    formik={mainFormik}
+                    item={item}
+                    unit="m"
+                    startUnit="%"
+                  />
+                </div>
+              );
             } else {
               return (
                 <div key={i} className="w-full h-full">

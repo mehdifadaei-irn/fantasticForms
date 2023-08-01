@@ -18,13 +18,13 @@ const data = [
   "RoofType",
   "RoofEnergyEFF",
   "RoofEnvEFF",
-  "RoofLoftInsulationThickness",//8
+  "RoofLoftInsulationThickness", //8
   "RoofThermalTransmittance", //9
-  "photoSupply",//add
+  "photoSupply", //add
   "FloorInsulation",
   "FloorType",
-  "FloorEnergyEFf",
-  "FloorEnvEFF",
+  // "FloorEnergyEFf",
+  // "FloorEnvEFF",
 ];
 
 function Form4({ setStep, mainFormik }: any) {
@@ -85,14 +85,24 @@ function Form4({ setStep, mainFormik }: any) {
           if (i === 8) {
             return (
               <div key={i} className="w-full h-full ">
-                <NormalInput formik={mainFormik} item={item} key={i} unit="mm" />
+                <NormalInput
+                  formik={mainFormik}
+                  item={item}
+                  key={i}
+                  unit="mm"
+                />
               </div>
             );
           }
           if (i === 9) {
             return (
               <div key={i} className="w-full h-full">
-                <NormalInput formik={mainFormik} item={item} key={i} unit="W/m2k" />
+                <NormalInput
+                  formik={mainFormik}
+                  item={item}
+                  key={i}
+                  unit="W/m2k"
+                />
               </div>
             );
           }
@@ -110,10 +120,10 @@ function Form4({ setStep, mainFormik }: any) {
                     "wallsGranite",
                     "wallsParkHome",
                     "wallsSedimentary",
-                    "wallsSystemBuildt",
+                    "wallsSystemBuilt",
                     "wallsTimber",
-                    "wallsOterUnknown",
-                    "wallsTermalTransmitance",
+                    "wallsOtherUnknown",
+                    // "wallsThermalTransmittance",
                   ]}
                 />
               </div>
@@ -178,6 +188,14 @@ function Form4({ setStep, mainFormik }: any) {
                   item={item}
                   subItems={["floorSolid", "floorSuspended", "floorOtherType"]}
                 />
+              </div>
+            );
+          }
+
+          if (i === 10) {
+            return (
+              <div key={i} className="w-full h-full">
+                <NormalInput formik={mainFormik} item={item} key={i} startUnit={"%"} />
               </div>
             );
           } else {

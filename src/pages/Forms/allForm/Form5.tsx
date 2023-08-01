@@ -144,7 +144,7 @@ function Form5({ setStep, mainFormik }: any) {
           )}
         </div>
         <div className="flex flex-row relative">
-          <TextField id="outlined-basic" label="label" variant="outlined" />
+          <TextField id="outlined-basic" placeholder="A-G"  variant="outlined" />
           <Button
             sx={{
               height: 60,
