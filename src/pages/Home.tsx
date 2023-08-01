@@ -4,7 +4,7 @@ import { TextField, Button, Skeleton } from "@mui/material";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { getAddressByPostCode } from "../api/getAddresByPC";
-import { setInputs } from "../redux/allInput";
+import { setInputs, setContoroller } from "../redux/allInput";
 import PersonIcon from "@mui/icons-material/Person";
 import { useQuery } from "@tanstack/react-query";
 import { getInfo } from "../api/getInfo";
@@ -39,7 +39,7 @@ function Home() {
     onSubmit: (values) => {
       refetch();
       setShowList(true);
-      console.log(data);
+      // console.log(data);
     },
   });
 
@@ -68,6 +68,14 @@ function Home() {
     // console.log(address, "innne");
     setIsLoadingInfo(false);
     dispatch(setInputs(data));
+    const TrueController = data.controller_settings;
+    let trueCAr: string[] = [];
+    Object.entries(TrueController).map((item) => {
+      if (item[1] == 1) {
+        trueCAr.push(item[0]);
+      }
+    });
+    dispatch(setContoroller(trueCAr));
     navigate(`${address}/form1`);
     // if (initErr) {
     //   console.log("naverro Init");

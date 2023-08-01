@@ -197,7 +197,7 @@ function Form1({ setStep, mainFormik }: any) {
                   <NormalInput
                     formik={mainFormik}
                     item={item}
-                    unit="m"
+                    // unit="m"
                     startUnit="%"
                   />
                 </div>

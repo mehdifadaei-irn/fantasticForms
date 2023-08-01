@@ -64,19 +64,19 @@ export type AllInputs = {
     | "tariffUnknown"
     | "";
 
-  contorollertype:
-    | "mainHeatingControlTTZC"
-    | "mainHeatingControlTrv"
-    | "mainHeatingControlApplianceThermostate"
-    | "mainHeatingContorlAcc"
-    | "mainHeatingControlCelect"
-    | "mainHeatingControlFlatRate"
-    | "mainHeatingControlProgrammer"
-    | "mainHeatingControlCommunityScheme"
-    | "mainHeatingControlRoomThermostrate"
-    | "mainHeatingControlBoilerEnergyManager"
-    | "mainHeating"
-    | "";
+  contorollertype: any;
+  // | "mainHeatingControlTTZC"
+  // | "mainHeatingControlTrv"
+  // | "mainHeatingControlApplianceThermostate"
+  // | "mainHeatingContorlAcc"
+  // | "mainHeatingControlCelect"
+  // | "mainHeatingControlFlatRate"
+  // | "mainHeatingControlProgrammer"
+  // | "mainHeatingControlCommunityScheme"
+  // | "mainHeatingControlRoomThermostrate"
+  // | "mainHeatingControlBoilerEnergyManager"
+  // | "mainHeating"
+  // | "";
   lightningType:
     | "lightingLowEnergy"
     | "lightingNoLowEnergy"
@@ -100,7 +100,7 @@ export type AllInputs = {
     | "";
   HotWaterEnergyEFF: string;
   HotWaterEnvEFF: string;
-  hotWaterCostCurrent:string;
+  hotWaterCostCurrent: string;
 
   CO2EmissionsCourrent: string;
   CO2EmissCurrPerFloorArea: string;

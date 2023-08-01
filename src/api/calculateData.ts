@@ -1,13 +1,51 @@
 import axios from "axios";
 import { AllInputs } from "../../type";
+import { useSelector } from "react-redux";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const endpoint = `epcRate`;
 
-export async function PostDataToCalc(Datas: AllInputs) {
-  console.log(Datas.ventilationType);
+export async function PostDataToCalc({
+  Datas,
+  controlertype,
+}: {
+  Datas: AllInputs;
+  controlertype: string[];
+}) {
+  // console.log(controlertype, "CTCath");
   const { data, config } = await axios.post(`${apiUrl}/${endpoint}`, {
-    controller_settings: { type: Datas.contorollertype },
+    controller_settings: {
+      ControlTtzc: controlertype.includes("ControlTtzc") ? 1 : 0,
+      ControlTrv: controlertype.includes("ControlTrv") ? 1 : 0,
+      ControlApplianceThermostate: controlertype.includes(
+        "ControlApplianceThermostate"
+      )
+        ? 1
+        : 0,
+      ControlCcc: controlertype.includes("ControlCcc") ? 1 : 0,
+      ControlCelect: controlertype.includes("ControlCelect") ? 1 : 0,
+      ControlFlat_rate: controlertype.includes("ControlFlat_rate") ? 1 : 0,
+      ControlProgrammer: controlertype.includes("ControlProgrammer") ? 1 : 0,
+      ControlCommunity_scheme: controlertype.includes("ControlCommunity_scheme")
+        ? 1
+        : 0,
+      ControlRoom_thermostat: controlertype.includes("ControlRoom_thermostat")
+        ? 1
+        : 0,
+      ControlBoiler_energy_manager: controlertype.includes(
+        "ControlBoiler_energy_manager"
+      )
+        ? 1
+        : 0,
+      ControlByPass: controlertype.includes("ControlByPass") ? 1 : 0,
+      ControlFlowSwitch: controlertype.includes("ControlFlowSwitch") ? 1 : 0,
+      ControlNoThermostat: controlertype.includes("ControlNoThermostat")
+        ? 1
+        : 0,
+      ControlOtherUnknown: controlertype.includes("ControlOtherUnknown")
+        ? 1
+        : 0,
+    },
     energy_info: {
       co2_emiss_curr_per_floor_area: Datas.CO2EmissCurrPerFloorArea,
       co2_emission_current: Datas.CO2EmissionsCourrent,
@@ -18,8 +56,8 @@ export async function PostDataToCalc(Datas: AllInputs) {
       lodgement_date: Datas.lodgementDate,
     },
     floor_settings: {
-      floor_energy_eff: Datas.FloorEnergyEFf,
-      floor_env_eff: Datas.FloorEnvEFF,
+      // floor_energy_eff: Datas.FloorEnergyEFf,
+      // floor_env_eff: Datas.FloorEnvEFF,
       floor_insulation: Datas.FloorInsulation,
       floor_type: Datas.FloorType,
     },

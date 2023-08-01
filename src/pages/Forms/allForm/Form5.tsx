@@ -11,6 +11,7 @@ import DateInput from "../../../components/DateInput";
 import { colorByEnergy } from "../../../utils/colorForEnergy";
 import { useCalculateDatas } from "../../../hooks/useCalculateDatas";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useSelector } from "react-redux";
 
 const data = [
   "CO2EmissionsCourrent", //0
@@ -31,6 +32,8 @@ function Form5({ setStep, mainFormik }: any) {
     "A" | "B" | "C" | "E" | "D" | "F" | "G"
   >("F");
 
+  const { contorollertype } = useSelector((state: any): any => state.all);
+
   const dispatch = useDispatch();
 
   function handleBackWard() {
@@ -48,15 +51,19 @@ function Form5({ setStep, mainFormik }: any) {
     data: calcData,
     isLoading,
     isError,
-    isSuccess
+    isSuccess,
   } = useCalculateDatas();
 
   React.useEffect(() => {
+    //@ts-ignore
     setEnergy(calcData?.label);
   }, [isLoading, data]);
 
   function handleCalculate() {
-    calculateAllData(mainFormik.values);
+    calculateAllData({
+      Datas: mainFormik.values,
+      controlertype: contorollertype,
+    });
   }
 
   return (
@@ -123,8 +130,8 @@ function Form5({ setStep, mainFormik }: any) {
         })}
       </form>
 
-      <div className="flex w-full flex-col gap-5 px-10 justify-center ite items-center mt-3">
-        <div className="flex flex-row mb-4">
+      <div className="flex w-full flex-col gap-5 px-10 justify-center ite items-center">
+        <div className="flex flex-row mb-2">
           {!isSuccess ? (
             <div></div>
           ) : (
@@ -144,11 +151,11 @@ function Form5({ setStep, mainFormik }: any) {
           )}
         </div>
         <div className="flex flex-row relative">
-          <TextField id="outlined-basic" placeholder="A-G"  variant="outlined" />
+          {/* <TextField id="outlined-basic" placeholder="A-G"  variant="outlined" /> */}
           <Button
             sx={{
               height: 60,
-              ml: 8,
+              // ml: 8,
             }}
             disabled={isLoading}
             // disabled={true}
@@ -158,7 +165,7 @@ function Form5({ setStep, mainFormik }: any) {
 
             // disabled={true}
           >
-            calculate EPC rate{calcData?.label}
+            calculate EPC rate
           </Button>
           {isLoading && (
             <CircularProgress className=" absolute right-20 top-2" />

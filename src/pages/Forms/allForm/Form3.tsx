@@ -70,20 +70,20 @@ function Form3({ setStep, mainFormik }: any) {
                   formik={mainFormik}
                   item={item}
                   subItems={[
-                    "byPass",
-                    "flowSwitch",
-                    "noThermostate",
-                    "mainHeatingControlTTZC",
-                    "mainHeatingControlTrv",
-                    "mainHeatingControlApplianceThermostate",
-                    "mainHeatingContorlAcc",
-                    "mainHeatingControlCelect",
-                    "mainHeatingControlFlatRate",
-                    "mainHeatingControlProgrammer",
-                    "mainHeatingControlCommunityScheme",
-                    "mainHeatingContorolRoomThermostate",
-                    "mainHeatingControlBoilerEnergyManager",
-                    "mainHeatingControlOtherUnknown",
+                    "ControlTtzc",
+                    "ControlTrv",
+                    "ControlApplianceThermostate",
+                    "ControlCcc",
+                    "ControlCelect",
+                    "ControlFlat_rate",
+                    "ControlProgrammer",
+                    "ControlCommunity_scheme",
+                    "ControlRoom_thermostat",
+                    "ControlBoiler_energy_manager",
+                    "ControlByPass",
+                    "ControlFlowSwitch",
+                    "ControlNoThermostat",
+                    "ControlOtherUnknown",
                   ]}
                 />
               </div>

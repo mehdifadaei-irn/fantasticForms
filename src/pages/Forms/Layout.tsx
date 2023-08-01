@@ -114,7 +114,9 @@ function Layout() {
 
   const [step, setstep] = React.useState<number>(1);
 
-  const { inputs, isLoading } = useSelector((state: any): any => state.all);
+  const { inputs, isLoading, contorollertype } = useSelector(
+    (state: any): any => state.all
+  );
 
   function setNavigat(nav: number) {
     console.log(nav);
@@ -123,7 +125,7 @@ function Layout() {
   }
 
   function logg() {
-    console.log(inputs);
+    console.log(contorollertype, "coo");
   }
 
   const mainFormik = useFormik({

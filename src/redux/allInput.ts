@@ -6,9 +6,11 @@ interface props {
   isLoading: boolean;
   isError: boolean;
   inputs: any;
+  contorollertype: any;
 }
 
 const initialState: props = {
+  //@ts-ignore
   values: {
     propertyType: "",
     builtForm: "",
@@ -91,6 +93,7 @@ const initialState: props = {
   isError: false,
   isLoading: false,
   inputs: {},
+  contorollertype: [],
 };
 
 const allInputs = createSlice({
@@ -110,8 +113,12 @@ const allInputs = createSlice({
     setInputs(state, action) {
       state.inputs = action.payload;
     },
+    setContoroller(state, action) {
+      state.contorollertype = action.payload;
+    },
   },
 });
 
-export const { setVar, setErr, setLoading, setInputs } = allInputs.actions;
+export const { setVar, setErr, setLoading, setInputs, setContoroller } =
+  allInputs.actions;
 export default allInputs.reducer;

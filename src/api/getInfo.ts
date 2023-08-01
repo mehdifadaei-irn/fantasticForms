@@ -15,6 +15,6 @@ export async function getInfo(postCode: string, address: string) {
       address: convertedStr,
     },
   });
-  console.log(data, "daaaaa");
+  // console.log(data, "daaaaa");
   return data;
 }
