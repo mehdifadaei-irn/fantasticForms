@@ -51,7 +51,7 @@ function MultiSelect({ formik, item, w, subItems }: MultiSelectProps) {
 
   return (
     <>
-      <FormControl sx={{ m: 1, width: w }} className="xl:w-[75%] w-[85%]">
+      <FormControl sx={{ m: 0, width: w }} className="xl:w-[75%] w-[85%]">
         <InputLabel id="demo-multiple-checkbox-label">{item}</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"

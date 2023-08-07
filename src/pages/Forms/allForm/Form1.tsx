@@ -9,6 +9,7 @@ import { increment } from "../../../redux/forms";
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Skeleton } from "@mui/material";
+import Label from "../../../components/Label";
 
 const data = [
   "propertyType", //0
@@ -72,14 +73,12 @@ function Form1({ setStep, mainFormik }: any) {
       ) : (
         <form
           // onSubmit={mainFormik.handleSubmit}
-          className="w-full h-[76%] flex justify-center flex-col md:px-5 px-2 pt-6"
+          className="w-full h-[76%]  lg:px-12 flex flex-col md:pt-10 "
         >
           <div className=" w-full h-[50%] grid lg:grid-rows-3 lg:grid-cols-5 grid-rows-4 grid-cols-4 items-center lg:pl-1">
-          {/* Property setting */}
+            {/* Property setting */}
             <div className="w-full h-[70%] flex justify-start">
-              <h4 className=" font-semibold text-zinc-800 tracking-wider text-lg pl-5  -translate-y-4 ">
-                propertySetting
-              </h4>
+              <Label label="propertySetting" />
             </div>
             {data.map((item, i) => {
               //0 , 1, 2, 4, 6 , 8
@@ -164,17 +163,18 @@ function Form1({ setStep, mainFormik }: any) {
             })}
           </div>
           {/* Tenure */}
-          <div className="w-full flex-1 xl:pl-7 md:pl-4">
-            <h4 className=" font-semibold text-zinc-800 tracking-wider text-lg">
-              Tenure
-            </h4>
+          <div className="w-full flex-1">
+            <Label label="Tenure" />
             {data.map((item, i) => {
               // 14,
               if ([14].includes(i)) {
                 return (
-                  <div key={i} className="w-full h-full flex justify-start ">
+                  <div
+                    key={i}
+                    className="w-full h-full flex justify-start mt-2 pl-[2%]"
+                  >
                     <SelectInput
-                      w={"21%"}
+                      w={"19%"}
                       key={i}
                       formik={mainFormik}
                       item={item}
@@ -194,9 +194,7 @@ function Form1({ setStep, mainFormik }: any) {
           </div>
           {/* Window setting */}
           <div className="w-full h-[30%] flex flex-col justify-between ">
-            <h4 className=" font-semibold text-zinc-800 tracking-wider text-lg ml-6 ">
-              windowsSetting
-            </h4>
+            <Label label="windowsSetting" />
             <div className="w-full h-[60%] grid grid-rows-1 gap-x-8 grid-cols-4 items-start justify-center  xl:pl-7 md:pl-4">
               {data.map((item, i) => {
                 if ([16, 17].includes(i)) {
@@ -243,7 +241,6 @@ function Form1({ setStep, mainFormik }: any) {
               })}
             </div>
           </div>
-          
         </form>
       )}
 

@@ -26,7 +26,7 @@ const data = [
   "HotWaterEnergyEFF",
   "HotWaterEnvEFF",
   "ventilationType", //add
-  "hotWaterCostCurrent",//11
+  "hotWaterCostCurrent", //11
 ];
 
 function Form3({ setStep, mainFormik }: any) {
@@ -62,50 +62,14 @@ function Form3({ setStep, mainFormik }: any) {
         onSubmit={mainFormik.handleSubmit}
         className="w-full h-[76%]  lg:px-12 flex flex-col md:pt-5"
       >
-        {/* Contoroller type */}
-        <div className=" w-full h-[16%] flex flex-col">
-          <Label label="ControllerType" />
-          {data.map((item, i) => {
-            // 14,
-            if ([0].includes(i)) {
-              return (
-                <div key={i} className="w-full h-full flex justify-center">
-                  <MultiSelect
-                    key={i}
-                    formik={mainFormik}
-                    item={item}
-                    subItems={[
-                      "ControlTtzc",
-                      "ControlTrv",
-                      "ControlApplianceThermostate",
-                      "ControlCcc",
-                      "ControlCelect",
-                      "ControlFlat_rate",
-                      "ControlProgrammer",
-                      "ControlCommunity_scheme",
-                      "ControlRoom_thermostat",
-                      "ControlBoiler_energy_manager",
-                      "ControlByPass",
-                      "ControlFlowSwitch",
-                      "ControlNoThermostat",
-                      "ControlOtherUnknown",
-                    ]}
-                  />
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
         {/* Lightening settings */}
-        <div className="w-full h-[40%] py-4">
+        <div className="w-full h-[37%]">
           {/* <h4>Lightening settings</h4> */}
           <Label label="Lightening settings" />
-          <div className="grid lg:grid-rows-2 lg:grid-cols-3 pt-5 gap-y-8">
+          <div className="grid lg:grid-rows-2 lg:grid-cols-3 pt-3 gap-y-8">
             {data.map((item, i) => {
               // 14,
-              if ([ 2, 3,, 5, 6].includes(i)) {
+              if ([2, 3, , 5, 6].includes(i)) {
                 return (
                   <div key={i} className="w-full h-[70%]">
                     <NormalInput formik={mainFormik} item={item} />
@@ -146,7 +110,7 @@ function Form3({ setStep, mainFormik }: any) {
           </div>
         </div>
         {/* Hot Water */}
-        <div className="w-full h-[24%] pt-4">
+        <div className="w-full h-[20%] xl:mt-6">
           <Label label="Hot Water" />
           <div className="grid lg:grid-rows-1 lg:grid-cols-4 gap-x-3 pt-3">
             {data.map((item, i) => {
@@ -196,15 +160,58 @@ function Form3({ setStep, mainFormik }: any) {
             })}
           </div>
         </div>
+
+        <div className="flex lg:px-3 xl:mt-7">
+
+        
+        {/* Contoroller type */}
+        <div className=" w-full h-[16%] flex flex-col">
+          <Label label="ControllerType" />
+          {data.map((item, i) => {
+            // 14,
+            if ([0].includes(i)) {
+              return (
+                <div key={i} className="w-full h-full flex justify-start ml-[3%] mt-6">
+                  <MultiSelect
+                    w="40%"
+                    key={i}
+                    formik={mainFormik}
+                    item={item}
+                    subItems={[
+                      "ControlTtzc",
+                      "ControlTrv",
+                      "ControlApplianceThermostate",
+                      "ControlCcc",
+                      "ControlCelect",
+                      "ControlFlat_rate",
+                      "ControlProgrammer",
+                      "ControlCommunity_scheme",
+                      "ControlRoom_thermostat",
+                      "ControlBoiler_energy_manager",
+                      "ControlByPass",
+                      "ControlFlowSwitch",
+                      "ControlNoThermostat",
+                      "ControlOtherUnknown",
+                    ]}
+                  />
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
+
         {/* Ventilation */}
-        <div className="w-full h-[15%] flex flex-col">
+        <div className="w-full h-[15%] flex flex-col mt-4">
           <Label label="Ventilation" />
           {data.map((item, i) => {
             // 14,
             if ([10].includes(i)) {
               return (
-                <div key={i} className="w-full h-full flex justify-center">
+                <div key={i} className="w-full h-full flex justify-start ml-[3%] mt-6">
                   <SelectInput
+                  w="70%"
                     key={i}
                     formik={mainFormik}
                     item={item}
@@ -221,6 +228,7 @@ function Form3({ setStep, mainFormik }: any) {
               return null;
             }
           })}
+        </div>
         </div>
       </form>
 
