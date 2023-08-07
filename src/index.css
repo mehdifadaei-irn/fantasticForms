@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: Teko;
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/woff/Teko-Medium.ttf") format("ttf");
+}
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif, Teko;
   line-height: 1.5;
   font-weight: 400;
 
@@ -20,11 +26,14 @@
   font-size: 18px !important;
 }
 
-
 @media screen and (max-width: 1550px) {
   .MuiFormLabel-root {
     font-size: 15px !important;
   }
 }
 @media screen {
+}
+
+.font-teko {
+  font-family: Teko;
 }

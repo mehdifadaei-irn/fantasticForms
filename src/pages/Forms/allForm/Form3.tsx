@@ -12,9 +12,10 @@ import { increment, decrement } from "../../../redux/forms";
 import { setVar } from "../../../redux/allInput";
 import { useNavigate, useParams } from "react-router-dom";
 import MultiSelect from "../../../components/MultiSelect";
+import Label from "../../../components/Label";
 
 const data = [
-  "contorollertype",
+  "contorollertype", //0
   "lightningType",
   "lightingEnergyEFF",
   "lightinEnvEFF",
@@ -25,7 +26,7 @@ const data = [
   "HotWaterEnergyEFF",
   "HotWaterEnvEFF",
   "ventilationType", //add
-  "hotWaterCostCurrent",
+  "hotWaterCostCurrent",//11
 ];
 
 function Form3({ setStep, mainFormik }: any) {
@@ -59,151 +60,168 @@ function Form3({ setStep, mainFormik }: any) {
     <>
       <form
         onSubmit={mainFormik.handleSubmit}
-        className="w-full h-[76%] justify-center xl:gap-5 gap-0 py-3 grid grid-rows-4 xl:grid-rows-3 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center"
+        className="w-full h-[76%]  lg:px-12 flex flex-col md:pt-5"
       >
-        {data.map((item, i) => {
-          if (i === 0) {
-            return (
-              <div key={i} className="w-full h-full flex justify-center">
-                <MultiSelect
-                  key={i}
-                  formik={mainFormik}
-                  item={item}
-                  subItems={[
-                    "ControlTtzc",
-                    "ControlTrv",
-                    "ControlApplianceThermostate",
-                    "ControlCcc",
-                    "ControlCelect",
-                    "ControlFlat_rate",
-                    "ControlProgrammer",
-                    "ControlCommunity_scheme",
-                    "ControlRoom_thermostat",
-                    "ControlBoiler_energy_manager",
-                    "ControlByPass",
-                    "ControlFlowSwitch",
-                    "ControlNoThermostat",
-                    "ControlOtherUnknown",
-                  ]}
-                />
-              </div>
-            );
-            return (
-              <div key={i} className="w-full h-full flex justify-center">
-                <SelectInput
-                  key={i}
-                  formik={mainFormik}
-                  item={item}
-                  subItems={[
-                    "byPass",
-                    "flowSwitch",
-                    "noThermostate",
-                    "mainHeatingControlTTZC",
-                    "mainHeatingControlTrv",
-                    "mainHeatingControlApplianceThermostate",
-                    "mainHeatingContorlAcc",
-                    "mainHeatingControlCelect",
-                    "mainHeatingControlFlatRate",
-                    "mainHeatingControlProgrammer",
-                    "mainHeatingControlCommunityScheme",
-                    "mainHeatingContorolRoomThermostate",
-                    "mainHeatingControlBoilerEnergyManager",
-                    "mainHeatingControlOtherUnknown",
-                  ]}
-                />
-              </div>
-            );
-          }
-          if (i === 1) {
-            return (
-              <div key={i} className="w-full h-full flex justify-center">
-                <SelectInput
-                  key={i}
-                  formik={mainFormik}
-                  item={item}
-                  subItems={[
-                    "lightingLowEnergy",
-                    "lightingNoLowEnergy",
-                    "lightingOtherUnknown",
-                    "lowEnergyLightingProportion",
-                  ]}
-                />
-              </div>
-            );
-          }
-
-          if (i === 7) {
-            return (
-              <div key={i} className="w-full h-full flex justify-center">
-                <SelectInput
-                  key={i}
-                  formik={mainFormik}
-                  item={item}
-                  subItems={[
-                    "hotWaterCommunity",
-                    "hotWaterHeatPump",
-                    "hotWaterImmersion",
-                    "hotWaterInstantaneous",
-                    "hotWaterFromMainSystem",
-                    "hotWaterSecondarySystem",
-                    "hotWaterGasBoiler",
-                    "hotWaterOtherSystem",
-                    "hotWaterUnknownSystem",
-                  ]}
-                />
-              </div>
-            );
-          }
-          if (i === 10) {
-            return (
-              <div key={i} className="w-full h-full flex justify-center">
-                <SelectInput
-                  key={i}
-                  formik={mainFormik}
-                  item={item}
-                  subItems={[
-                    "mechanicalVentilationNatural",
-                    "mechanicalVentilationMechanicalExtract",
-                    "mechanicalVentilationMechanicalSupplyExtract",
-                    "mechanicalVentilationMechanicalUnknown",
-                  ]}
-                />
-              </div>
-            );
-          }
-          if (i === 4) {
-            return (
-              <div key={i} className="w-full h-full">
-                <NormalInput
-                  formik={mainFormik}
-                  item={item}
-                  key={i}
-                  unit={"£ per year"}
-                  startUnit={"%"}
-                />
-              </div>
-            );
-          }
-          if (i === 11) {
-            return (
-              <div key={i} className="w-full h-full">
-                <NormalInput
-                  formik={mainFormik}
-                  item={item}
-                  key={i}
-                  // unit={"£ per year"}
-                  startUnit={"%"}
-                />
-              </div>
-            );
-          } else {
-            return (
-              <div key={i} className="w-full h-full">
-                <NormalInput formik={mainFormik} item={item} key={i} />
-              </div>
-            );
-          }
-        })}
+        {/* Contoroller type */}
+        <div className=" w-full h-[16%] flex flex-col">
+          <Label label="ControllerType" />
+          {data.map((item, i) => {
+            // 14,
+            if ([0].includes(i)) {
+              return (
+                <div key={i} className="w-full h-full flex justify-center">
+                  <MultiSelect
+                    key={i}
+                    formik={mainFormik}
+                    item={item}
+                    subItems={[
+                      "ControlTtzc",
+                      "ControlTrv",
+                      "ControlApplianceThermostate",
+                      "ControlCcc",
+                      "ControlCelect",
+                      "ControlFlat_rate",
+                      "ControlProgrammer",
+                      "ControlCommunity_scheme",
+                      "ControlRoom_thermostat",
+                      "ControlBoiler_energy_manager",
+                      "ControlByPass",
+                      "ControlFlowSwitch",
+                      "ControlNoThermostat",
+                      "ControlOtherUnknown",
+                    ]}
+                  />
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
+        {/* Lightening settings */}
+        <div className="w-full h-[40%] py-4">
+          {/* <h4>Lightening settings</h4> */}
+          <Label label="Lightening settings" />
+          <div className="grid lg:grid-rows-2 lg:grid-cols-3 pt-5 gap-y-8">
+            {data.map((item, i) => {
+              // 14,
+              if ([ 2, 3,, 5, 6].includes(i)) {
+                return (
+                  <div key={i} className="w-full h-[70%]">
+                    <NormalInput formik={mainFormik} item={item} />
+                  </div>
+                );
+              } else if (i === 1) {
+                return (
+                  <div key={i} className="w-full h-full flex justify-center">
+                    <SelectInput
+                      key={i}
+                      formik={mainFormik}
+                      item={item}
+                      subItems={[
+                        "lightingLowEnergy",
+                        "lightingNoLowEnergy",
+                        "lightingOtherUnknown",
+                        "lowEnergyLightingProportion",
+                      ]}
+                    />
+                  </div>
+                );
+              } else if (i === 4) {
+                return (
+                  <div key={i} className="w-full h-full">
+                    <NormalInput
+                      formik={mainFormik}
+                      item={item}
+                      key={i}
+                      unit={"£ per year"}
+                      // startUnit={"%"}
+                    />
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
+        </div>
+        {/* Hot Water */}
+        <div className="w-full h-[24%] pt-4">
+          <Label label="Hot Water" />
+          <div className="grid lg:grid-rows-1 lg:grid-cols-4 gap-x-3 pt-3">
+            {data.map((item, i) => {
+              // 14,
+              if ([8, 9].includes(i)) {
+                return (
+                  <div key={i} className="w-full h-[70%]">
+                    <NormalInput formik={mainFormik} item={item} />
+                  </div>
+                );
+              } else if (i === 7) {
+                return (
+                  <div key={i} className="w-full h-full flex justify-center">
+                    <SelectInput
+                      key={i}
+                      formik={mainFormik}
+                      item={item}
+                      subItems={[
+                        "hotWaterCommunity",
+                        "hotWaterHeatPump",
+                        "hotWaterImmersion",
+                        "hotWaterInstantaneous",
+                        "hotWaterFromMainSystem",
+                        "hotWaterSecondarySystem",
+                        "hotWaterGasBoiler",
+                        "hotWaterOtherSystem",
+                        "hotWaterUnknownSystem",
+                      ]}
+                    />
+                  </div>
+                );
+              } else if (i === 11) {
+                return (
+                  <div key={i} className="w-full h-full">
+                    <NormalInput
+                      formik={mainFormik}
+                      item={item}
+                      key={i}
+                      unit={"£ per year"}
+                      // startUnit={"%"}
+                    />
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
+        </div>
+        {/* Ventilation */}
+        <div className="w-full h-[15%] flex flex-col">
+          <Label label="Ventilation" />
+          {data.map((item, i) => {
+            // 14,
+            if ([10].includes(i)) {
+              return (
+                <div key={i} className="w-full h-full flex justify-center">
+                  <SelectInput
+                    key={i}
+                    formik={mainFormik}
+                    item={item}
+                    subItems={[
+                      "mechanicalVentilationNatural",
+                      "mechanicalVentilationMechanicalExtract",
+                      "mechanicalVentilationMechanicalSupplyExtract",
+                      "mechanicalVentilationMechanicalUnknown",
+                    ]}
+                  />
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
       </form>
 
       <div className="w-full justify-between flex px-9 mt-3 mb-3">

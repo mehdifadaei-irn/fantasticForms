@@ -113,8 +113,12 @@ function Layout() {
   const dispatch = useDispatch();
 
   const [step, setstep] = React.useState<number>(1);
+  useEffect(() => {
+    setStep(1);
+    dispatch(setStep(0));
+  }, []);
 
-  const { inputs, isLoading, contorollertype } = useSelector(
+  const { inputs,contorollertype } = useSelector(
     (state: any): any => state.all
   );
 

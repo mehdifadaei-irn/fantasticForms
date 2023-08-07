@@ -8,6 +8,7 @@ import store from "./redux/store.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import "../src/assets/fonts/Teko-Medium.ttf";
 
 const queryClient = new QueryClient();
 
