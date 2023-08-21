@@ -60,10 +60,10 @@ function Form3({ setStep, mainFormik }: any) {
     <>
       <form
         onSubmit={mainFormik.handleSubmit}
-        className="w-full h-[76%]  lg:px-12 flex flex-col md:pt-5"
+        className="w-full h-[76%]  lg:px-12 flex flex-col md:pt-5 overflow-y-auto overflow-x-hidden"
       >
         {/* Lightening settings */}
-        <div className="w-full h-[37%]">
+        <div className="w-full">
           {/* <h4>Lightening settings</h4> */}
           <Label label="Lightening settings" />
           <div className="grid lg:grid-rows-2 lg:grid-cols-3 pt-3 gap-y-8">
@@ -110,9 +110,9 @@ function Form3({ setStep, mainFormik }: any) {
           </div>
         </div>
         {/* Hot Water */}
-        <div className="w-full h-[20%] xl:mt-6">
+        <div className="w-full xl:mt-6">
           <Label label="Hot Water" />
-          <div className="grid lg:grid-rows-1 lg:grid-cols-4 gap-x-3 pt-3">
+          <div className="grid lg:grid-rows-1 lg:grid-cols-4 gap-y-4 gap-x-3 pt-3">
             {data.map((item, i) => {
               // 14,
               if ([8, 9].includes(i)) {
@@ -165,7 +165,7 @@ function Form3({ setStep, mainFormik }: any) {
 
         
         {/* Contoroller type */}
-        <div className=" w-full h-[16%] flex flex-col">
+        <div className=" w-[60%] h-[15%] flex flex-col">
           <Label label="ControllerType" />
           {data.map((item, i) => {
             // 14,
@@ -173,7 +173,7 @@ function Form3({ setStep, mainFormik }: any) {
               return (
                 <div key={i} className="w-full h-full flex justify-start ml-[3%] mt-6">
                   <MultiSelect
-                    w="40%"
+                    w="50%"
                     key={i}
                     formik={mainFormik}
                     item={item}
@@ -203,13 +203,13 @@ function Form3({ setStep, mainFormik }: any) {
         </div>
 
         {/* Ventilation */}
-        <div className="w-full h-[15%] flex flex-col mt-4">
+        <div className="w-full h-[15%] flex flex-col">
           <Label label="Ventilation" />
           {data.map((item, i) => {
             // 14,
             if ([10].includes(i)) {
               return (
-                <div key={i} className="w-full h-full flex justify-start ml-[3%] mt-6">
+                <div key={i} className="w-full h-full flex justify-center ml-[3%] mt-6">
                   <SelectInput
                   w="70%"
                     key={i}

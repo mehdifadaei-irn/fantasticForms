@@ -5,7 +5,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import ShortcutIcon from "@mui/icons-material/Shortcut";
 import NormalInput from "../../../components/NormalInput";
 import { useDispatch } from "react-redux";
-import { decrement } from "../../../redux/forms";
+import { decrement, increment } from "../../../redux/forms";
 import { useNavigate, useParams } from "react-router-dom";
 import DateInput from "../../../components/DateInput";
 import { colorByEnergy } from "../../../utils/colorForEnergy";
@@ -13,15 +13,16 @@ import { useCalculateDatas } from "../../../hooks/useCalculateDatas";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector } from "react-redux";
 import Label from "../../../components/Label";
+import { Toaster } from "sonner";
 
 const data = [
-  "CO2EmissionsCourrent", //0
+  "CO2EmissionsCuurrent", //0
   "CO2EmissCurrPerFloorArea",
   "EnvironmentImpactCurrent",
   "EnergyConsumptionCurrent",
   "lodgementDate", //add
-  "CurentEnergyEfficiency",
-  "CurentEnergyRating",
+  "CurrentEnergyEfficiency",
+  "CurrentEnergyRating",
   // "HotWaterEnvEFF",
 ];
 
@@ -40,6 +41,12 @@ function Form5({ setStep, mainFormik }: any) {
     dispatch(decrement());
     navigate(`/${params.address}/form3`, { replace: true });
     setStep((prev: number) => prev - 1);
+  }
+
+  function handleForward() {
+    dispatch(increment);
+    navigate(`/${params.address}/form6`, { replace: true });
+    setStep((prev: number) => prev + 1);
   }
   async function handleCheck() {
     // await formik.validateForm();
@@ -72,7 +79,7 @@ function Form5({ setStep, mainFormik }: any) {
         className="w-full h-[46%] lg:px-12 flex flex-col md:pt-5"
       >
         <Label label="energy Info" />
-        <div className="justify-center xl:pt-10 xl:gap-12 gap-0 py-3 grid grid-rows-2 xl:grid-rows-2 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center">
+        <div className="justify-center xl:pt-10 xl:gap-12 gap-0 py-3 grid grid-rows-2 xl:grid-rows-2 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center gap-y-8 ">
           {data.map((item, i) => {
             if (i === 0) {
               return (
@@ -175,7 +182,9 @@ function Form5({ setStep, mainFormik }: any) {
         </div>
       </div>
 
-      <div className="w-full justify-between flex px-9 mt-auto mb-3">
+      <Toaster richColors position="bottom-right" />
+
+      <div className="w-full justify-between flex px-9 mt-auto mb-11">
         <Button
           variant="contained"
           startIcon={<KeyboardReturnIcon />}
@@ -194,8 +203,8 @@ function Form5({ setStep, mainFormik }: any) {
         <Button
           variant="contained"
           endIcon={<ShortcutIcon />}
-          // onClick={handleForward}
-          disabled
+          onClick={handleForward}
+          // disabled
         >
           forward
         </Button>

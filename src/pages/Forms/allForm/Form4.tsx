@@ -64,12 +64,12 @@ function Form4({ setStep, mainFormik }: any) {
     <>
       <form
         onSubmit={mainFormik.handleSubmit}
-        className="w-full h-[76%] lg:px-12 flex flex-col md:pt-5"
+        className="w-full h-[76%] lg:px-12  flex flex-col md:pt-5 overflow-y-auto gap-y-4"
       >
         {/* Wall */}
-        <div className="w-full h-[27%]">
+        <div className="w-full ">
           <Label label="Wall" />
-          <div className="grid lg:grid-rows-1 lg:grid-cols-4 gap-x-3 pt-3 ">
+          <div className="grid lg:grid-rows-1 lg:grid-cols-4 gap-x-3 pt-3 gap-y-4 ">
             {data.map((item, i) => {
               // 14,
               if ([2, 3].includes(i)) {
@@ -122,9 +122,9 @@ function Form4({ setStep, mainFormik }: any) {
           </div>
         </div>
         {/* Roof */}
-        <div className="w-full h-[45%] flex flex-col">
+        <div className="w-full flex flex-col">
           <Label label="Roof" />
-          <div className="grid grid-rows-2 grid-cols-4 md:gap-y-15 gap-y-10 pt-4">
+          <div className="grid lg:grid-rows-2 lg:grid-cols-4 grid-rows-4 grid-cols-2 md:gap-y-15 gap-y-10 pt-4">
             {data.map((item, i) => {
               // 14,
               if ([6, 7].includes(i)) {
@@ -204,7 +204,7 @@ function Form4({ setStep, mainFormik }: any) {
           </div>
         </div>
         {/* Floor */}
-        <div className="w-full h-[20%] flex flex-col">
+        <div className="w-full  flex flex-col">
           <Label label="Floor" />
           <div className="grid grid-rows-2 grid-cols-4 gap-y-10 pt-4">
             {data.map((item, i) => {

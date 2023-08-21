@@ -18,12 +18,43 @@
   -webkit-text-size-adjust: 100%;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .normal-inputs {
   width: 75%;
 }
 .MuiFormLabel-root {
   padding-right: 0 !important;
   font-size: 18px !important;
+}
+
+.bgload {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.grid-cont {
+  display: grid;
+  grid-template-columns: 8% 17% 30% 8% 7% 10% 15%;
+  /* gap: 10px; */
 }
 
 @media screen and (max-width: 1550px) {

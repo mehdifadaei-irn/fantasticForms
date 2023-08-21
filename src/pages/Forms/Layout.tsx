@@ -15,6 +15,7 @@ import Form2 from "./allForm/Form2";
 import { setStep } from "../../redux/forms";
 import { useSelector } from "react-redux";
 import * as yup from "yup";
+import Optimization from "./allForm/Optimization";
 
 const validationSchema = yup.object({
   propertyType: yup.string().required("propertyType is required"),
@@ -118,7 +119,7 @@ function Layout() {
     dispatch(setStep(0));
   }, []);
 
-  const { inputs,contorollertype } = useSelector(
+  const { inputs, contorollertype } = useSelector(
     (state: any): any => state.all
   );
 
@@ -252,7 +253,14 @@ function Layout() {
       <main className="border-2 w-[88%] h-[93%] rounded-xl flex flex-col py-2 px-0 bg-slate-200">
         {/* <button onClick={logg}>cli</button> */}
 
-        <FormNav setNavigator={setstep} />
+        {step === 6 ? (
+          <div></div>
+        ) : (
+          <div>
+            <FormNav setNavigator={setstep} />
+          </div>
+        )}
+
         {/* <Outlet /> */}
         {/* <Form1/> */}
         {step === 1 ? (
@@ -263,8 +271,12 @@ function Layout() {
           <Form3 setStep={setstep} mainFormik={mainFormik} />
         ) : step === 4 ? (
           <Form5 setStep={setstep} mainFormik={mainFormik} />
-        ) : (
+        ) : step == 5 ? (
           <Form4 setStep={setstep} mainFormik={mainFormik} />
+        ) : (
+          <>
+            <Optimization setStep={setstep} mainFormik={mainFormik} />
+          </>
         )}
       </main>
     </div>

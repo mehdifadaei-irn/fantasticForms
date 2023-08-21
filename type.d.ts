@@ -180,3 +180,26 @@ export type AllInputs = {
     | "mechanicalVentilationMechanicalUnknown";
   tenure: string;
 };
+
+interface OptTableType {
+  "1": [optsubTable];
+  "2": [optsubTable];
+  "3": [optsubTable];
+  "4": [optsubTable];
+  "5": [optsubTable];
+  "6": [optsubTable];
+  "7": [optsubTable];
+}
+
+interface optsubTable {
+  walls: any;
+  windows: any;
+  roofs: any;
+  lightning_energy_eff: any;
+  lightning_cost: any;
+  hot_water_energy_eff: any;
+  controller_energy_eff: any;
+  heating_system_energy_eff: any;
+  hot_water_cost: any;
+  totalPrice: string;
+}
