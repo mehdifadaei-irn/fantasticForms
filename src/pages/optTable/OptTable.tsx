@@ -250,48 +250,8 @@ const OptTable = ({ tableData, setStep }: TableType) => {
               );
             }
           })}
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
-          <h1>aaa</h1>
         </div>
-        <div className="flex justify-center gap-x-10">
+        <div className="flex justify-center gap-x-28 pt-4">
           <Button
             variant="contained"
             startIcon={<KeyboardReturnIcon />}
