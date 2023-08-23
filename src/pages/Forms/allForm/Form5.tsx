@@ -139,8 +139,8 @@ function Form5({ setStep, mainFormik }: any) {
         </div>
       </form>
 
-      <div className="flex w-full flex-col gap-5 px-10 justify-center ite items-center">
-        <div className="flex flex-row mb-2">
+      <div className="flex w-full flex-col gap-5 px-10 justify-center ite items-center -mt-6">
+        <div className="flex flex-row">
           {!isSuccess ? (
             <div></div>
           ) : (
@@ -159,7 +159,7 @@ function Form5({ setStep, mainFormik }: any) {
             </>
           )}
         </div>
-        <div className="flex flex-row relative">
+        <div className="flex flex-col relative gap-y-5 -mt-2">
           {/* <TextField id="outlined-basic" placeholder="A-G"  variant="outlined" /> */}
           <Button
             sx={{
@@ -175,6 +175,21 @@ function Form5({ setStep, mainFormik }: any) {
             // disabled={true}
           >
             calculate EPC rate
+          </Button>
+          <Button
+            sx={{
+              height: 60,
+              // ml: 8,
+            }}
+            // disabled={isLoading}
+            // disabled={true}
+            color="info"
+            variant="contained"
+            onClick={handleForward}
+            endIcon={<ShortcutIcon />}
+            // disabled={true}
+          >
+            OPTIMIZE
           </Button>
           {isLoading && (
             <CircularProgress className=" absolute right-20 top-2" />
@@ -204,7 +219,7 @@ function Form5({ setStep, mainFormik }: any) {
           variant="contained"
           endIcon={<ShortcutIcon />}
           onClick={handleForward}
-          // disabled
+          disabled
         >
           forward
         </Button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useCalculateTables } from "../../../hooks/useCalculateDatas";
 import FinalLoading from "../../../components/FinalLoading";
 import { Button } from "@mui/material";
@@ -21,6 +21,13 @@ const Optimization = ({ setStep, mainFormik }: any) => {
       controlertype: contorollertype,
     });
   }
+
+  useEffect(() => {
+    calculateAllTable({
+      Datas: mainFormik.values,
+      controlertype: contorollertype,
+    });
+  }, []);
 
   function log() {
     console.log(tableData);
