@@ -54,6 +54,7 @@
 .grid-cont {
   display: grid;
   grid-template-columns: 8% 17% 30% 8% 7% 10% 15%;
+  /* margin: 0 10 !important; */
   /* gap: 10px; */
 }
 

@@ -183,7 +183,7 @@ function Form5({ setStep, mainFormik }: any) {
             }}
             // disabled={isLoading}
             // disabled={true}
-            color="info"
+            color="success"
             variant="contained"
             onClick={handleForward}
             endIcon={<ShortcutIcon />}

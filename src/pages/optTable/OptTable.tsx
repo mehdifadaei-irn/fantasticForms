@@ -40,7 +40,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
   }
   return (
     <div className="w-full flex flex-col overflow-y-auto">
-      <div className="w-full overflow-y-auto">
+      <div className="w-full overflow-y-auto py-2 px-5">
         {/* <button onClick={log}>log</button> */}
         {/* Head */}
         <div className="sticky bg-zinc-500 rounded-t-md">
@@ -119,12 +119,13 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                             {nameDataArr.map((it, i) => {
                               if (it[0] == "price") {
                                 // console.log(it[1], "he") //***********************price
-                                return (
-                                  null
-                                );
+                                return null;
                               } else
                                 return (
-                                  <div className="w-full px-5  py-2 bg-zinc-200 h-full" key={i}>
+                                  <div
+                                    className="w-full px-5  py-2 bg-zinc-200 h-full"
+                                    key={i}
+                                  >
                                     <p className="text-[18px] font-medium text-zinc-800">
                                       {it[0]}
                                     </p>
@@ -139,20 +140,20 @@ const OptTable = ({ tableData, setStep }: TableType) => {
 
                   {/* 4 */}
 
-                  <div className="flex flex-col justify-between items-center py-1 bg-zinc-200">
+                  <div className="flex flex-col justify-between items-center gap-y-2 ">
                     {arrData.map((_, i) => {
                       if (!isObjEmpty(arrData[i][1])) {
                         if (arrData[i][0] === "totalPrice") return null;
                         //@ts-ignore
                         const nameDataArr = Object.entries(arrData[i][1]);
                         return (
-                          <div key={i} className="flex flex-col h-1/2">
+                          <div key={i} className="flex flex-col h-1/2 w-full ">
                             {nameDataArr.map((it: any, i) => {
                               if (it[0] == "price") {
-                                return <div className="bg-transparent h-2"></div>;
+                                return null;
                               } else
                                 return (
-                                  <div className="w-full flex-1 px-5 flex items-center justify-center">
+                                  <div className="w-full flex-1 px-5 flex items-center justify-center bg-zinc-200 ">
                                     {/* <p>{it[1][0]}</p> */}
                                     <p className="text-[18px] font-medium text-zinc-800">
                                       {valToCAN(
@@ -170,20 +171,20 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                   </div>
 
                   {/* 5 */}
-                  <div className="flex flex-col justify-between items-center py-1 bg-zinc-200">
+                  <div className="flex flex-col justify-between items-center  h-full gap-y-2">
                     {arrData.map((_, i) => {
                       if (!isObjEmpty(arrData[i][1])) {
                         if (arrData[i][0] === "totalPrice") return null;
                         //@ts-ignore
                         const nameDataArr = Object.entries(arrData[i][1]);
                         return (
-                          <div key={i} className="flex flex-col h-1/2">
+                          <div key={i} className="flex flex-col h-1/2 w-full ">
                             {nameDataArr.map((it: any, i) => {
                               if (it[0] == "price") {
-                                return <div className="bg-transparent h-2"></div>;
+                                return null;
                               } else
                                 return (
-                                  <div className="w-full flex-1 px-5 flex items-center justify-center">
+                                  <div className="w-full flex-1 px-5 flex items-center justify-center bg-zinc-200">
                                     <p className="text-[18px] font-medium text-zinc-800">
                                       {valToCAN(
                                         it[0].toString(),
@@ -200,7 +201,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                   </div>
 
                   {/* 6 */}
-                  <div className="flex flex-col justify-between items-center py-1 bg-zinc-200">
+                  <div className="flex flex-col justify-between items-center h-full gap-y-2">
                     {arrData.map((_, i) => {
                       if (!isObjEmpty(arrData[i][1])) {
                         if (arrData[i][0] === "totalPrice") return null;
@@ -209,12 +210,12 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                         return (
                           <div
                             key={i}
-                            className="flex-1 flex justify-center items-center"
+                            className="flex-1 flex justify-center items-center w-full"
                           >
                             {nameDataArr.map((it: any, i) => {
                               if (it[0] == "price") {
                                 return (
-                                  <div className="w-full px-5 flex items-center justify-center">
+                                  <div className="w-full px-5 flex items-center justify-center bg-zinc-200 h-full">
                                     <p className="text-[18px] font-medium text-zinc-800">
                                       {it[1]}
                                     </p>
