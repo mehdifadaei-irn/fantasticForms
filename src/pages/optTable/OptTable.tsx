@@ -43,7 +43,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
       <div className="w-full overflow-y-auto py-2 px-5">
         {/* <button onClick={log}>log</button> */}
         {/* Head */}
-        <div className="sticky bg-zinc-500 rounded-t-md">
+        <div className="sticky bg-zinc-900 rounded-t-md">
           <div className="justify-between border-b-2 border-zinc-700 grid-cont text-white items-center">
             <p className="w-full font-semibold text-base text-center text-white">
               Label
@@ -147,7 +147,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                         //@ts-ignore
                         const nameDataArr = Object.entries(arrData[i][1]);
                         return (
-                          <div key={i} className="flex flex-col h-1/2 w-full ">
+                          <div key={i} className="flex flex-col h-full w-full ">
                             {nameDataArr.map((it: any, i) => {
                               if (it[0] == "price") {
                                 return null;
