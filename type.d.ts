@@ -182,13 +182,13 @@ export type AllInputs = {
 };
 
 interface OptTableType {
-  "1": [optsubTable];
-  "2": [optsubTable];
-  "3": [optsubTable];
-  "4": [optsubTable];
-  "5": [optsubTable];
-  "6": [optsubTable];
-  "7": [optsubTable];
+  "1": optsubTable[];
+  "2": optsubTable[];
+  "3": optsubTable[];
+  "4": optsubTable[];
+  "5": optsubTable[];
+  "6": optsubTable[];
+  "7": optsubTable[];
 }
 
 interface optsubTable {
@@ -197,6 +197,7 @@ interface optsubTable {
   roofs: any;
   lightning_energy_eff: any;
   lightning_cost: any;
+  lightning: any;
   hot_water_energy_eff: any;
   controller_energy_eff: any;
   heating_system_energy_eff: any;
