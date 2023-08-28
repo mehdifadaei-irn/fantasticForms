@@ -361,3 +361,51 @@
                       }
                     })}
                   </div>
+
+
+
+
+////
+
+
+
+                              {arrData.map((_, i) => {
+                              if (!isObjEmpty(arrData[i][1])) {
+                                if (
+                                  [
+                                    "total_cost",
+                                    "new_energy_cost",
+                                    "current_energy_cost",
+                                    "installation_cost",
+                                  ].includes(arrData[i][0])
+                                )
+                                  return null;
+                                const nameDataArr = Object.entries(
+                                  //@ts-ignore
+                                  arrData[i][1]
+                                );
+                                return (
+                                  <div
+                                    key={i}
+                                    className="w-full flex flex-col h-full"
+                                  >
+                                    {nameDataArr.map((it, i) => {
+                                      if (it[0] == "installation_cost") {
+                                        // console.log(it[1], "he") //***********************price
+                                        return null;
+                                      } else
+                                        return (
+                                          <div
+                                            className="w-full px-5  py-2  h-full"
+                                            key={i}
+                                          >
+                                            <p className="text-[18px] font-medium text-zinc-800">
+                                              {it[0]}
+                                            </p>
+                                          </div>
+                                        );
+                                    })}
+                                  </div>
+                                );
+                              }
+                            })}

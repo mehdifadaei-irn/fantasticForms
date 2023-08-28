@@ -189,6 +189,7 @@ interface OptTableType {
   "5": optsubTable[];
   "6": optsubTable[];
   "7": optsubTable[];
+  current_energy_lable: "1" | "2" | "3" | "4" | "5" | "6" | "7";
 }
 
 interface optsubTable {

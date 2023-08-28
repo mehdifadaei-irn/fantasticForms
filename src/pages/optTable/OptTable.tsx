@@ -1,6 +1,6 @@
 import React from "react";
 import { OptTableType } from "../../../type";
-import { valToCAN } from "../../utils/CurentAndNewVal";
+import { BoolArray, valToCAN } from "../../utils/CurentAndNewVal";
 import { colorByEnergy } from "../../utils/colorForEnergy";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 
@@ -15,6 +15,8 @@ const numberToEnergy = {
   "6": "F",
   "7": "G",
 };
+
+const HEIGHT = 50;
 
 interface TableType {
   tableData: OptTableType;
@@ -31,6 +33,9 @@ function isObjEmpty(objectName: any) {
 
 const OptTable = ({ tableData, setStep }: TableType) => {
   const navigate = useNavigate();
+  let bgcolorrr = colorByEnergy(
+    numberToEnergy[tableData["current_energy_lable"]]
+  );
   function log() {
     // let mainObj = tableData["3"][0];
     // console.log(tableData);
@@ -44,6 +49,19 @@ const OptTable = ({ tableData, setStep }: TableType) => {
     <div className="w-full flex flex-col overflow-y-auto">
       <div className="w-full overflow-y-auto py-2 px-5">
         {/* <button onClick={log}>log</button> */}
+        <div className="w-full text-center mb-4 flex justify-center gap-x-2 font-semibold text-xl items-center">
+          <p>CurrentEnergy: </p>
+          <p
+            className={` text-white flex justify-center items-center rounded-lg`}
+            style={{
+              backgroundColor: bgcolorrr,
+              width: 40,
+              height: 40,
+            }}
+          >
+            {numberToEnergy[tableData["current_energy_lable"]]}
+          </p>
+        </div>
         {/* Head */}
         <div className="sticky bg-zinc-900 rounded-t-md">
           <div className="justify-between border-b-2 border-zinc-700 grid-cont text-white items-center">
@@ -80,7 +98,6 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                 console.log(num);
                 //@ts-ignore
                 tableData[`${num}`].map((item) => {
-                  console.log("w");
                   return <p>Helo</p>;
                 });
               }
@@ -88,38 +105,74 @@ const OptTable = ({ tableData, setStep }: TableType) => {
 
               // return null;
               return (
-                <div className="grid-cont justify-between py-[2px]" key={i}>
+                <div className="grid-cont justify-between" key={i}>
                   {/* 1 */}
-                  <div className="flex flex-col gap-y-1 ">
-                    {
-                      //@ts-ignore
-                      tableData[`${num}`].map((item, i) => (
-                        <div
-                          className="flex flex-col justify-center items-center py-1 h-full"
-                          style={{
-                            backgroundColor: bgColorr,
-                            opacity: 0.7,
-                          }}
-                        >
-                          <p className="text-white font-medium">
-                            {/* @ts-ignore */}
-                            {numberToEnergy[`${num}`]}
-                            {/* moz */}
-                          </p>
-                        </div>
-                      ))
-                    }
-                  </div>
-                  {/* 2 */}
-                  <div className="flex flex-col gap-y-1">
+                  <div className="flex flex-col gap-y-[3px] h-full">
                     {
                       //@ts-ignore
                       tableData[`${num}`].map((item, i) => {
                         //@ts-ignore
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
+                        let hCounter: number = 0;
+                        //@ts-ignore
+                        let myn11123 = Object.entries(arrData[i][1]);
+                        arrData.map((item, i) => {
+                          if (!isObjEmpty(arrData[i][1])) {
+                            if (
+                              [
+                                "total_cost",
+                                "new_energy_cost",
+                                "current_energy_cost",
+                              ].includes(arrData[i][0])
+                            ) {
+                              return null;
+                            } else {
+                              // console.log(arrData[i][1],"i");
+                              //@ts-ignore
+                              let myn11123 = Object.entries(arrData[i][1]);
+                              hCounter += myn11123.length - 1;
+                            }
+                          }
+                        });
                         return (
-                          <div className="flex flex-col justify-between items-center py  rounded-md gap-y-1 h-full">
+                          <div
+                            className="flex flex-col gap-y-1 justify-center items-center rounded-md"
+                            style={{ height: "100%" }}
+                          >
+                            <p
+                              className="text-white font-medium bg-purple-400 flex justify-center items-center"
+                              style={{
+                                width: "100%",
+                                backgroundColor: bgColorr,
+                                height: 56 * hCounter,
+                                opacity: 0.7,
+                              }}
+                            >
+                              {/* @ts-ignore */}
+                              {numberToEnergy[`${num}`]}
+                            </p>
+                          </div>
+                        );
+                      })
+                    }
+                  </div>
+                  {/* 2 */}
+                  <div className="flex flex-col gap-y-1 h-full">
+                    {
+                      //@ts-ignore
+                      tableData[`${num}`].map((item, i) => {
+                        //@ts-ignore
+                        const data = tableData[`${num}`][i];
+                        const arrData = Object.entries(data);
+
+                        return (
+                          <div
+                            className="flex flex-col justify-between items-center rounded-md gap-y-1 h-full"
+                            style={{
+                              height: "100%",
+                            }}
+                          >
                             {arrData.map((_, i) => {
                               if (!isObjEmpty(arrData[i][1])) {
                                 if (
@@ -132,14 +185,27 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                   // console.log(arrData[i][1]);
                                   return null;
                                 }
-
+                                //@ts-ignore
+                                let myn11123 = Object.entries(arrData[i][1]);
+                                console.log(myn11123.length - 1, "vaw1");
                                 return (
                                   <div
                                     key={i}
-                                    className="flex-1 flex justify-center items-center bg-zinc-200 w-full "
+                                    className="w-full flex flex-col h-full"
+                                    style={{
+                                      // height: HEIGHT * (myn11123.length - 1),
+                                      height: "100%",
+                                    }}
                                   >
                                     {/* <p>s</p> */}
-                                    <p className="text-[18px] font-medium text-zinc-800">
+                                    <p
+                                      className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex justify-center items-center "
+                                      style={{
+                                        width: "100%",
+                                        height: 52 * (myn11123.length - 1),
+                                        // height: "100%",
+                                      }}
+                                    >
                                       {arrData[i][0]}
                                     </p>
                                   </div>
@@ -179,7 +245,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                 return (
                                   <div
                                     key={i}
-                                    className="w-full flex flex-col h-full"
+                                    className="w-full flex flex-col h-full gap-y-2"
                                   >
                                     {nameDataArr.map((it, i) => {
                                       if (it[0] == "installation_cost") {
@@ -188,7 +254,10 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                       } else
                                         return (
                                           <div
-                                            className="w-full px-5  py-2 bg-zinc-200 h-full"
+                                            className="w-full px-5 flex items-center bg-zinc-200"
+                                            style={{
+                                              height: HEIGHT,
+                                            }}
                                             key={i}
                                           >
                                             <p className="text-[18px] font-medium text-zinc-800">
@@ -207,15 +276,16 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                     }
                   </div>
                   {/* 4 */}
-                  <div className="flex flex-col gap-y-1">
+                  <div className="flex flex-col gap-y-1 h-full">
                     {
                       //@ts-ignore
                       tableData[`${num}`].map((item, i) => {
+                        let maiinH;
                         //@ts-ignore
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
                         return (
-                          <div className="flex flex-col justify-between items-center py  rounded-md gap-y-1 h-full">
+                          <div className="flex flex-col justify-between items-center  rounded-md gap-y-1 h-full">
                             {arrData.map((_, i) => {
                               if (!isObjEmpty(arrData[i][1])) {
                                 if (
@@ -225,8 +295,9 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                     "current_energy_cost",
                                     "installation_cost",
                                   ].includes(arrData[i][0])
-                                )
+                                ) {
                                   return null;
+                                }
                                 const nameDataArr = Object.entries(
                                   //@ts-ignore
                                   arrData[i][1]
@@ -235,18 +306,36 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                 return (
                                   <div
                                     key={i}
-                                    className="w-full flex flex-col h-full"
+                                    className="w-full flex flex-col h-full gap-y-1"
                                   >
                                     {nameDataArr.map((it, i) => {
                                       if (it[0] == "installation_cost") {
                                         return null;
-                                      } else
+                                      } else {
+                                        if (
+                                          BoolArray.includes(
+                                            it[0].toString().toLocaleUpperCase()
+                                          )
+                                        ) {
+                                          maiinH = 26;
+                                        } else {
+                                          maiinH = 52;
+                                        }
                                         return (
                                           <div
-                                            className="w-full px-5  py-2 bg-zinc-200 h-full flex items-center justify-center"
+                                            className="w-full flex flex-col h-full"
                                             key={i}
                                           >
-                                            <p className="text-[18px] font-medium text-zinc-800">
+                                            <p
+                                              className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex items-center justify-center"
+                                              style={{
+                                                width: "100%",
+                                                height:
+                                                  maiinH *
+                                                  (nameDataArr.length - 1),
+                                                // height: "100%",
+                                              }}
+                                            >
                                               {
                                                 //@ts-ignore
                                                 valToCAN(
@@ -258,6 +347,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                             </p>
                                           </div>
                                         );
+                                      }
                                     })}
                                   </div>
                                 );
@@ -269,15 +359,16 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                     }
                   </div>
                   {/* 5 */}
-                  <div className="flex flex-col gap-y-1">
+                  <div className="flex flex-col gap-y-1 h-full">
                     {
                       //@ts-ignore
                       tableData[`${num}`].map((item, i) => {
+                        let maiinH;
                         //@ts-ignore
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
                         return (
-                          <div className="flex flex-col justify-between items-center py  rounded-md gap-y-1 h-full">
+                          <div className="flex flex-col justify-between items-center  rounded-md gap-y-1 h-full">
                             {arrData.map((_, i) => {
                               if (!isObjEmpty(arrData[i][1])) {
                                 if (
@@ -287,8 +378,9 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                     "current_energy_cost",
                                     "installation_cost",
                                   ].includes(arrData[i][0])
-                                )
+                                ) {
                                   return null;
+                                }
                                 const nameDataArr = Object.entries(
                                   //@ts-ignore
                                   arrData[i][1]
@@ -297,19 +389,36 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                 return (
                                   <div
                                     key={i}
-                                    className="w-full flex flex-col h-full"
+                                    className="w-full flex flex-col h-full gap-y-1"
                                   >
                                     {nameDataArr.map((it, i) => {
                                       if (it[0] == "installation_cost") {
-                                        // console.log(it[1], "he") //***********************price
                                         return null;
-                                      } else
+                                      } else {
+                                        if (
+                                          BoolArray.includes(
+                                            it[0].toString().toLocaleUpperCase()
+                                          )
+                                        ) {
+                                          maiinH = 26;
+                                        } else {
+                                          maiinH = 52;
+                                        }
                                         return (
                                           <div
-                                            className="w-full px-5  py-2 bg-zinc-200 h-full flex items-center justify-center"
+                                            className="w-full flex flex-col h-full"
                                             key={i}
                                           >
-                                            <p className="text-[18px] font-medium text-zinc-800">
+                                            <p
+                                              className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex items-center justify-center"
+                                              style={{
+                                                width: "100%",
+                                                height:
+                                                  maiinH *
+                                                  (nameDataArr.length - 1),
+                                                // height: "100%",
+                                              }}
+                                            >
                                               {
                                                 //@ts-ignore
                                                 valToCAN(
@@ -321,6 +430,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                             </p>
                                           </div>
                                         );
+                                      }
                                     })}
                                   </div>
                                 );
@@ -332,7 +442,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                     }
                   </div>
                   {/* 6 INStALL COST */}
-                  <div className="flex flex-col gap-y-1">
+                  <div className="flex flex-col gap-y-1 h-full">
                     {
                       //@ts-ignore
                       tableData[`${num}`].map((item, i) => {
@@ -350,12 +460,15 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                     "current_energy_cost",
                                     "installation_cost",
                                   ].includes(arrData[i][0])
-                                )
+                                ) {
                                   return null;
+                                }
                                 const nameDataArr = Object.entries(
                                   //@ts-ignore
                                   arrData[i][1]
                                 );
+                                //@ts-ignore
+                                let myn11123 = Object.entries(arrData[i][1]);
                                 // console.log(nameDataArr[1][1][0], "b")
                                 return (
                                   <div
@@ -366,10 +479,18 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                       if (it[0] == "installation_cost") {
                                         return (
                                           <div
-                                            className="w-full px-5  py-2 bg-zinc-200 h-full flex items-center justify-center"
+                                            className="w-full px-5 bg-zinc-200 flex items-center justify-center"
                                             key={i}
                                           >
-                                            <p className="text-[18px] font-medium text-zinc-800">
+                                            <p
+                                              className="text-[18px] font-medium text-zinc-800 flex justify-center items-center"
+                                              style={{
+                                                width: "100%",
+                                                height:
+                                                  53 * (myn11123.length - 1),
+                                                // height: "100%",
+                                              }}
+                                            >
                                               {
                                                 //@ts-ignore
                                                 it[1].toString()
@@ -396,6 +517,27 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                         //@ts-ignore
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
+                        let hCounter: number = 0;
+                        //@ts-ignore
+                        let myn11123 = Object.entries(arrData[i][1]);
+                        arrData.map((item, i) => {
+                          if (!isObjEmpty(arrData[i][1])) {
+                            if (
+                              [
+                                "total_cost",
+                                "new_energy_cost",
+                                "current_energy_cost",
+                              ].includes(arrData[i][0])
+                            ) {
+                              return null;
+                            } else {
+                              // console.log(arrData[i][1],"i");
+                              //@ts-ignore
+                              let myn11123 = Object.entries(arrData[i][1]);
+                              hCounter += myn11123.length - 1;
+                            }
+                          }
+                        });
                         return (
                           <div className="flex flex-col justify-between items-center py  rounded-md gap-y-1 h-full">
                             {arrData.map((_, i) => {
@@ -405,6 +547,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                     arrData[i][0]
                                   )
                                 ) {
+                                  //
                                   // console.log(arrData[i][1]);
                                   return null;
                                 } else if (
@@ -413,10 +556,17 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                   return (
                                     <div
                                       key={i}
-                                      className="flex-1 flex justify-center items-center bg-zinc-200 w-full "
+                                      className="flex-1 flex justify-center items-center w-full h-full"
+                                      style={{ height: "100%" }}
                                     >
                                       {/* <p>s</p> */}
-                                      <p className="text-[18px] font-medium text-zinc-800">
+                                      <p
+                                        className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex justify-center items-center"
+                                        style={{
+                                          width: "100%",
+                                          height: 55 * hCounter,
+                                        }}
+                                      >
                                         {
                                           //@ts-ignore
                                           arrData[i][1].value.toString()
@@ -442,6 +592,27 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                         //@ts-ignore
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
+                        let hCounter: number = 0;
+                        //@ts-ignore
+                        let myn11123 = Object.entries(arrData[i][1]);
+                        arrData.map((item, i) => {
+                          if (!isObjEmpty(arrData[i][1])) {
+                            if (
+                              [
+                                "total_cost",
+                                "new_energy_cost",
+                                "current_energy_cost",
+                              ].includes(arrData[i][0])
+                            ) {
+                              return null;
+                            } else {
+                              // console.log(arrData[i][1],"i");
+                              //@ts-ignore
+                              let myn11123 = Object.entries(arrData[i][1]);
+                              hCounter += myn11123.length - 1;
+                            }
+                          }
+                        });
                         return (
                           <div className="flex flex-col justify-between items-center py  rounded-md gap-y-1 h-full">
                             {arrData.map((_, i) => {
@@ -458,10 +629,16 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                   return (
                                     <div
                                       key={i}
-                                      className="flex-1 flex justify-center items-center bg-zinc-200 w-full "
+                                      className="flex-1 flex justify-center items-center  w-full h-full"
                                     >
                                       {/* <p>s</p> */}
-                                      <p className="text-[18px] font-medium text-zinc-800">
+                                      <p
+                                        className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex justify-center items-center"
+                                        style={{
+                                          width: "100%",
+                                          height: 55 * hCounter,
+                                        }}
+                                      >
                                         {
                                           //@ts-ignore
                                           arrData[i][1].value.toString()
@@ -487,6 +664,27 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                         //@ts-ignore
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
+                        let hCounter: number = 0;
+                        //@ts-ignore
+                        let myn11123 = Object.entries(arrData[i][1]);
+                        arrData.map((item, i) => {
+                          if (!isObjEmpty(arrData[i][1])) {
+                            if (
+                              [
+                                "total_cost",
+                                "new_energy_cost",
+                                "current_energy_cost",
+                              ].includes(arrData[i][0])
+                            ) {
+                              return null;
+                            } else {
+                              // console.log(arrData[i][1],"i");
+                              //@ts-ignore
+                              let myn11123 = Object.entries(arrData[i][1]);
+                              hCounter += myn11123.length - 1;
+                            }
+                          }
+                        });
                         return (
                           <div className="flex flex-col justify-between items-center py  rounded-md gap-y-1 h-full">
                             {arrData.map((_, i) => {
@@ -503,10 +701,16 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                   return (
                                     <div
                                       key={i}
-                                      className="flex-1 flex justify-center items-center bg-zinc-200 w-full "
+                                      className="flex-1 flex justify-center items-center  w-full h-full "
                                     >
                                       {/* <p>s</p> */}
-                                      <p className="text-[18px] font-medium text-zinc-800">
+                                      <p
+                                        className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex justify-center items-center"
+                                        style={{
+                                          width: "100%",
+                                          height: 55 * hCounter,
+                                        }}
+                                      >
                                         {
                                           //@ts-ignore
                                           arrData[i][1].toString()

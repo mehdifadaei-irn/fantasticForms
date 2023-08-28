@@ -1,4 +1,4 @@
-const BoolArray = [
+ export const BoolArray = [
   "TRANS_ECO",
   "TRANS_GREEN_DEAL",
   "TRANS_SALE",
