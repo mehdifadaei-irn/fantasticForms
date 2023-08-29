@@ -49,8 +49,8 @@ export async function PostDataToCalc({
     energy_info: {
       co2_emiss_curr_per_floor_area: Datas.CO2EmissCurrPerFloorArea,
       co2_emission_current: Datas.CO2EmissionsCourrent,
-      current_energy_efficiency: Datas.CurentEnergyEfficiency,
-      current_energy_ratting: Datas.CurentEnergyRating,
+      current_energy_efficiency: Datas.CurrentEnergyEfficiency,
+      current_energy_ratting: Datas.CurrentEnergyRating,
       energy_consumption_current: Datas.EnergyConsumptionCurrent,
       environment_impact_current: Datas.EnvironmentImpactCurrent,
       lodgement_date: Datas.lodgementDate,

@@ -106,8 +106,8 @@ export type AllInputs = {
   CO2EmissCurrPerFloorArea: string;
   EnvironmentImpactCurrent: string;
   EnergyConsumptionCurrent: string;
-  CurentEnergyEfficiency: string;
-  CurentEnergyRating: string;
+  CurrentEnergyEfficiency: string;
+  CurrentEnergyRating: string;
   SecondyHeaterType:
     | "secondHeatElectric"
     | "secondHeatingUnderFloor"

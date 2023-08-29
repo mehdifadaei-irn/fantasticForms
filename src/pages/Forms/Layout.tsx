@@ -90,8 +90,8 @@ const validationSchema = yup.object({
   EnvironmentImpactCurrent: yup.string(),
   lodgementDate: yup.date(),
   EnergyConsumptionCurrent: yup.string(),
-  CurentEnergyEfficiency: yup.string(),
-  CurentEnergyRating: yup.string(),
+  CurrentEnergyEfficiency: yup.string(),
+  CurrentEnergyRating: yup.string(),
 
   wallInsullation: yup.string(),
   wallType: yup.string().required("wallType is required!"),
@@ -215,8 +215,8 @@ function Layout() {
       EnvironmentImpactCurrent: inputs?.energy_info?.environment_impact_current,
       EnergyConsumptionCurrent: inputs?.energy_info?.energy_consumption_current,
       lodgementDate: inputs?.energy_info?.lodgement_date, //add
-      CurentEnergyEfficiency: inputs?.energy_info?.current_energy_efficiency,
-      CurentEnergyRating: inputs?.energy_info?.current_energy_ratting,
+      CurrentEnergyEfficiency: inputs?.energy_info?.current_energy_efficiency,
+      CurrentEnergyRating: inputs?.energy_info?.current_energy_ratting,
 
       wallInsullation: inputs?.wall_settings?.wall_insulation,
       wallType: inputs?.wall_settings?.wall_type,
