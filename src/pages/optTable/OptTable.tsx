@@ -146,7 +146,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                             >
                               {/* @ts-ignore */}
                               {numberToEnergy[`${num}`]}
-                              {hCounter}
+                              {/* {hCounter} */}
                             </p>
                           </div>
                         );
