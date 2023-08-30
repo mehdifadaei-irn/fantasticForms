@@ -237,7 +237,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                 return (
                                   <div
                                     key={i}
-                                    className="w-full flex flex-col h-full gap-y-1"
+                                    className="w-full flex flex-col h-full gap-y-1 "
                                   >
                                     {nameDataArr.map((it, i) => {
                                       if (it[0] == "installation_cost") {
@@ -277,7 +277,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
                         return (
-                          <div className="flex flex-col justify-between items-center  rounded-md gap-y-2">
+                          <div className="flex flex-col justify-between items-center  rounded-md gap-y-2 h-full">
                             {arrData.map((_, i) => {
                               if (!isObjEmpty(arrData[i][1])) {
                                 if (
@@ -325,7 +325,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                                 // height:
                                                 //   maiinH *
                                                 //   (nameDataArr.length - 1),
-                                                height: 50,
+                                                height: 52,
                                               }}
                                             >
                                               {
@@ -360,7 +360,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
                         return (
-                          <div className="flex flex-col justify-between items-center  rounded-md gap-y-2">
+                          <div className="flex flex-col justify-between items-center  rounded-md gap-y-2 h-full">
                             {arrData.map((_, i) => {
                               if (!isObjEmpty(arrData[i][1])) {
                                 if (
@@ -408,7 +408,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                                 // height:
                                                 //   maiinH *
                                                 //   (nameDataArr.length - 1),
-                                                height: 50,
+                                                height: 51,
                                               }}
                                             >
                                               {
@@ -442,7 +442,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
                         return (
-                          <div className="flex flex-col justify-between items-center  rounded-md gap-y-[8px]">
+                          <div className="flex flex-col justify-between items-center  rounded-md gap-y-[8px] h-full">
                             {arrData.map((_, i) => {
                               if (!isObjEmpty(arrData[i][1])) {
                                 if (
@@ -472,11 +472,11 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                             key={i}
                                           >
                                             <p
-                                              className="text-[18px]  font-medium rounded-md text-zinc-800 flex justify-center items-center "
+                                              className="text-[18px]  font-medium rounded-md text-zinc-800 flex justify-center items-center"
                                               style={{
                                                 width: "100%",
                                                 height:
-                                                  53.6 * (myn11123.length - 1),
+                                                  52 * (myn11123.length - 1),
                                                 // height: "100%",
                                               }}
                                             >
