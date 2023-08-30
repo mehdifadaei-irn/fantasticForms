@@ -140,7 +140,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                               style={{
                                 width: "100%",
                                 backgroundColor: bgColorr,
-                                height: 58 * hCounter,
+                                height: 57 * hCounter,
                                 opacity: 0.7,
                               }}
                             >
@@ -193,7 +193,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                       className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex justify-center items-center "
                                       style={{
                                         width: "100%",
-                                        height: 56 * (myn11123.length - 1),
+                                        height: 55 * (myn11123.length - 1),
                                         // height: "100%",
                                       }}
                                     >
@@ -210,7 +210,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                     }
                   </div>
                   {/* 3 */}
-                  <div className="flex flex-col gap-y-1">
+                  <div className="flex flex-col gap-y-2">
                     {
                       //@ts-ignore
                       tableData[`${num}`].map((item, i) => {
@@ -218,7 +218,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
                         return (
-                          <div className="flex flex-col justify-between items-center py  rounded-md gap-y-1">
+                          <div className="flex flex-col justify-between items-center py  rounded-md gap-y-[5px]">
                             {arrData.map((_, i) => {
                               if (!isObjEmpty(arrData[i][1])) {
                                 if (
@@ -237,7 +237,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                 return (
                                   <div
                                     key={i}
-                                    className="w-full flex flex-col h-full gap-y-2"
+                                    className="w-full flex flex-col h-full gap-y-1"
                                   >
                                     {nameDataArr.map((it, i) => {
                                       if (it[0] == "installation_cost") {
@@ -268,7 +268,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                     }
                   </div>
                   {/* 4 */}
-                  <div className="flex flex-col gap-y-1 h-full">
+                  <div className="flex flex-col gap-y-[5px] h-full">
                     {
                       //@ts-ignore
                       tableData[`${num}`].map((item, i) => {
@@ -298,7 +298,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                 return (
                                   <div
                                     key={i}
-                                    className="w-full flex flex-col h-full gap-y-2"
+                                    className="w-full flex flex-col h-full gap-y-1"
                                   >
                                     {nameDataArr.map((it, i) => {
                                       if (it[0] == "installation_cost") {
@@ -351,7 +351,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                     }
                   </div>
                   {/* 5 */}
-                  <div className="flex flex-col gap-y-1 h-full">
+                  <div className="flex flex-col gap-y-[5px] h-full">
                     {
                       //@ts-ignore
                       tableData[`${num}`].map((item, i) => {
@@ -360,7 +360,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                         const data = tableData[`${num}`][i];
                         const arrData = Object.entries(data);
                         return (
-                          <div className="flex flex-col justify-between items-center  rounded-md gap-y-1 h-full">
+                          <div className="flex flex-col justify-between items-center  rounded-md gap-y-2">
                             {arrData.map((_, i) => {
                               if (!isObjEmpty(arrData[i][1])) {
                                 if (
@@ -381,7 +381,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                 return (
                                   <div
                                     key={i}
-                                    className="w-full flex flex-col h-full gap-y-2"
+                                    className="w-full flex flex-col h-full gap-y-1"
                                   >
                                     {nameDataArr.map((it, i) => {
                                       if (it[0] == "installation_cost") {
@@ -476,7 +476,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                               style={{
                                                 width: "100%",
                                                 height:
-                                                  53 * (myn11123.length - 1),
+                                                  53.6 * (myn11123.length - 1),
                                                 // height: "100%",
                                               }}
                                             >
@@ -552,7 +552,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                         className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex justify-center rounded-md items-center"
                                         style={{
                                           width: "100%",
-                                          height: 54 * hCounter,
+                                          height: 56.6 * hCounter,
                                         }}
                                       >
                                         {
@@ -624,7 +624,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                         className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex justify-center items-center text-center"
                                         style={{
                                           width: "100%",
-                                          height: 54 * hCounter,
+                                          height: 56.6 * hCounter,
                                         }}
                                       >
                                         {
@@ -697,7 +697,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                         style={{
                                           width: "100%",
                                           // height: 52 * hCounter,
-                                          height: 54 * hCounter,
+                                          height: 56.6 * hCounter,
                                         }}
                                       >
                                         {
