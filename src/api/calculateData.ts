@@ -12,7 +12,7 @@ export async function PostDataToCalc({
   Datas: AllInputs;
   controlertype: string[];
 }) {
-  // console.log(controlertype, "CTCath");
+  console.log(Datas.multiGlazeProportion, "CTCath");
   const { data, config } = await axios.post(`${apiUrl}/${endpoint}`, {
     controller_settings: {
       ControlTtzc: controlertype.includes("ControlTtzc") ? 1 : 0,
