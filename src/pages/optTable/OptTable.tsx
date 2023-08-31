@@ -468,7 +468,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                       if (it[0] == "installation_cost") {
                                         return (
                                           <div
-                                            className="w-full px-5 bg-zinc-200 flex items-center justify-center rounded-md h-full"
+                                            className="w-full px-5 bg-zinc-200 flex items-center justify-center rounded-md"
                                             key={i}
                                           >
                                             <p
@@ -476,7 +476,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                               style={{
                                                 width: "100%",
                                                 height:
-                                                  52 * (myn11123.length - 1),
+                                                  55 * (myn11123.length - 1),
                                                 // height: "100%",
                                               }}
                                             >
