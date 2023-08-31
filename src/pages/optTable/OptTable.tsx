@@ -552,7 +552,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                         className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex justify-center rounded-md items-center"
                                         style={{
                                           width: "100%",
-                                          height: 58 * hCounter,
+                                          height: 59 * hCounter,
                                         }}
                                       >
                                         {
@@ -624,7 +624,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                         className="text-[18px] font-medium text-zinc-800 bg-zinc-200 flex justify-center items-center text-center"
                                         style={{
                                           width: "100%",
-                                          height: 58 * hCounter,
+                                          height: 59 * hCounter,
                                         }}
                                       >
                                         {
@@ -697,7 +697,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                         style={{
                                           width: "100%",
                                           // height: 52 * hCounter,
-                                          height: 58 * hCounter,
+                                          height: 59 * hCounter,
                                         }}
                                       >
                                         {
