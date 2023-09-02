@@ -476,7 +476,7 @@ const OptTable = ({ tableData, setStep }: TableType) => {
                                               style={{
                                                 width: "100%",
                                                 height:
-                                                  55 * (myn11123.length - 1),
+                                                  56 * (myn11123.length - 1),
                                                 // height: "100%",
                                               }}
                                             >

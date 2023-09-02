@@ -69,8 +69,8 @@ const initialState: props = {
     CO2EmissCurrPerFloorArea: "",
     EnvironmentImpactCurrent: "",
     EnergyConsumptionCurrent: "",
-    CurentEnergyEfficiency: "",
-    CurentEnergyRating: "",
+    CurrentEnergyEfficiency: "",
+    CurrentEnergyRating: "",
     SecondyHeaterType: "",
     MainFuelType: "",
     // HotWaterEnvEFF: "";
