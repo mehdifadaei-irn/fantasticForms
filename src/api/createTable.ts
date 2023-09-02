@@ -12,7 +12,7 @@ export async function PostDataToTable({
   Datas: AllInputs;
   controlertype: string[];
 }) {
-  // console.log(controlertype, "CTCath");
+  console.log(Datas.airSourceHeatPump, "CTCath");
   const { data, config } = await axios.post(`${apiUrl}/${endpoint}`, {
     controller_settings: {
       ControlTtzc: controlertype.includes("ControlTtzc") ? 1 : 0,
@@ -49,8 +49,8 @@ export async function PostDataToTable({
     energy_info: {
       co2_emiss_curr_per_floor_area: Datas.CO2EmissCurrPerFloorArea,
       co2_emission_current: Datas.CO2EmissionsCourrent,
-      current_energy_efficiency: Datas.CurentEnergyEfficiency,
-      current_energy_ratting: Datas.CurentEnergyRating,
+      current_energy_efficiency: Datas.CurrentEnergyEfficiency,
+      current_energy_ratting: Datas.CurrentEnergyRating,
       energy_consumption_current: Datas.EnergyConsumptionCurrent,
       environment_impact_current: Datas.EnvironmentImpactCurrent,
       lodgement_date: Datas.lodgementDate,
@@ -76,30 +76,30 @@ export async function PostDataToTable({
       low_energy_fixed_light_count: Datas.lowEnergyFixedLightCount,
     },
     main_Heating_system_setting: {
-      air_source_heatpump: Datas.airSourceHeatPump,
+      air_source_heatpump: Datas.airSourceHeatPump ? 1 : 0,
       boiler: Datas.boiler,
-      community_scheme: Datas.communityScheme,
-      electric: Datas.Electric,
-      electric_ceiling: Datas.electricCeiling,
-      electric_storage: Datas.electricStorage,
-      fan_coil: Datas.fanCoil,
+      community_scheme: Datas.communityScheme ? 1 : 0,
+      electric: Datas.Electric ? 1 : 0,
+      electric_ceiling: Datas.electricCeiling ? 1 : 0,
+      electric_storage: Datas.electricStorage ? 1 : 0,
+      fan_coil: Datas.fanCoil ? 1 : 0,
       gas: Datas.Gas,
-      ground_source_heatpump: Datas.GroundSourceHeatPump,
+      ground_source_heatpump: Datas.GroundSourceHeatPump ? 1 : 0,
       heating_cost_current: Datas.heatingCostCourent,
       main_heat_energy_eff: Datas.mainHeatEnergyEFF,
       mainheat_env_eff: Datas.mainHeatEnvEFF,
       mainheatc_energy_eff: Datas.mainHeatCEnergyEFF,
       mainheatc_env_eff: Datas.mainHeatCEnvEFF,
-      micro: Datas.micro,
-      other_unknown: Datas.otherUnknown,
-      other_unmetric_fuel: Datas.otherUnmetricFuel,
-      portable: Datas.portable,
-      radiator: Datas.radiator,
-      room_heater: Datas.roomHeater,
+      micro: Datas.micro ? 1 : 0,
+      other_unknown: Datas.otherUnknown ? 1 : 0,
+      other_unmetric_fuel: Datas.otherUnmetricFuel ? 1 : 0,
+      portable: Datas.portable ? 1 : 0,
+      radiator: Datas.radiator ? 1 : 0,
+      room_heater: Datas.roomHeater ? 1 : 0,
       solar_water_heating_flag: Datas.solarWaterHeatingFlag,
-      underfloor: Datas.underFloor,
-      warm_air: Datas.warmAir,
-      water_source_heatpump: Datas.waterSourceHeatPump,
+      underfloor: Datas.underFloor ? 1 : 0,
+      warm_air: Datas.warmAir ? 1 : 0,
+      water_source_heatpump: Datas.waterSourceHeatPump ? 1 : 0,
     },
     main_fuel_settings: { type: Datas.MainFuelType },
     property_setting: {
