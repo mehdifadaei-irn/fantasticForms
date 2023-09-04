@@ -250,7 +250,7 @@ function Layout() {
   // }, [data, isLoading, isError]);
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-slate-300">
-      <main className="border-2 w-[88%] h-[93%] rounded-xl flex flex-col py-2 px-0 bg-slate-200">
+      <main className="border-2 w-[88%] h-[93%] rounded-xl flex flex-col py-2 px-0 bg-slate-200 justify-between">
         {/* <button onClick={logg}>cli</button> */}
 
         {step === 6 ? (

@@ -3,7 +3,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 
 function NormalInput({ formik, item, unit, topUnit, w, startUnit }: any) {
   return (
-    <div className="r relative flex justify-center">
+    <div className="r relative flex justify-center w-full">
       <TextField
         sx={{
           // width: "75%",

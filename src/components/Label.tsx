@@ -6,9 +6,9 @@ interface LabelProps {
 
 const Label: FC<LabelProps> = ({ label }) => {
   return (
-    <h4 className="font-semibold text-zinc-800 tracking-wider text-lg">
-      ____{label!}____
-    </h4>
+    <p className="bg-slate-200 font-[400] w-[200px] text-center text-zinc-800 tracking-wider text-lg">
+      {label!}
+    </p>
   );
 };
 

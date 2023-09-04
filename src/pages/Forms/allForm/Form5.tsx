@@ -60,15 +60,16 @@ function Form5({ setStep, mainFormik }: any) {
       setStep((prev: number) => prev + 1);
     } else {
       // console.log(mainFormik.errors);
-      const eRrors = Object.entries(mainFormik.errors);
-      // console.log(eRrors[0]);
+      toast.error("Please fill out all required fields");
+      // const eRrors = Object.entries(mainFormik.errors);
+      // // console.log(eRrors[0]);
 
-      if (eRrors) {
-        eRrors.map((er, i) => {
-          //@ts-ignore
-          toast.error(er[1]);
-        });
-      }
+      // if (eRrors) {
+      //   eRrors.map((er, i) => {
+      //     //@ts-ignore
+      //     toast.error(er[1]);
+      //   });
+      // }
     }
   }
   async function handleCheck() {
@@ -100,10 +101,12 @@ function Form5({ setStep, mainFormik }: any) {
       <div className="w-full h-full flex flex-col justify-between">
         <form
           onSubmit={mainFormik.handleSubmit}
-          className="w-full h-[46%] lg:px-12 flex flex-col md:pt-5"
+          className="w-[90%] mx-auto h-[46%] lg:px-12 flex flex-col md:pt-5 relative border-2 border-[#a8a29e] rounded-md mt-3"
         >
-          <Label label="energy Info" />
-          <div className="justify-center xl:pt-10 xl:gap-2 gap-0 py-3 grid grid-rows-2 xl:grid-rows-2 xl:grid-cols-4 grid-cols-3 xl:px-9 px-3 items-center justify-items-center gap-y-5 ">
+          <p className="bg-slate-200 font-[400] w-[120px] text-center text-zinc-800 tracking-wider text-md absolute left-[2%] -top-[5%]">
+            EnergyInfo
+          </p>
+          <div className="grid grid-rows-2 grid-cols-4 justify-center justify-items-center items-center gap-y-7 md:pt-6 pt-2">
             {data.map((item, i) => {
               if (i === 0) {
                 return (

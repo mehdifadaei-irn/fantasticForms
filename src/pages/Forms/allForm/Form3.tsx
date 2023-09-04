@@ -57,16 +57,17 @@ function Form3({ setStep, mainFormik }: any) {
     console.log("va", values);
   }
   return (
-    <>
+    <div className="w-full h-screen overflow-hidden flex flex-col justify-between">
       <form
         onSubmit={mainFormik.handleSubmit}
-        className="w-full h-[76%]  lg:px-12 flex flex-col md:pt-5 overflow-y-auto overflow-x-hidden"
+        className="w-full  lg:px-12 flex flex-col md:pt-5 overflow-y-auto overflow-x-hidden gap-y-2"
       >
         {/* Lightening settings */}
-        <div className="w-full">
-          {/* <h4>Lightening settings</h4> */}
-          <Label label="Lightening settings" />
-          <div className="grid lg:grid-rows-2 lg:grid-cols-3 pt-3 gap-y-8">
+        <div className="w-full flex flex-col relative">
+          <p className="bg-slate-200 font-[400] w-[210px] text-center text-zinc-800 tracking-wider text-md absolute left-[1%] -top-[6%]">
+            Lightening settings
+          </p>
+          <div className="grid lg:grid-rows-2 lg:grid-cols-3 gap-y-8 border-2 border-[#a8a29e] rounded-md py-7 px-3 shadow-md">
             {data.map((item, i) => {
               // 14,
               if ([2, 3, , 5, 6].includes(i)) {
@@ -109,126 +110,141 @@ function Form3({ setStep, mainFormik }: any) {
             })}
           </div>
         </div>
-        {/* Hot Water */}
-        <div className="w-full xl:mt-6">
-          <Label label="Hot Water" />
-          <div className="grid lg:grid-rows-1 lg:grid-cols-4 gap-y-4 gap-x-3 pt-3">
-            {data.map((item, i) => {
-              // 14,
-              if ([8, 9].includes(i)) {
-                return (
-                  <div key={i} className="w-full h-[70%]">
-                    <NormalInput formik={mainFormik} item={item} />
-                  </div>
-                );
-              } else if (i === 7) {
-                return (
-                  <div key={i} className="w-full h-full flex justify-center">
-                    <SelectInput
-                      key={i}
-                      formik={mainFormik}
-                      item={item}
-                      subItems={[
-                        "hotWaterCommunity",
-                        "hotWaterHeatPump",
-                        "hotWaterImmersion",
-                        "hotWaterInstantaneous",
-                        "hotWaterFromMainSystem",
-                        "hotWaterSecondarySystem",
-                        "hotWaterGasBoiler",
-                        "hotWaterOtherSystem",
-                        "hotWaterUnknownSystem",
-                      ]}
-                    />
-                  </div>
-                );
-              } else if (i === 11) {
-                return (
-                  <div key={i} className="w-full h-full">
-                    <NormalInput
-                      formik={mainFormik}
-                      item={item}
-                      key={i}
-                      unit={"£ per year"}
-                      // startUnit={"%"}
-                    />
-                  </div>
-                );
-              } else {
-                return null;
-              }
-            })}
+        <div className="flex w-full flex-row">
+          {/* Hot Water */}
+          <div className="w-[50%] xl:mt-6 relative border-2 border-[#a8a29e] rounded-md shadow-xl">
+            {/* <Label label="" /> */}
+            <p className="bg-slate-200 font-[400] w-[110px] text-center text-zinc-800 tracking-wider text-md absolute left-[3%] -top-[6%]">
+              Hot Water
+            </p>
+            <div className="grid lg:grid-rows-4 lg:grid-cols-1 gap-y-4 gap-x-3 py-6">
+              {data.map((item, i) => {
+                // 14,
+                if ([8, 9].includes(i)) {
+                  return (
+                    <div key={i} className="w-full h-[70%]">
+                      <NormalInput formik={mainFormik} item={item} />
+                    </div>
+                  );
+                } else if (i === 7) {
+                  return (
+                    <div key={i} className="w-full h-full flex justify-center">
+                      <SelectInput
+                        key={i}
+                        formik={mainFormik}
+                        item={item}
+                        subItems={[
+                          "hotWaterCommunity",
+                          "hotWaterHeatPump",
+                          "hotWaterImmersion",
+                          "hotWaterInstantaneous",
+                          "hotWaterFromMainSystem",
+                          "hotWaterSecondarySystem",
+                          "hotWaterGasBoiler",
+                          "hotWaterOtherSystem",
+                          "hotWaterUnknownSystem",
+                        ]}
+                      />
+                    </div>
+                  );
+                } else if (i === 11) {
+                  return (
+                    <div key={i} className="w-full h-full">
+                      <NormalInput
+                        formik={mainFormik}
+                        item={item}
+                        key={i}
+                        unit={"£ per year"}
+                        // startUnit={"%"}
+                      />
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </div>
           </div>
-        </div>
 
-        <div className="flex lg:px-3 xl:mt-7">
+          <div className="flex gap-y-7 flex-col w-[50%] ml-6 md:mt-6 mt-2 justify-between">
+            {/* Contoroller type */}
+            <div className=" w-full py-8 justify-center items-center flex flex-col relative border-2 border-[#a8a29e] rounded-md  shadow-xl">
+              {/* <Label label="ControllerType" /> */}
+              <p className="bg-slate-200 font-[400] w-[130px] text-center text-zinc-800 tracking-wider text-md absolute left-[2%] -top-[15%]">
+                ControllerType
+              </p>
+              {data.map((item, i) => {
+                // 14,
+                if ([0].includes(i)) {
+                  return (
+                    <div
+                      key={i}
+                      className="w-full h-full flex justify-center ml-[3%] "
+                    >
+                      <MultiSelect
+                        w="50%"
+                        key={i}
+                        formik={mainFormik}
+                        item={item}
+                        subItems={[
+                          "ControlTtzc",
+                          "ControlTrv",
+                          "ControlApplianceThermostate",
+                          "ControlCcc",
+                          "ControlCelect",
+                          "ControlFlat_rate",
+                          "ControlProgrammer",
+                          "ControlCommunity_scheme",
+                          "ControlRoom_thermostat",
+                          "ControlBoiler_energy_manager",
+                          "ControlByPass",
+                          "ControlFlowSwitch",
+                          "ControlNoThermostat",
+                          "ControlOtherUnknown",
+                        ]}
+                      />
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </div>
 
-        
-        {/* Contoroller type */}
-        <div className=" w-[60%] h-[15%] flex flex-col">
-          <Label label="ControllerType" />
-          {data.map((item, i) => {
-            // 14,
-            if ([0].includes(i)) {
-              return (
-                <div key={i} className="w-full h-full flex justify-start ml-[3%] mt-6">
-                  <MultiSelect
-                    w="50%"
-                    key={i}
-                    formik={mainFormik}
-                    item={item}
-                    subItems={[
-                      "ControlTtzc",
-                      "ControlTrv",
-                      "ControlApplianceThermostate",
-                      "ControlCcc",
-                      "ControlCelect",
-                      "ControlFlat_rate",
-                      "ControlProgrammer",
-                      "ControlCommunity_scheme",
-                      "ControlRoom_thermostat",
-                      "ControlBoiler_energy_manager",
-                      "ControlByPass",
-                      "ControlFlowSwitch",
-                      "ControlNoThermostat",
-                      "ControlOtherUnknown",
-                    ]}
-                  />
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
-
-        {/* Ventilation */}
-        <div className="w-full h-[15%] flex flex-col">
-          <Label label="Ventilation" />
-          {data.map((item, i) => {
-            // 14,
-            if ([10].includes(i)) {
-              return (
-                <div key={i} className="w-full h-full flex justify-center ml-[3%] mt-6">
-                  <SelectInput
-                  w="70%"
-                    key={i}
-                    formik={mainFormik}
-                    item={item}
-                    subItems={[
-                      "mechanicalVentilationNatural",
-                      "mechanicalVentilationMechanicalExtract",
-                      "mechanicalVentilationMechanicalSupplyExtract",
-                      "mechanicalVentilationMechanicalUnknown",
-                    ]}
-                  />
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
+            {/* Ventilation */}
+            <div className="w-full flex flex-col relative border-2 border-[#a8a29e] rounded-md py-8 justify-center items-center shadow-xl">
+              {/* <Label label="Ventilation" /> */}
+              <p className="bg-slate-200 font-[400] w-[130px] text-center text-zinc-800 tracking-wider text-md absolute left-[2%] -top-[15%]">
+                Ventilation
+              </p>
+              {data.map((item, i) => {
+                // 14,
+                if ([10].includes(i)) {
+                  return (
+                    <div
+                      key={i} 
+                      className="w-full h-full flex justify-center ml-[3%] "
+                    >
+                      <SelectInput
+                        w="50%"
+                        key={i}
+                        formik={mainFormik}
+                        item={item}
+                        subItems={[
+                          "mechanicalVentilationNatural",
+                          "mechanicalVentilationMechanicalExtract",
+                          "mechanicalVentilationMechanicalSupplyExtract",
+                          "mechanicalVentilationMechanicalUnknown",
+                        ]}
+                      />
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </div>
+          </div>
         </div>
       </form>
 
@@ -256,7 +272,7 @@ function Form3({ setStep, mainFormik }: any) {
           forward
         </Button>
       </div>
-    </>
+    </div>
   );
 }
 

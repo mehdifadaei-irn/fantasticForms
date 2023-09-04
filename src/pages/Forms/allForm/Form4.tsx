@@ -61,70 +61,18 @@ function Form4({ setStep, mainFormik }: any) {
   }
 
   return (
-    <>
+    <div className="w-full h-screen overflow-hidden flex flex-col justify-between">
       <form
         onSubmit={mainFormik.handleSubmit}
-        className="w-full h-[76%] lg:px-12  flex flex-col md:pt-5 overflow-y-auto gap-y-4"
+        className="w-full h-[88%] lg:px-12 pt-2  flex flex-row overflow-y-auto gap-y-4"
       >
-        {/* Wall */}
-        <div className="w-full ">
-          <Label label="Wall" />
-          <div className="grid lg:grid-rows-1 lg:grid-cols-4 gap-x-3 pt-3 gap-y-4 ">
-            {data.map((item, i) => {
-              // 14,
-              if ([2, 3].includes(i)) {
-                return (
-                  <div key={i} className="w-full h-[70%]">
-                    <NormalInput formik={mainFormik} item={item} />
-                  </div>
-                );
-              } else if (i === 0) {
-                return (
-                  <div key={i} className="w-full h-full flex justify-center">
-                    <SelectInput
-                      key={i}
-                      formik={mainFormik}
-                      item={item}
-                      subItems={[
-                        "wallsNoInsulation",
-                        "wallsLimitedInsulation",
-                        "wallsFullyInsulated",
-                      ]}
-                    />
-                  </div>
-                );
-              } else if (i === 1) {
-                return (
-                  <div key={i} className="w-full h-full flex justify-center">
-                    <SelectInput
-                      key={i}
-                      formik={mainFormik}
-                      item={item}
-                      subItems={[
-                        "wallsBrick",
-                        "wallsCavity",
-                        "wallsCob",
-                        "wallsGranite",
-                        "wallsParkHome",
-                        "wallsSedimentary",
-                        "wallsSystemBuilt",
-                        "wallsTimber",
-                        "wallsOtherUnknown",
-                        // "wallsThermalTransmittance",
-                      ]}
-                    />
-                  </div>
-                );
-              } else {
-                return null;
-              }
-            })}
-          </div>
-        </div>
         {/* Roof */}
-        <div className="w-full flex flex-col">
-          <Label label="Roof" />
-          <div className="grid lg:grid-rows-2 lg:grid-cols-4 grid-rows-4 grid-cols-2 md:gap-y-15 gap-y-10 pt-4">
+        <div className="w-full flex flex-col relative h-full">
+          {/* <Label label="Roof" /> */}
+          <p className="bg-slate-200 font-[400] w-[70px] text-center text-zinc-800 tracking-wider text-md absolute left-[2%] -top-[2%]">
+            Roof
+          </p>
+          <div className="grid grid-cols-1 gap-y-3 py-6 border-2 border-[#a8a29e] rounded-md h-full">
             {data.map((item, i) => {
               // 14,
               if ([6, 7].includes(i)) {
@@ -203,46 +151,110 @@ function Form4({ setStep, mainFormik }: any) {
             })}
           </div>
         </div>
-        {/* Floor */}
-        <div className="w-full  flex flex-col">
-          <Label label="Floor" />
-          <div className="grid grid-rows-2 grid-cols-4 gap-y-10 pt-4">
-            {data.map((item, i) => {
-              // 14,
-              if (i === 11) {
-                return (
-                  <div key={i} className="w-full h-full flex justify-center">
-                    <SelectInput
-                      key={i}
-                      formik={mainFormik}
-                      item={item}
-                      subItems={[
-                        "floorNoInsulation",
-                        "floorLimitedInsulation",
-                        "floorFullyInsulated",
-                        "floorDwellingBelow",
-                      ]}
-                    />
-                  </div>
-                );
-              }
-              if (i === 12) {
-                return (
-                  <div key={i} className="w-full h-full flex justify-center">
-                    <SelectInput
-                      key={i}
-                      formik={mainFormik}
-                      item={item}
-                      subItems={[
-                        "floorSolid",
-                        "floorSuspended",
-                        "floorOtherType",
-                      ]}
-                    />
-                  </div>
-                );
-              }
-            })}
+
+        <div className="w-full flex flex-col ml-6 gap-y-2 h-full">
+          {/* Wall */}
+          <div className="w-full border-2 border-[#a8a29e] rounded-md relative">
+            <p className="bg-slate-200 font-[400] w-[50px] text-center text-zinc-800 tracking-wider text-md absolute left-[3%] -top-[4%]">
+              Wall
+            </p>
+            <div className="grid lg:grid-rows-4 lg:grid-cols-1 gap-y-3 py-2">
+              {data.map((item, i) => {
+                // 14,
+                if ([2, 3].includes(i)) {
+                  return (
+                    <div key={i} className="w-full h-[70%]">
+                      <NormalInput formik={mainFormik} item={item} />
+                    </div>
+                  );
+                } else if (i === 0) {
+                  return (
+                    <div key={i} className="w-full h-full flex justify-center">
+                      <SelectInput
+                        key={i}
+                        formik={mainFormik}
+                        item={item}
+                        subItems={[
+                          "wallsNoInsulation",
+                          "wallsLimitedInsulation",
+                          "wallsFullyInsulated",
+                        ]}
+                      />
+                    </div>
+                  );
+                } else if (i === 1) {
+                  return (
+                    <div key={i} className="w-full h-full flex justify-center">
+                      <SelectInput
+                        key={i}
+                        formik={mainFormik}
+                        item={item}
+                        subItems={[
+                          "wallsBrick",
+                          "wallsCavity",
+                          "wallsCob",
+                          "wallsGranite",
+                          "wallsParkHome",
+                          "wallsSedimentary",
+                          "wallsSystemBuilt",
+                          "wallsTimber",
+                          "wallsOtherUnknown",
+                          // "wallsThermalTransmittance",
+                        ]}
+                      />
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </div>
+          </div>
+
+          {/* Floor */}
+          <div className="w-full  flex flex-col border-2 border-[#a8a29e] rounded-md relative">
+            {/* <Label label="Floor" /> */}
+            <p className="bg-slate-200 font-[400] w-[60px] text-center text-zinc-800 tracking-wider text-md absolute left-[2%] -top-[3%]">
+              Floor
+            </p>
+            <div className="grid grid-rows-4 grid-cols-1 py-2 gap-y-3">
+              {data.map((item, i) => {
+                // 14,
+                if (i === 11) {
+                  return (
+                    <div key={i} className="w-full h-full flex justify-center">
+                      <SelectInput
+                        key={i}
+                        formik={mainFormik}
+                        item={item}
+                        subItems={[
+                          "floorNoInsulation",
+                          "floorLimitedInsulation",
+                          "floorFullyInsulated",
+                          "floorDwellingBelow",
+                        ]}
+                      />
+                    </div>
+                  );
+                }
+                if (i === 12) {
+                  return (
+                    <div key={i} className="w-full h-full flex justify-center">
+                      <SelectInput
+                        key={i}
+                        formik={mainFormik}
+                        item={item}
+                        subItems={[
+                          "floorSolid",
+                          "floorSuspended",
+                          "floorOtherType",
+                        ]}
+                      />
+                    </div>
+                  );
+                }
+              })}
+            </div>
           </div>
         </div>
       </form>
@@ -272,7 +284,7 @@ function Form4({ setStep, mainFormik }: any) {
           forward
         </Button>
       </div>
-    </>
+    </div>
   );
 }
 

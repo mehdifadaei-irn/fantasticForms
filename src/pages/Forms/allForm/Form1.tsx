@@ -31,6 +31,7 @@ const data = [
   "WindowsEnergyEFF",
   "WindowsEnvEFF",
   "multiGlazeProportion", //add
+  // "TariffType",
 ];
 
 function Form1({ setStep, mainFormik }: any) {
@@ -73,172 +74,215 @@ function Form1({ setStep, mainFormik }: any) {
       ) : (
         <form
           // onSubmit={mainFormik.handleSubmit}
-          className="w-full h-[76%]  lg:px-12 flex flex-col md:pt-10 "
+          className="w-full h-[76%]  lg:px-12 flex flex-row md:pt-3 "
         >
-          <div className=" w-full h-[50%] grid lg:grid-rows-3 lg:grid-cols-5 grid-rows-4 grid-cols-4 items-center lg:pl-1">
-            {/* Property setting */}
-            <div className="w-full h-[70%] flex justify-start">
-              <Label label="propertySetting" />
+          {/* Property setting */}
+          <div className=" w-full relative">
+            <div className="flex justify-start absolute left-6 -top-4">
+              {/* <Label label="propertySetting" /> */}
+              <p className="bg-slate-200 font-[400] w-[200px] text-center text-zinc-800 tracking-wider text-lg">
+                propertySetting
+              </p>
             </div>
-            {data.map((item, i) => {
-              //0 , 1, 2, 4, 6 , 8
-              if ([3, 5, 7, 9, 10, 11, 12, 13].includes(i)) {
-                return (
-                  <div key={i} className="w-full h-[70%]">
-                    <NormalInput formik={mainFormik} item={item} />
-                  </div>
-                );
-              } else if (i === 0) {
-                return (
-                  <div key={i} className="w-full h-full flex justify-center">
-                    <SelectInput
-                      key={i}
-                      formik={mainFormik}
-                      item={item}
-                      subItems={[
-                        "house",
-                        "flat",
-                        "maisonette",
-                        "bungalow",
-                        "park home",
-                      ]}
-                    />
-                  </div>
-                );
-              } else if (i === 1) {
-                return (
-                  <div key={i} className="w-full h-full flex justify-center">
-                    <SelectInput
-                      key={i}
-                      formik={mainFormik}
-                      item={item}
-                      subItems={[
-                        "detached",
-                        "semi-Detached",
-                        "midTerrace",
-                        "end-Terrace",
-                        "enclosed Mid-Terrace",
-                        "enclosed End-Terrace",
-                      ]}
-                    />
-                  </div>
-                );
-              } else if (i === 2) {
-                return (
-                  <div key={i} className="w-full h-full flex justify-center">
-                    <SelectInput
-                      key={i}
-                      formik={mainFormik}
-                      item={item}
-                      subItems={["Yes", "No"]}
-                    />
-                  </div>
-                );
-              } else if (i === 4) {
-                return (
-                  <div key={i} className="w-full h-full ">
-                    <NormalInput formik={mainFormik} item={item} unit={"m"} />
-                  </div>
-                );
-              } else if (i === 6) {
-                return (
-                  <div key={i} className="w-full h-full">
-                    <NormalInput
-                      formik={mainFormik}
-                      item={item}
-                      unit={"m"}
-                      topUnit={"2"}
-                    />
-                  </div>
-                );
-              } else if (i === 8) {
-                return (
-                  <div key={i} className="w-full h-full">
-                    <NormalInput formik={mainFormik} item={item} unit="m" />
-                  </div>
-                );
-              } else {
-                return null;
-              }
-            })}
-          </div>
-          {/* Tenure */}
-          <div className="w-full flex-1">
-            <Label label="Tenure" />
-            {data.map((item, i) => {
-              // 14,
-              if ([14].includes(i)) {
-                return (
-                  <div
-                    key={i}
-                    className="w-full h-full flex justify-start mt-2 pl-[2%]"
-                  >
-                    <SelectInput
-                      w={"19%"}
-                      key={i}
-                      formik={mainFormik}
-                      item={item}
-                      subItems={[
-                        "tenureOwnerOccupied",
-                        "tenurePrivateRent",
-                        "tenureSocialRent",
-                        "tenureUnknown",
-                      ]}
-                    />
-                  </div>
-                );
-              } else {
-                return null;
-              }
-            })}
-          </div>
-          {/* Window setting */}
-          <div className="w-full h-[30%] flex flex-col justify-between ">
-            <Label label="windowsSetting" />
-            <div className="w-full h-[60%] grid grid-rows-1 gap-x-8 grid-cols-4 items-start justify-center  xl:pl-7 md:pl-4">
+            <div className="w-full grid grid-cols-2 gap-y-4 border-2 border-[#a8a29e] pt-8 pb-5 rounded-md shadow-xl">
               {data.map((item, i) => {
-                if ([16, 17].includes(i)) {
+                //0 , 1, 2, 4, 6 , 8
+                if ([3, 5, 7, 9, 10, 11, 12, 13].includes(i)) {
                   return (
-                    <div key={i} className="w-full h-[70%] flex justify-start">
-                      <NormalInput formik={mainFormik} item={item} w={"100%"} />
+                    <div key={i} className="w-full h-[70%]">
+                      <NormalInput formik={mainFormik} item={item} />
                     </div>
                   );
-                } else if (i === 15) {
+                } else if (i === 0) {
                   return (
-                    <div key={i} className="w-full h-full flex justify-start">
+                    <div key={i} className="w-full h-full flex justify-center">
                       <SelectInput
-                        w={"80%"}
                         key={i}
                         formik={mainFormik}
                         item={item}
                         subItems={[
-                          "windowsSingleGlazed",
-                          "windowsSecondaryGlazed",
-                          "windowsDoubleGlazed",
-                          "windowsTripleGlazed",
-                          "windowsHighPerformanceGlazed",
-                          "windowsMixedGlazed",
-                          "windowsOtherUnknownGlazed",
+                          "house",
+                          "flat",
+                          "maisonette",
+                          "bungalow",
+                          "park home",
                         ]}
                       />
                     </div>
                   );
-                } else if (i === 18) {
+                } else if (i === 1) {
+                  return (
+                    <div key={i} className="w-full h-full flex justify-center">
+                      <SelectInput
+                        key={i}
+                        formik={mainFormik}
+                        item={item}
+                        subItems={[
+                          "detached",
+                          "semi-Detached",
+                          "midTerrace",
+                          "end-Terrace",
+                          "enclosed Mid-Terrace",
+                          "enclosed End-Terrace",
+                        ]}
+                      />
+                    </div>
+                  );
+                } else if (i === 2) {
+                  return (
+                    <div key={i} className="w-full h-full flex justify-center">
+                      <SelectInput
+                        key={i}
+                        formik={mainFormik}
+                        item={item}
+                        subItems={["Yes", "No"]}
+                      />
+                    </div>
+                  );
+                } else if (i === 4) {
+                  return (
+                    <div key={i} className="w-full h-full ">
+                      <NormalInput formik={mainFormik} item={item} unit={"m"} />
+                    </div>
+                  );
+                } else if (i === 6) {
                   return (
                     <div key={i} className="w-full h-full">
                       <NormalInput
-                        w={"70%"}
                         formik={mainFormik}
                         item={item}
-                        // unit="m"
-                        startUnit="%"
+                        unit={"m"}
+                        topUnit={"2"}
                       />
+                    </div>
+                  );
+                } else if (i === 8) {
+                  return (
+                    <div key={i} className="w-full h-full">
+                      <NormalInput formik={mainFormik} item={item} unit="m" />
                     </div>
                   );
                 } else {
                   return null;
                 }
               })}
+            </div>
+          </div>
+          <div className="w-full flex flex-col ml-5 gap-y-4">
+            {/* Window setting */}
+            <div className="w-full flex flex-col  h-[60%] relative">
+              {/* <Label label="windowsSetting" /> */}
+              <p className="bg-slate-200 font-[400] w-[210px] left-4 -top-4 text-center text-zinc-800 tracking-wider text-lg absolute ">
+                windowsSetting
+              </p>
+              <div className="w-full grid grid-cols-1 items-center justify-center h-full border-2 border-[#a8a29e] rounded-md pt-5 px-3">
+                {data.map((item, i) => {
+                  if ([16, 17].includes(i)) {
+                    return (
+                      <div
+                        key={i}
+                        className="h-[70%] flex justify-center w-full "
+                      >
+                        <NormalInput
+                          formik={mainFormik}
+                          item={item}
+                          w={"59%"}
+                        />
+                      </div>
+                    );
+                  } else if (i === 15) {
+                    return (
+                      <div
+                        key={i}
+                        className="w-full h-[60px] flex justify-center"
+                      >
+                        <SelectInput
+                          w={"59%"}
+                          key={i}
+                          formik={mainFormik}
+                          item={item}
+                          subItems={[
+                            "windowsSingleGlazed",
+                            "windowsSecondaryGlazed",
+                            "windowsDoubleGlazed",
+                            "windowsTripleGlazed",
+                            "windowsHighPerformanceGlazed",
+                            "windowsMixedGlazed",
+                            "windowsOtherUnknownGlazed",
+                          ]}
+                        />
+                      </div>
+                    );
+                  } else if (i === 18) {
+                    return (
+                      <div key={i} className="w-full h-full">
+                        <NormalInput
+                          w={"59%"}
+                          formik={mainFormik}
+                          item={item}
+                          // unit="m"
+                          startUnit="%"
+                        />
+                      </div>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+              </div>
+            </div>
+            {/* Tenure */}
+            <div className="w-full border-2 border-[#a8a29e] rounded-md h-[20%] relative ">
+              {/* <Label label="Tenure" /> */}
+              <p className="bg-slate-200 font-[400] w-[80px] left-4 -top-3 text-center text-zinc-800 tracking-wider text-md absolute ">
+                Tenure
+              </p>
+              <div className="w-full h-full flex items-center">
+                {data.map((item, i) => {
+                  // 14,
+                  if ([14].includes(i)) {
+                    return (
+                      <div
+                        key={i}
+                        className="w-full h-[60px] flex justify-center pl-[2%] items-center"
+                      >
+                        <SelectInput
+                          w={"59%"}
+                          key={i}
+                          formik={mainFormik}
+                          item={item}
+                          subItems={[
+                            "tenureOwnerOccupied",
+                            "tenurePrivateRent",
+                            "tenureSocialRent",
+                            "tenureUnknown",
+                          ]}
+                        />
+                      </div>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+              </div>
+            </div>
+            <div className="border-2 border-[#a8a29e] rounded-md py-6 px-3 flex justify-center relative shadow-xl">
+              <p className="bg-slate-200 font-[400] w-[80px] left-4 -top-3 text-center text-zinc-800 tracking-wider text-md absolute">
+                Tariff
+              </p>
+              <SelectInput
+                formik={mainFormik}
+                item={"TariffType"}
+                key={"TariffType"}
+                w={"59%"}
+                subItems={[
+                  "tariff24HrsOrDualOrBoth",
+                  "tariffOffPeak",
+                  "tariffSingle",
+                  "tariffStandard",
+                  "tariffUnknown",
+                ]}
+              />
             </div>
           </div>
         </form>
