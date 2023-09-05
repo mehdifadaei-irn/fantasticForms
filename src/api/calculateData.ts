@@ -56,8 +56,8 @@ export async function PostDataToCalc({
       lodgement_date: Datas.lodgementDate,
     },
     floor_settings: {
-      // floor_energy_eff: Datas.FloorEnergyEFf,
-      // floor_env_eff: Datas.FloorEnvEFF,
+      floor_energy_eff: Datas.FloorEnergyEFf,
+      floor_env_eff: Datas.FloorEnvEFF,
       floor_insulation: Datas.FloorInsulation,
       floor_type: Datas.FloorType,
     },

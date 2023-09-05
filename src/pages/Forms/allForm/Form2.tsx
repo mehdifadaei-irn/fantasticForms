@@ -154,13 +154,25 @@ function Form2({ setStep, mainFormik }: any) {
               return (
                 <div className="w-full border-2 border-[#a8a29e] py-6 px-4 rounded-md relative">
                   <p className="bg-slate-200 font-[400] w-[110px] text-center text-zinc-800 tracking-wider text-md absolute left-[3%] -top-[12%]">
-                    MainHeat
+                    MainFuel
                   </p>
-                  <NormalInput
+                  {/* <NormalInput
                     formik={mainFormik}
                     item={"MainFuelType"}
                     key={"MainFuelType"}
                     w={"100%"}
+                  /> */}
+                  <SelectInput
+                    formik={mainFormik}
+                    item={"MainFuelType"}
+                    key={"MainFuelType"}
+                    w={"100%"}
+                    subItems={[
+                      "mainFuelElectricity",
+                      "mainFuelGas",
+                      "mainFuelCommunityScheme",
+                      "mainfuelOtherUnknown",
+                    ]}
                   />
                 </div>
               );

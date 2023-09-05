@@ -64,8 +64,8 @@ function Form3({ setStep, mainFormik }: any) {
       >
         {/* Lightening settings */}
         <div className="w-full flex flex-col relative">
-          <p className="bg-slate-200 font-[400] w-[210px] text-center text-zinc-800 tracking-wider text-md absolute left-[1%] -top-[6%]">
-            Lightening settings
+          <p className="bg-slate-200 font-[400] w-[120px] text-center text-zinc-800 tracking-wider text-md absolute left-[2%] -top-[6%]">
+            Lightening
           </p>
           <div className="grid lg:grid-rows-2 lg:grid-cols-3 gap-y-8 border-2 border-[#a8a29e] rounded-md py-7 px-3 shadow-md">
             {data.map((item, i) => {
@@ -114,7 +114,7 @@ function Form3({ setStep, mainFormik }: any) {
           {/* Hot Water */}
           <div className="w-[50%] xl:mt-6 relative border-2 border-[#a8a29e] rounded-md shadow-xl">
             {/* <Label label="" /> */}
-            <p className="bg-slate-200 font-[400] w-[110px] text-center text-zinc-800 tracking-wider text-md absolute left-[3%] -top-[6%]">
+            <p className="bg-slate-200 font-[400] w-[110px] text-center text-zinc-800 tracking-wider text-md absolute left-[3%] -top-[5%]">
               Hot Water
             </p>
             <div className="grid lg:grid-rows-4 lg:grid-cols-1 gap-y-4 gap-x-3 py-6">
@@ -170,8 +170,8 @@ function Form3({ setStep, mainFormik }: any) {
             {/* Contoroller type */}
             <div className=" w-full py-8 justify-center items-center flex flex-col relative border-2 border-[#a8a29e] rounded-md  shadow-xl">
               {/* <Label label="ControllerType" /> */}
-              <p className="bg-slate-200 font-[400] w-[130px] text-center text-zinc-800 tracking-wider text-md absolute left-[2%] -top-[15%]">
-                ControllerType
+              <p className="bg-slate-200 font-[400] w-[110px] text-center text-zinc-800 tracking-wider text-md absolute left-[2%] -top-[13%]">
+                Controller
               </p>
               {data.map((item, i) => {
                 // 14,

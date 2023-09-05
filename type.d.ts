@@ -164,8 +164,8 @@ export type AllInputs = {
     | "floorDwelingBelow"
     | "";
   FloorType: "floorSolid" | "floorSuspended" | "floorOtherType" | "";
-  // FloorEnergyEFf: string;
-  // FloorEnvEFF: string;
+  FloorEnergyEFf: string;
+  FloorEnvEFF: string;
 
   flatStoreyCount: string;
   constructionAgeBandCategory: string;

@@ -158,11 +158,11 @@ function QontoStepIcon(props: any) {
 }
 
 const steps = [
-  "Propertry&window&tenure",
-  "Heating & Transaction",
-  "Lightenig & HotWater",
-  "Wall & Roof & floor-setting",
-  "EnergyInfo & SecondaryHeater",
+  "Propertry-window-tenure",
+  "Heating-Transaction",
+  "Lightenig-HotWater",
+  "Wall-Roof-floor",
+  "EnergyInfo",
 ];
 
 export default function FormNav({ setNavigator }: { setNavigator: any }) {

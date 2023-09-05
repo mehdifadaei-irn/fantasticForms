@@ -84,7 +84,7 @@ function Form1({ setStep, mainFormik }: any) {
                 propertySetting
               </p>
             </div>
-            <div className="w-full grid grid-cols-2 gap-y-4 border-2 border-[#a8a29e] pt-8 pb-5 rounded-md shadow-xl">
+            <div className="w-full grid grid-cols-2 gap-y-4 border-2 border-[#a8a29e] pt-8 pb-5 rounded-md shadow-xl h-full">
               {data.map((item, i) => {
                 //0 , 1, 2, 4, 6 , 8
                 if ([3, 5, 7, 9, 10, 11, 12, 13].includes(i)) {

@@ -233,8 +233,8 @@ function Layout() {
       photoSupply: inputs?.roof_settings?.photo_supply, //add
       FloorInsulation: inputs?.floor_settings?.floor_insulation,
       FloorType: inputs?.floor_settings?.floor_type,
-      // FloorEnergyEFf: inputs?.floor_settings?.floor_energy_eff,
-      // FloorEnvEFF: inputs?.floor_settings?.floor_env_eff,
+      FloorEnergyEFf: inputs?.floor_settings?.floor_energy_eff,
+      FloorEnvEFF: inputs?.floor_settings?.floor_env_eff,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {

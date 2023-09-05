@@ -24,8 +24,8 @@ const data = [
   "photoSupply", //add
   "FloorInsulation",
   "FloorType",
-  // "FloorEnergyEFf", // 4/ 7/ 2
-  // "FloorEnvEFF",
+  "FloorEnergyEFf", // 13
+  "FloorEnvEFF", //14
 ];
 
 function Form4({ setStep, mainFormik }: any) {
@@ -154,11 +154,11 @@ function Form4({ setStep, mainFormik }: any) {
 
         <div className="w-full flex flex-col ml-6 gap-y-2 h-full">
           {/* Wall */}
-          <div className="w-full border-2 border-[#a8a29e] rounded-md relative">
+          <div className="w-full border-2 border-[#a8a29e] rounded-md relative h-1/2 flex flex-col justify-between">
             <p className="bg-slate-200 font-[400] w-[50px] text-center text-zinc-800 tracking-wider text-md absolute left-[3%] -top-[4%]">
               Wall
             </p>
-            <div className="grid lg:grid-rows-4 lg:grid-cols-1 gap-y-3 py-2">
+            <div className="grid lg:grid-rows-4 lg:grid-cols-1 gap-y-3 py-2 justify-between h-full">
               {data.map((item, i) => {
                 // 14,
                 if ([2, 3].includes(i)) {
@@ -212,12 +212,12 @@ function Form4({ setStep, mainFormik }: any) {
           </div>
 
           {/* Floor */}
-          <div className="w-full  flex flex-col border-2 border-[#a8a29e] rounded-md relative">
+          <div className="w-full  flex flex-col border-2 border-[#a8a29e] rounded-md relative h-1/2">
             {/* <Label label="Floor" /> */}
             <p className="bg-slate-200 font-[400] w-[60px] text-center text-zinc-800 tracking-wider text-md absolute left-[2%] -top-[3%]">
               Floor
             </p>
-            <div className="grid grid-rows-4 grid-cols-1 py-2 gap-y-3">
+            <div className="grid grid-rows-4 grid-cols-1 py-2 gap-y-3 h-full justify-between">
               {data.map((item, i) => {
                 // 14,
                 if (i === 11) {
@@ -250,6 +250,13 @@ function Form4({ setStep, mainFormik }: any) {
                           "floorOtherType",
                         ]}
                       />
+                    </div>
+                  );
+                }
+                if ([13, 14].includes(i)) {
+                  return (
+                    <div key={i} className="w-full h-[70%]">
+                      <NormalInput formik={mainFormik} item={item} />
                     </div>
                   );
                 }
